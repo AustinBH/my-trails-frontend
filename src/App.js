@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './App.css';
 import User from './containers/UserContainer'
+import Home from './containers/HomeContainer'
 
-function App() {
+class App extends Component {
 
-  return (
-    <div className="App">
-      <User />
-    </div>
-  );
+  render() {
+    return (
+      <div className="App">
+        {localStorage.getItem('token') ?
+          <Home />
+          :
+          <User />
+        }
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {user: state.user}
+}
+
+export default connect(mapStateToProps)(App);

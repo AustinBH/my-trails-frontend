@@ -14,7 +14,6 @@ class UserInput extends Component {
     }
 
     handleChange = ev => {
-        console.log(ev.target.parentNode.name)
         this.setState({
             [ev.target.parentNode.name]: {
                 ...this.state[ev.target.parentNode.name], [ev.target.name]: ev.target.value
@@ -24,7 +23,7 @@ class UserInput extends Component {
 
     handleSubmit = ev => {
         ev.preventDefault();
-        
+        ev.target.name !== 'login' ? this.props.signup(this.state.signup) : this.props.login(this.state.login)
     }
 
     render() {

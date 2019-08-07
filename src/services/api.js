@@ -7,6 +7,7 @@ const headers = () => {return {
 }}
 
 const signup = data => {
+    console.log(data)
     return fetch(`${API_ROOT}/users`, {
         method: 'POST',
         headers: {
