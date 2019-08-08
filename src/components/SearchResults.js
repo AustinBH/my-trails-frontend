@@ -1,7 +1,12 @@
 import React, { Component} from 'react';
-import { Table } from 'semantic-ui-react';
+import { Table, Button } from 'semantic-ui-react';
 
 class SearchResults extends Component {
+
+    handleClick = (ev, data) => {
+        console.log(ev.target.name)
+    }
+ 
     render() {
         if (this.props.trails && this.props.trails.length > 0) {
             return <Table>
@@ -19,9 +24,12 @@ class SearchResults extends Component {
                         return <Table.Row key={trail.id}>
                             <Table.Cell>{trail.name}</Table.Cell>
                             <Table.Cell>{trail.summary}</Table.Cell>
-                            <Table.Cell>Length: {trail.length} miles</Table.Cell>
-                            <Table.Cell>Ascent: {trail.ascent}</Table.Cell>
-                            <Table.Cell>Condition: {trail.conditionStatus}</Table.Cell>
+                            <Table.Cell>{trail.length} miles</Table.Cell>
+                            <Table.Cell>{trail.ascent} ft</Table.Cell>
+                            <Table.Cell>{trail.conditionStatus}</Table.Cell>
+                            <Table.Cell><Button name='fav' icon='star outline' content='Fav' onClick={(event) => this.handleClick(event, trail)}/></Table.Cell>
+                            <Table.Cell><Button name='complete' icon='check circle outline' content='Complete' onClick={(event) => this.handleClick(event, trail)} /></Table.Cell>
+                            <Table.Cell><Button name='comments' icon='comment alternate' content='Comments' onClick={(event) => this.handleClick(event, trail)} /></Table.Cell>
                         </Table.Row>
                     })}
                 </Table.Body>
