@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import { Table } from 'semantic-ui-react';
+import { Table, Button } from 'semantic-ui-react';
 
 class SearchResults extends Component {
     render() {
@@ -22,6 +22,9 @@ class SearchResults extends Component {
                             <Table.Cell>{trail.length} miles</Table.Cell>
                             <Table.Cell>{trail.ascent} ft</Table.Cell>
                             <Table.Cell>{trail.conditionStatus}</Table.Cell>
+                            <Table.Cell><Button icon='star outline' content='Fav'/></Table.Cell>
+                            <Table.Cell><Button icon='check circle outline' content='Complete' /></Table.Cell>
+                            <Table.Cell><Button icon='comment alternate' content='Comments' /></Table.Cell>
                         </Table.Row>
                     })}
                 </Table.Body>
