@@ -48,11 +48,8 @@ const getTrailsByLocation = (lat, long) => {
     .then(res => res.json())
 }
 
-const getTrailsById = (...args) => {
-    let path = `${API_ROOT}/trails-by-id?ids=${args[0]}`
-    for (let i=1; i<args.length; i++) {
-        path.concat(`,${args[i]}`)
-    }
+const getTrailsById = (data) => {
+    let path = `${API_ROOT}/trails-by-ids?ids=${data.join(',')}`
     return fetch(path, {
         headers: headers()
     }).then(res => res.json())

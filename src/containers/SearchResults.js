@@ -1,47 +1,35 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchAuthentication } from '../actions/userActions';
-import { api } from '../services/api';
+import { buttonSwitcher } from '../services/buttonSwitcher';
 import SearchData from '../components/SearchData';
 
 
 class SearchResults extends Component {
+
+    state = {
+        hidden: {
+            id: '',
+            status: true
+        }
+    }
 
     componentDidMount() {
         this.props.fetchAuthentication()
     }
 
     handleClick = (ev, data) => {
-        let button = ev.target
-
-        switch (button.name) {
-            case 'fav':
-                let favorite = {trail_id: data.id, user_id: this.props.user.id}
-                if (!button.className.includes('orange')) {
-                    api.favorites.addFavorite({ like: favorite }).then(json => {button.className = 'ui orange button'})
-                } else {
-                    api.favorites.deleteFavorite({ like: favorite}).then(json => {button.className = 'ui button'})
-                }
-                return this.props.fetchAuthentication()
-            case 'complete':
-                let complete = {trail_id: data.id, user_id: this.props.user.id}
-                if (!button.className.includes('green')) {
-                    api.completedHikes.addCompletedHike({ completed_hike: complete }).then(json => { button.className = 'ui green button' })
-                } else {
-                    api.completedHikes.deleteCompletedHike({ completed_hike: complete}).then(json => { button.className = 'ui button'})
-                }
-                return this.props.fetchAuthentication()
-            case 'comments':
-                return this.props.fetchAuthentication()
-            case 'info':
-                return this.props.fetchAuthentication()
-            default:
-                return null
-        }
+        if (typeof buttonSwitcher(ev, data, this.props) === 'number') {
+            this.setState({hidden: {
+                id: buttonSwitcher(ev, data, this.props),
+                status: !this.state.hidden.status
+            }})
+        } 
+        buttonSwitcher(ev, data, this.props)
     }
  
     render() {
-        return <SearchData trails={this.props.trails} handleClick={this.handleClick} user={this.props.user} />
+        return <SearchData hidden={this.state.hidden} trails={this.props.trails} handleClick={this.handleClick} user={this.props.user} />
     }
 }
 
