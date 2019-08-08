@@ -20,7 +20,7 @@ const manageUser = (state = {
             return { ...state, user: returningUser }
         case 'AUTHENTICATE':
             let authenticatedUser = {}
-            api.auth.getCurrentUser().then(json => console.log(json))
+            api.auth.getCurrentUser().then(json => authenticatedUser = json.user)
             return {...state, user: authenticatedUser}
         default:
             return state

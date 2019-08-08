@@ -14,21 +14,20 @@ class HomeContainer extends Component {
     }
 
     render() {
-        return <div>
-            
-            <Router>
-                <Menu>
-                    <Menu.Item header as={NavLink} exact to='/account' activeClassName='active'>Account</Menu.Item>
-                    <Menu.Item header as={NavLink} exact to='/favorites' activeClassName='active'>Favorites</Menu.Item>
-                    <Menu.Item header as={NavLink} exact to='/hikes' activeClassName='active'>Find Hikes</Menu.Item>
-                    <Menu.Item header as={NavLink} exact to='/search' activeClassName='active'>Search</Menu.Item>
-                </Menu>
-                <Route path='/account' exact render={props => <Account {...props} />}/>
+        return <Router>
+            <Menu pointing fixed='top' compact>
+                <Menu.Item icon='user' header as={NavLink} exact to='/account' activeClassName='active' name='Account'/>
+                <Menu.Item icon='like' header as={NavLink} exact to='/favorites' activeClassName='active' name='Favorites'/>
+                <Menu.Item icon='map' header as={NavLink} exact to='/hikes' activeClassName='active' name='Hikes'/>
+                <Menu.Item icon='search' header as={NavLink} exact to='/search' activeClassName='active' name='Search'/>
+            </Menu>
+            <div className='info-holder'>
+                <Route path='/account' exact render={props => <Account {...props} />} />
                 <Route path='/favorites' exact render={props => <Favorites {...props} />} />
-                <Route path='/hikes' exact render={props => <Hikes {...props} />}/>
-                <Route path='/search' exact render={props => <Search {...props} />}/>
-            </Router>
-        </div>
+                <Route path='/hikes' exact render={props => <Hikes {...props} />} />
+                <Route path='/search' exact render={props => <Search {...props} />} />
+            </div>
+        </Router>
     }
 }
 

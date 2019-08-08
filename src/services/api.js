@@ -7,7 +7,6 @@ const headers = () => {return {
 }}
 
 const signup = data => {
-    console.log(data)
     return fetch(`${API_ROOT}/users`, {
         method: 'POST',
         headers: {
@@ -32,10 +31,27 @@ const getCurrentUser = () => {
     }).then(res => res.json())
 }
 
+const getLocations = () => {
+    return fetch(`${API_ROOT}/locations`, {
+        headers: headers()
+    }).then(res => res.json())
+}
+
+const getTrailsByLocation = (lat, long) => {
+    return fetch(`${API_ROOT}/trails-by-location?lat=${lat}&lon=${long}`)
+    .then(res => res.json())
+}
+
 export const api = {
     auth: {
         login,
         signup,
         getCurrentUser
+    },
+    locations: {
+        getLocations
+    },
+    trails: {
+        getTrailsByLocation
     }
 }

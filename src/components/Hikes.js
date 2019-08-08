@@ -1,9 +1,10 @@
 import React from 'react';
+import { Button } from 'semantic-ui-react';
 
 const Hikes = props => {
     return <div>
             <h1>Hikes</h1>
-            <button onClick={() => props.history.push('/')}>Go Back</button>
+            <Button icon='backward' onClick={() => this.props.history.push('/')} content='Go Back' />
         </div>
 }
 
