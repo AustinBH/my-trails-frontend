@@ -2,6 +2,11 @@ import React, { Component} from 'react';
 import { Table, Button } from 'semantic-ui-react';
 
 class SearchResults extends Component {
+
+    handleClick = (ev, data) => {
+        console.log(ev.target.name)
+    }
+ 
     render() {
         if (this.props.trails && this.props.trails.length > 0) {
             return <Table>
@@ -22,9 +27,9 @@ class SearchResults extends Component {
                             <Table.Cell>{trail.length} miles</Table.Cell>
                             <Table.Cell>{trail.ascent} ft</Table.Cell>
                             <Table.Cell>{trail.conditionStatus}</Table.Cell>
-                            <Table.Cell><Button icon='star outline' content='Fav'/></Table.Cell>
-                            <Table.Cell><Button icon='check circle outline' content='Complete' /></Table.Cell>
-                            <Table.Cell><Button icon='comment alternate' content='Comments' /></Table.Cell>
+                            <Table.Cell><Button name='fav' icon='star outline' content='Fav' onClick={(event) => this.handleClick(event, trail)}/></Table.Cell>
+                            <Table.Cell><Button name='complete' icon='check circle outline' content='Complete' onClick={(event) => this.handleClick(event, trail)} /></Table.Cell>
+                            <Table.Cell><Button name='comments' icon='comment alternate' content='Comments' onClick={(event) => this.handleClick(event, trail)} /></Table.Cell>
                         </Table.Row>
                     })}
                 </Table.Body>
