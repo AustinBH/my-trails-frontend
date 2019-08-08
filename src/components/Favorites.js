@@ -5,7 +5,7 @@ const Favorites = props => {
 
     return <div>
             <h1>Favorites</h1>
-            <Button icon='backward' onClick={() => props.history.push('/')} content='Go Back' />
+            <Button color='teal' icon='backward' onClick={() => props.history.push('/')} content='Go Back' />
         </div>
 }
 

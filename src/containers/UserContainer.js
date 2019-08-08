@@ -43,7 +43,7 @@ class UserContainer extends Component {
                         <label>Password</label>
                         <input type='password' value={this.state.login.password} onChange={this.handleChange} name='password' autoComplete='current-password' required />
                     </Form.Field>
-                    <Button type='submit' content='Login' />
+                    <Button color='blue' type='submit' content='Login' />
                 </Form>
                 <Form onSubmit={this.handleSubmit} name='signup'>
                     <Form.Field>
@@ -54,7 +54,7 @@ class UserContainer extends Component {
                         <label>Password</label>
                         <input type='password' value={this.state.signup.password} onChange={this.handleChange} name='password' autoComplete='current-password' required />
                     </Form.Field>
-                    <Button type='submit' content='Signup' />
+                    <Button color='blue' type='submit' content='Signup' />
                 </Form>
             </div>
         )

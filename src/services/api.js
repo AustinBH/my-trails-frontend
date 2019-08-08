@@ -48,12 +48,55 @@ const getTrailsByLocation = (lat, long) => {
     .then(res => res.json())
 }
 
+const addFavorite = (data) => {
+    return fetch (`${API_ROOT}/likes`, {
+        method: 'POST',
+        headers: headers(),
+        body: JSON.stringify(data)
+    }).then(res => res.json())
+}
+
+const deleteFavorite = (data) => {
+    return fetch(`${API_ROOT}/likes`, {
+        method: 'DELETE',
+        headers: headers(),
+        body: JSON.stringify(data)
+    }).then(res => res.json())
+}
+
+const addCompletedHike = (data) => {
+    return fetch (`${API_ROOT}/completed-hikes`,{
+        method: 'POST',
+        headers: headers(),
+        body: JSON.stringify(data)
+    }).then(res => res.json())
+}
+
+const deleteCompletedHike = (data) => {
+    return fetch(`${API_ROOT}/completed-hikes`, {
+        method: 'DELETE',
+        headers: headers(),
+        body: JSON.stringify(data)
+    }).then(res => res.json())
+}
+
 export const api = {
     auth: {
         login,
         signup,
         getCurrentUser,
         edit
+    },
+    comments: {
+
+    },
+    favorites: {
+        addFavorite,
+        deleteFavorite
+    },
+    completedHikes: {
+        addCompletedHike,
+        deleteCompletedHike
     },
     locations: {
         getLocations

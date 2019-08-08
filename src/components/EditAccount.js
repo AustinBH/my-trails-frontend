@@ -53,7 +53,7 @@ class EditAccount extends Component {
                         <label>New Password</label>
                         <input type='password' value={this.state.newPassword} onChange={this.handleChange} name='newPassword' autoComplete='current-password' />
                     </Form.Field>
-                    <Button type='submit' content='Edit' />
+                    <Button color='blue' type='submit' content='Edit' />
                 </Form>
             }
             

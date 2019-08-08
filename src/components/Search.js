@@ -30,7 +30,7 @@ class Search extends Component {
             <div>
                 <Button.Group vertical>
                     {this.state.locations.map(location => {
-                    return <Button
+                    return <Button color='brown'
                         key={location.id}
                         id={location.id}
                         icon='map signs'
@@ -40,7 +40,7 @@ class Search extends Component {
                 </Button.Group>
             </div>
             <SearchResults trails={this.state.trails} />
-            <Button icon='backward'onClick={() => this.props.history.push('/')} content='Go Back'/>
+            <Button color='teal'icon='backward'onClick={() => this.props.history.push('/')} content='Go Back'/>
         </div>
     }
 }
