@@ -15,9 +15,13 @@ class Search extends Component {
     }
 
     handleClick = (ev, location) => {
-        let lat = location.latitude
-        let lon = location.longitude
-        api.trails.getTrailsByLocation(lat, lon).then(json => this.setState({trails: json}))
+        if (this.state.trails.length === 0) {
+            let lat = location.latitude
+            let lon = location.longitude
+            api.trails.getTrailsByLocation(lat, lon).then(json => this.setState({ trails: json }))
+        } else {
+            this.setState({ trails: [] })
+        }
     }
 
     render() {

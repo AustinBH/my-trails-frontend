@@ -15,9 +15,9 @@ class HomeContainer extends Component {
 
     render() {
         return <Router>
-            <Menu pointing fixed='top' compact>
+            <Menu pointing fixed='top' fluid>
                 <Menu.Item icon='user' header as={NavLink} exact to='/account' activeClassName='active' name='Account'/>
-                <Menu.Item icon='like' header as={NavLink} exact to='/favorites' activeClassName='active' name='Favorites'/>
+                <Menu.Item icon='like' header as={NavLink} exact to='/favorites' activeClassName='active' name='Favs'/>
                 <Menu.Item icon='map' header as={NavLink} exact to='/hikes' activeClassName='active' name='Hikes'/>
                 <Menu.Item icon='search' header as={NavLink} exact to='/search' activeClassName='active' name='Search'/>
             </Menu>
