@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { Menu } from 'semantic-ui-react';
 import Account from '../components/Account.js';
 import Favorites from '../components/Favorites';
@@ -8,10 +7,6 @@ import Hikes from '../components/Hikes';
 import Search from '../components/Search';
 
 class HomeContainer extends Component {
-
-    componentDidMount() {
-        this.props.authenticate()
-    }
 
     render() {
         return <Router>
@@ -31,12 +26,4 @@ class HomeContainer extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return { user: state.user }
-}
-
-const mapDispatchToProps = dispatch => ({
-    authenticate: () => dispatch({ type: 'AUTHENTICATE' })
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
+export default HomeContainer;

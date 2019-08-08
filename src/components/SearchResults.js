@@ -19,9 +19,9 @@ class SearchResults extends Component {
                         return <Table.Row key={trail.id}>
                             <Table.Cell>{trail.name}</Table.Cell>
                             <Table.Cell>{trail.summary}</Table.Cell>
-                            <Table.Cell>Length: {trail.length} miles</Table.Cell>
-                            <Table.Cell>Ascent: {trail.ascent}</Table.Cell>
-                            <Table.Cell>Condition: {trail.conditionStatus}</Table.Cell>
+                            <Table.Cell>{trail.length} miles</Table.Cell>
+                            <Table.Cell>{trail.ascent} ft</Table.Cell>
+                            <Table.Cell>{trail.conditionStatus}</Table.Cell>
                         </Table.Row>
                     })}
                 </Table.Body>
