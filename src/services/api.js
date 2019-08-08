@@ -31,6 +31,12 @@ const getCurrentUser = () => {
     }).then(res => res.json())
 }
 
+const edit = data => {
+    return fetch(`${API_ROOT}/edit-account`, {
+        headers: headers()
+    }).then(res => res.json())
+}
+
 const getLocations = () => {
     return fetch(`${API_ROOT}/locations`, {
         headers: headers()
@@ -46,7 +52,8 @@ export const api = {
     auth: {
         login,
         signup,
-        getCurrentUser
+        getCurrentUser,
+        edit
     },
     locations: {
         getLocations
