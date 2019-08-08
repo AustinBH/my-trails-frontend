@@ -48,6 +48,16 @@ const getTrailsByLocation = (lat, long) => {
     .then(res => res.json())
 }
 
+const getTrailsById = (...args) => {
+    let path = `${API_ROOT}/trails-by-id?ids=${args[0]}`
+    for (let i=1; i<args.length; i++) {
+        path.concat(`,${args[i]}`)
+    }
+    return fetch(path, {
+        headers: headers()
+    }).then(res => res.json())
+}
+
 const addFavorite = (data) => {
     return fetch (`${API_ROOT}/likes`, {
         method: 'POST',
@@ -102,6 +112,7 @@ export const api = {
         getLocations
     },
     trails: {
-        getTrailsByLocation
+        getTrailsByLocation,
+        getTrailsById
     }
 }

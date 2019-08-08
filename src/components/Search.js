@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
 import { api } from '../services/api';
-import SearchResults from './SearchResults';
+import SearchResults from '../containers/SearchResults';
 
 class Search extends Component {
 

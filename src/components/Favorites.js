@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { fetchAuthentication } from '../actions/userActions';
+import SearchData from './SearchData';
 
-const Favorites = props => {
-
-    return <div>
+class Favorites extends Component {
+    render() {
+        return <>
             <h1>Favorites</h1>
-            <Button color='teal' icon='backward' onClick={() => props.history.push('/')} content='Go Back' />
-        </div>
+            <SearchData trails={this.props.trails} user={this.props.user} />
+            <Button color='teal' icon='backward' onClick={() => this.props.history.push('/')} content='Go Back' />
+        </>
+    }
 }
 
-export default Favorites;
+const mapStateToProps = state => {
+    return { user: state.user }
+}
+
+const mapDispatchToProps = dispatch => ({
+    fetchAuthentication: () => dispatch(fetchAuthentication())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites);

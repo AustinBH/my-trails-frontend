@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Form } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { fetchSignup } from '../actions/userActions';
 import { fetchLogin } from '../actions/userActions';
+import Login from '../components/Login';
+import Signup from '../components/Signup';
 
 class UserContainer extends Component {
     state = {
@@ -25,37 +28,23 @@ class UserContainer extends Component {
         })
     }
 
-    handleSubmit = ev => {
-        ev.preventDefault();
-        ev.target.name !== 'login' ? this.props.fetchSignup(this.state.signup) : this.props.fetchLogin(this.state.login)
+    startFetch = (str) => {
+        str === 'login' ?
+        this.props.fetchLogin(this.state.login)
+        :
+        this.props.fetchSignup(this.state.signup)
     }
 
     render() {
         return (
             <div>
                 <h1>Hike Amie</h1>
-                <Form onSubmit={this.handleSubmit} name='login'>
-                    <Form.Field>
-                        <label>Username</label>
-                        <input type='text' value={this.state.login.username} onChange={this.handleChange} name='username' placeholder='Enter your username' autoComplete='username' required />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Password</label>
-                        <input type='password' value={this.state.login.password} onChange={this.handleChange} name='password' autoComplete='current-password' required />
-                    </Form.Field>
-                    <Button color='blue' type='submit' content='Login' />
-                </Form>
-                <Form onSubmit={this.handleSubmit} name='signup'>
-                    <Form.Field>
-                        <label>Username</label>
-                        <input type='text' value={this.state.signup.username} onChange={this.handleChange} name='username' placeholder='Enter a new username' autoComplete='username' required />
-                    </Form.Field>
-                    <Form.Field>
-                        <label>Password</label>
-                        <input type='password' value={this.state.signup.password} onChange={this.handleChange} name='password' autoComplete='current-password' required />
-                    </Form.Field>
-                    <Button color='blue' type='submit' content='Signup' />
-                </Form>
+                <Router>
+                    <Route path='/login' exact render={props => <Login {...props} startFetch={this.startFetch} login={this.state.login} handleOnChange={this.handleChange}/>}/>
+                    <Route path='/signup' exact render={props => <Signup {...props} startFetch={this.startFetch} signup={this.state.signup} handleOnChange={this.handleChange}/>} />
+                    <Button color='brown' as={NavLink} content='Login' exact to='/login' activeClassName='active' />
+                    <Button color='brown' as={NavLink} content='Signup' exact to='/signup' activeClassName='active' />
+                </Router>
             </div>
         )
     }
