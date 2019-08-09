@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Button, Form, Placeholder } from 'semantic-ui-react';
+import { Button, Form, Placeholder, Input, Label, Icon } from 'semantic-ui-react';
 import { fetchEdit } from '../actions/userActions';
 
 class EditAccount extends Component {
@@ -44,18 +44,27 @@ class EditAccount extends Component {
                     <Placeholder.Line />
                 </Placeholder>
             :
-                <Form onSubmit={this.handleSubmit} name='login'>
+                <Form className='standard-form' onSubmit={this.handleSubmit} name='login'>
                     <Form.Field>
-                        <label>Username</label>
-                        <input type='text' value={this.state.username} onChange={this.handleChange} name='username' autoComplete='username' required />
+                        <Label color='brown' as='a'>
+                            <Icon name='user'/>
+                            Username
+                        </Label>
+                        <Input type='text' value={this.state.username} onChange={this.handleChange} name='username' autoComplete='username' required />
                     </Form.Field>
                     <Form.Field>
-                        <label>Old Password</label>
-                        <input type='password' value={this.state.password} onChange={this.handleChange} name='password' autoComplete='current-password' required />
+                        <Label color='brown' as='a'>
+                            <Icon name='lock'/>
+                            Old Password
+                        </Label>
+                        <Input type='password' value={this.state.password} onChange={this.handleChange} name='password' autoComplete='current-password' required />
                     </Form.Field>
                     <Form.Field>
-                        <label>New Password</label>
-                        <input type='password' value={this.state.newPassword} onChange={this.handleChange} name='newPassword' autoComplete='current-password' />
+                        <Label color='brown' as='a'>
+                            <Icon name='lock' />
+                            New Password
+                        </Label>
+                        <Input type='password' value={this.state.newPassword} onChange={this.handleChange} name='newPassword' autoComplete='current-password' />
                     </Form.Field>
                     <Button color='blue' type='submit' content='Edit' />
                 </Form>
