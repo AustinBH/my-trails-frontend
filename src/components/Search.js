@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
+import GoogleMap from './GoogleMap'
 import { api } from '../services/api';
 import SearchResults from '../containers/SearchResults';
 
@@ -7,7 +8,11 @@ class Search extends Component {
 
     state = {
         locations: [],
-        trails: []
+        trails: [],
+        selectedLocation: {
+            lat: '',
+            lng: ''
+        }
     }
 
     componentDidMount() {
@@ -18,9 +23,18 @@ class Search extends Component {
         if (this.state.trails.length === 0) {
             let lat = location.latitude
             let lon = location.longitude
-            api.trails.getTrailsByLocation(lat, lon).then(json => this.setState({ trails: json }))
+            api.trails.getTrailsByLocation(lat, lon).then(json => this.setState({ 
+                trails: json,
+                selectedLocation: {
+                    lat: lat,
+                    lng: lon
+                }
+            }))
         } else {
-            this.setState({ trails: [] })
+            this.setState({ trails: [], selectedLocation: {
+                lat: '',
+                lng: ''
+            } })
         }
     }
 
@@ -39,8 +53,15 @@ class Search extends Component {
                     })}
                 </Button.Group>
             </div>
-            <SearchResults trails={this.state.trails} />
-            <Button color='teal'icon='backward'onClick={() => this.props.history.push('/')} content='Go Back'/>
+            <GoogleMap lat={this.state.selectedLocation.lat} lng={this.state.selectedLocation.lng} trails={this.state.trails} />
+            {this.state.trails && this.state.trails.length > 0 ?
+                <div className='table-holder'>
+                    <SearchResults trails={this.state.trails} />
+                </div>
+            :
+                null
+            }
+            <Button color='teal' icon='backward' onClick={() => this.props.history.push('/')} content='Go Back' />
         </div>
     }
 }

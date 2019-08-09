@@ -7,7 +7,7 @@ import InfoHolder from '../components/InfoHolder';
 
 const SearchData = props => {
     if (props.trails && props.trails.length > 0) {
-    return <Table striped>
+    return  <Table striped className='search-table'>
         <Table.Header>
             <Table.Row>
                 <Table.HeaderCell>Name</Table.HeaderCell>
@@ -31,7 +31,7 @@ const SearchData = props => {
                     <Table.Cell><Button color='blue' name='comments' icon='comment alternate' content='Comments' onClick={(event) => props.handleClick(event, trail)} /></Table.Cell>
                     <Table.Cell><Button color='blue' name='info' icon='info circle' content='More Info' onClick={(event) => props.handleClick(event, trail)} /></Table.Cell>
                     {!props.hidden.status && props.hidden.id === trail.id ? <Table.Cell><InfoHolder trail={trail} /></Table.Cell> : null}
-                </Table.Row>    
+                </Table.Row>
             })}
         </Table.Body>
     </Table>
