@@ -2,15 +2,19 @@ import React, { Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchAuthentication } from '../actions/userActions';
 import { buttonSwitcher } from '../services/buttonSwitcher';
-import SearchData from '../components/SearchData';
+import SearchData from './SearchData';
 
 
 class SearchResults extends Component {
 
     state = {
-        hidden: {
+        info: {
             id: '',
-            status: true
+            hidden: true
+        },
+        comments: {
+            id: '',
+            hidden: true
         }
     }
 
@@ -19,17 +23,24 @@ class SearchResults extends Component {
     }
 
     handleClick = (ev, data) => {
-        if (typeof buttonSwitcher(ev, data, this.props) === 'number') {
-            this.setState({hidden: {
-                id: buttonSwitcher(ev, data, this.props),
-                status: !this.state.hidden.status
+        if (buttonSwitcher(ev, data, this.props)[0] === 'info') {
+            this.setState({info: {
+                id: buttonSwitcher(ev, data, this.props)[1],
+                hidden: !this.state.info.hidden
             }})
-        } 
+        } else if (buttonSwitcher(ev, data, this.props)[0] === 'comment') {
+            this.setState({
+                comments: {
+                    id: buttonSwitcher(ev, data, this.props)[1],
+                    hidden: !this.state.comments.hidden
+                }
+            })
+        }
         buttonSwitcher(ev, data, this.props)
     }
  
     render() {
-        return <SearchData hidden={this.state.hidden} trails={this.props.trails} handleClick={this.handleClick} user={this.props.user} />
+        return <SearchData info={this.state.info} comments={this.state.comments} trails={this.props.trails} handleClick={this.handleClick} user={this.props.user} />
     }
 }
 

@@ -22,8 +22,8 @@ class UserContainer extends Component {
 
     handleChange = ev => {
         this.setState({
-            [ev.target.parentNode.parentNode.name]: {
-                ...this.state[ev.target.parentNode.parentNode.name], [ev.target.name]: ev.target.value
+            [ev.target.parentNode.parentNode.parentNode.name]: {
+                ...this.state[ev.target.parentNode.parentNode.parentNode.name], [ev.target.name]: ev.target.value
             }
         })
     }

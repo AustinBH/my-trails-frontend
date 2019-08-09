@@ -32,8 +32,10 @@ const getCurrentUser = () => {
 }
 
 const edit = data => {
-    return fetch(`${API_ROOT}/edit-account`, {
-        headers: headers()
+    return fetch(`${API_ROOT}/account`, {
+        method: 'PATCH',
+        headers: headers(),
+        body: JSON.stringify(data)
     }).then(res => res.json())
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button } from 'semantic-ui-react';
+import { Form, Button, Input, Label, Icon } from 'semantic-ui-react';
 
 const Login = props => {
 
@@ -9,14 +9,20 @@ const Login = props => {
         props.history.push('/')
     }
 
-    return <Form onSubmit={handleSubmit} name='login'>
+    return <Form className='standard-form' onSubmit={handleSubmit} name='login'>
         <Form.Field>
-            <label>Username</label>
-            <input type='text' value={props.login.username} onChange={props.handleOnChange} name='username' placeholder='Enter your username' autoComplete='username' required />
+            <Label color='brown' as='a'>
+                <Icon name='user' />
+                Username
+            </Label>
+            <Input type='text' value={props.login.username} onChange={props.handleOnChange} name='username' placeholder='Enter your username' autoComplete='username' required />
         </Form.Field>
         <Form.Field>
-            <label>Password</label>
-            <input type='password' value={props.login.password} onChange={props.handleOnChange} name='password' autoComplete='current-password' required />
+            <Label color='brown' as='a'>
+                <Icon name='lock' />
+                Password
+            </Label>
+            <Input type='password' value={props.login.password} onChange={props.handleOnChange} name='password' autoComplete='current-password' required />
         </Form.Field>
         <Button color='blue' type='submit' content='Login' />
     </Form>
