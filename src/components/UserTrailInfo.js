@@ -62,11 +62,10 @@ class UserTrailInfo extends Component {
         return <>
         {
             this.state.isLoading ?
-                    <Segment>
+                    <Segment className='info-loader'>
                         <Dimmer active>
                             <Loader />
                         </Dimmer>
-                        <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
                     </Segment>
             :
                 <SearchData
