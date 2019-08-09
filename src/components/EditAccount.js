@@ -13,7 +13,6 @@ class EditAccount extends Component {
             }
     }
 
-
     handleChange = ev => {
         this.setState({
             [ev.target.name]: ev.target.value
@@ -30,6 +29,7 @@ class EditAccount extends Component {
             user = { username: this.state.username, password: this.state.password, new_password: this.state.newPassword}
             this.props.fetchEdit({...user})
         }
+        this.props.history.push('/')
     }
 
     render() {
