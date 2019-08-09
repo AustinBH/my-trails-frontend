@@ -3,6 +3,7 @@ import { Table, Button } from 'semantic-ui-react';
 import FavButton from '../components/FavButton';
 import CompleteButton from '../components/CompleteButton';
 import InfoHolder from '../components/InfoHolder';
+import CommentHolder from '../components/CommentHolder';
 
 
 const SearchData = props => {
@@ -16,8 +17,9 @@ const SearchData = props => {
                 <Table.HeaderCell></Table.HeaderCell>
                 <Table.HeaderCell></Table.HeaderCell>
                 <Table.HeaderCell></Table.HeaderCell>
+                {!props.comments.hidden ? <Table.HeaderCell></Table.HeaderCell> : null}
                 <Table.HeaderCell></Table.HeaderCell>
-                {!props.hidden.status ? <Table.HeaderCell></Table.HeaderCell> : null}
+                {!props.info.hidden ? <Table.HeaderCell></Table.HeaderCell> : null}
             </Table.Row>
         </Table.Header>
         <Table.Body>
@@ -29,8 +31,9 @@ const SearchData = props => {
                     <Table.Cell><FavButton user={props.user} trail={trail} handleOnClick={props.handleClick} /></Table.Cell>
                     <Table.Cell><CompleteButton user={props.user} trail={trail} handleOnClick={props.handleClick} /></Table.Cell>
                     <Table.Cell><Button color='blue' name='comments' icon='comment alternate' content='Comments' onClick={(event) => props.handleClick(event, trail)} /></Table.Cell>
+                    {!props.comments.hidden && props.comments.id === trail.id ? <Table.Cell><CommentHolder trail={trail} /></Table.Cell> : null}
                     <Table.Cell><Button color='blue' name='info' icon='info circle' content='More Info' onClick={(event) => props.handleClick(event, trail)} /></Table.Cell>
-                    {!props.hidden.status && props.hidden.id === trail.id ? <Table.Cell><InfoHolder trail={trail} /></Table.Cell> : null}
+                    {!props.info.hidden && props.info.id === trail.id ? <Table.Cell><InfoHolder trail={trail} /></Table.Cell> : null}
                 </Table.Row>
             })}
         </Table.Body>

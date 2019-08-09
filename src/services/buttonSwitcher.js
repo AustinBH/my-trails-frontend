@@ -33,9 +33,9 @@ export const buttonSwitcher = (ev, data, props) => {
             }
             return props.fetchAuthentication()
         case 'comments':
-            return props.fetchAuthentication()
+            return ['comment', data.id]
         case 'info':
-            return data.id
+            return ['info', data.id]
         default:
             return null
     }
