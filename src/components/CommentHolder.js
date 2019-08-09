@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { Grid, Button, Modal, Form, Icon, TextArea, Label } from 'semantic-ui-react';
+import { Grid, Button, Modal, Form, Icon, TextArea, Label, Placeholder } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 import { api } from '../services/api';
+import { fetchAuthentication } from '../actions/userActions'
 
 
 class CommentHolder extends Component {
@@ -8,11 +10,18 @@ class CommentHolder extends Component {
     state = {
         open: false,
         comments: [],
-        content: ''
+        content: '',
+        isLoading: 'false'
     }
 
     componentDidMount() {
-        api.comments.getCommentsByTrail(this.props.trail.id).then(json => this.setState({comments: [json]}))
+        this.fetchTrailComments()
+        this.props.fetchAuthentication()
+    }
+
+    fetchTrailComments = () => {
+        this.setState({ isLoading: true })
+        api.comments.getCommentsByTrail(this.props.trail.id).then(json => this.setState({ comments: json, isLoading: false }))
     }
 
     handleChange = ev => {
@@ -26,22 +35,42 @@ class CommentHolder extends Component {
 
     handleSubmit = ev => {
         ev.preventDefault()
+        let comment = {content: this.state.content, user_id: this.props.user.id, trail_id: this.props.trail.id}
+        api.comments.addComment({comment: comment}).then(json => this.setState({ comments: [...this.state.comments, json]}))
         this.close()
     }
 
     render() {
         return <>
             <Grid columns={1} divided>
-                {this.state.comments[0] && this.state.comments[0].content && this.state.comments.map((comment, idx) => {
-                    return <Grid.Row key={idx}>
-                        <Grid.Column>
-                            <Label color='brown'>User:</Label>
-                            <p>{comment.username}</p>
-                            <Label color='brown'>Content:</Label>
-                            <p>{comment.content}</p>
-                        </Grid.Column>
+                {this.state.isLoading ?
+                    <Grid.Row>
+                        <Placeholder>
+                            <Placeholder.Header>
+                                <Placeholder.Line />
+                                <Placeholder.Line />
+                            </Placeholder.Header>
+                            <Placeholder.Paragraph>
+                                <Placeholder.Line />
+                                <Placeholder.Line />
+                                <Placeholder.Line />
+                                <Placeholder.Line />
+                            </Placeholder.Paragraph>
+                        </Placeholder>
                     </Grid.Row>
-                })}
+                :
+                    this.state.comments[0] && this.state.comments[0].content && this.state.comments.map((comment, idx) => {
+                        return <Grid.Row key={idx} className='comment-row'>
+                            <Grid.Column>
+                                <Label color='brown'>User:</Label>
+                                <p>{comment.username}</p>
+                                <Label color='brown'>Content:</Label>
+                                <p>{comment.content}</p>
+                            </Grid.Column>
+                        </Grid.Row>
+                    })
+                }
+                
             </Grid>
             <Modal onOpen={this.open} onClose={this.close} open={this.state.open}trigger={<Button className='comment-button'>New Comment</Button>} closeIcon>
                 <Modal.Header>New Comment</Modal.Header>
@@ -65,4 +94,12 @@ class CommentHolder extends Component {
     }
 }
 
-export default CommentHolder;
+const mapStateToProps = state => {
+    return {user: state.user}
+}
+
+const mapDispatchToProps = dispatch => ({
+    fetchAuthentication: () => dispatch(fetchAuthentication())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentHolder);

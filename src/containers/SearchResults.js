@@ -23,12 +23,12 @@ class SearchResults extends Component {
     }
 
     handleClick = (ev, data) => {
-        if (buttonSwitcher(ev, data, this.props)[0] === 'info') {
+        if (buttonSwitcher(ev, data, this.props) && buttonSwitcher(ev, data, this.props)[0] === 'info') {
             this.setState({info: {
                 id: buttonSwitcher(ev, data, this.props)[1],
                 hidden: !this.state.info.hidden
             }})
-        } else if (buttonSwitcher(ev, data, this.props)[0] === 'comment') {
+        } else if (buttonSwitcher(ev, data, this.props) && buttonSwitcher(ev, data, this.props)[0] === 'comment') {
             this.setState({
                 comments: {
                     id: buttonSwitcher(ev, data, this.props)[1],

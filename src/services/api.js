@@ -55,8 +55,8 @@ const addComment = (data) => {
     return fetch (`${API_ROOT}/comments`, {
         method: 'POST',
         headers: headers(),
-        boyd: JSON.stringify(data)
-    }).then(res => res.json)
+        body: JSON.stringify(data)
+    }).then(res => res.json())
 }
 
 const getTrailsByLocation = (lat, long) => {
