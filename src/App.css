@@ -32,6 +32,8 @@ h1 {
 }
 
 .home-image {
+  display: block;
+  padding-bottom: 10px;
   margin: auto;
   border-radius: 5%;
   width: 80%;

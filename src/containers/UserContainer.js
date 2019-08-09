@@ -4,8 +4,8 @@ import { Button } from 'semantic-ui-react';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { fetchSignup } from '../actions/userActions';
 import { fetchLogin } from '../actions/userActions';
-import Login from '../components/Login';
-import Signup from '../components/Signup';
+import Login from '../components/auth/Login';
+import Signup from '../components/auth/Signup';
 
 class UserContainer extends Component {
     state = {

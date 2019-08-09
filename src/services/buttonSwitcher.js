@@ -17,7 +17,7 @@ export const buttonSwitcher = (ev, data, props) => {
                     button.children[0].className='star outline icon'
                 })
             }
-            return props.fetchAuthentication()
+            return null
         case 'complete':
             let complete = { trail_id: data.id, user_id: props.user.id }
             if (!button.className.includes('green')) {
@@ -31,7 +31,7 @@ export const buttonSwitcher = (ev, data, props) => {
                     button.children[0].className='check circle outline icon'
                 })
             }
-            return props.fetchAuthentication()
+            return null
         case 'comments':
             return ['comment', data.id]
         case 'info':
