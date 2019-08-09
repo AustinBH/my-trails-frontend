@@ -1,69 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button } from 'semantic-ui-react';
-import { connect } from 'react-redux';
-import SearchData from '../containers/SearchData';
-import { api } from '../services/api';
-import { buttonSwitcher } from '../services/buttonSwitcher';
-import { fetchAuthentication } from '../actions/userActions';
+import UserTrailInfo from './UserTrailInfo';
 
-class Hikes extends Component {
-    state = {
-        trails: [],
-        info: {
-            id: '',
-            hidden: true
-        },
-        comments: {
-            id: '',
-            hidden: true
-        }
-    }
 
-    componentDidMount() {
-        this.props.fetchAuthentication().then(this.fetchCompletedTrails)
-    }
-
-    fetchCompletedTrails = () => {
-        if (this.props.user.completed_hikes && this.props.user.completed_hikes.length > 0) {
-            let trails = this.props.user.likes.map(like => like.trail_id)
-            api.trails.getTrailsById(trails).then(json => this.setState({ trails: json }))
-        }
-    }
-
-    handleClick = (ev, data) => {
-        if (buttonSwitcher(ev, data, this.props) && buttonSwitcher(ev, data, this.props)[0] === 'info') {
-            this.setState({
-                info: {
-                    id: buttonSwitcher(ev, data, this.props)[1],
-                    hidden: !this.state.info.hidden
-                }
-            })
-        } else if (buttonSwitcher(ev, data, this.props) && buttonSwitcher(ev, data, this.props)[0] === 'comment') {
-            this.setState({
-                comments: {
-                    id: buttonSwitcher(ev, data, this.props)[1],
-                    hidden: !this.state.comments.hidden
-                }
-            })
-        }
-        buttonSwitcher(ev, data, this.props)
-    }
-
-    render() {
-        return <>
-            <h1>Your Completed Hikes</h1>
-            <SearchData trails={this.state.trails} user={this.props.user} handleClick={this.handleClick} info={this.state.info} comments={this.state.comments} />
-            <Button color='teal' icon='backward' onClick={() => this.props.history.push('/')} content='Go Back' />
-        </>
-    }
+const Hikes = props => {
+    return <>
+        <h1>Your Completed Hikes</h1>
+        <UserTrailInfo hikes='completed'/>
+        <Button color='teal' icon='backward' onClick={() => props.history.push('/')} content='Go Back' />
+    </>
 }
 
-const mapStateToProps = state => {
-    return { user: state.user }
-}
-
-const mapDispatchToProps = dispatch => ({
-    fetchAuthentication: () => dispatch(fetchAuthentication())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Hikes);
+export default Hikes;
