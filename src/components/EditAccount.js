@@ -7,16 +7,12 @@ class EditAccount extends Component {
     constructor(props){
         super(props)
             this.state = {
-                username: props.user.username || '',
+                username: '',
                 password: '',
-                newPassword: '',
-                isLoading: true
+                newPassword: ''
             }
     }
 
-    componentDidMount() {
-        this.setState({username: this.props.user.username, isLoading: false})
-    }
 
     handleChange = ev => {
         this.setState({
@@ -26,6 +22,14 @@ class EditAccount extends Component {
 
     handleSubmit = ev => {
         ev.preventDefault()
+        let user = {}
+        if (!this.state.newPassword) {
+            user = { username: this.state.username, password: this.state.password }
+            this.props.fetchEdit({...user})
+        } else {
+            user = { username: this.state.username, password: this.state.password, new_password: this.state.newPassword}
+            this.props.fetchEdit({...user})
+        }
     }
 
     render() {

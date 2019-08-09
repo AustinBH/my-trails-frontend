@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import SearchData from './SearchData';
+import SearchData from '../containers/SearchData';
 import { api } from '../services/api';
 import { buttonSwitcher } from '../services/buttonSwitcher';
 import { fetchAuthentication } from '../actions/userActions';

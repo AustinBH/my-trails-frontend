@@ -3,7 +3,7 @@ import { Grid, Button } from 'semantic-ui-react';
 
 const CommentHolder = props => {
     return <>
-        <Grid columns={3} divided>
+        <Grid columns={2} divided>
             {props.comments && props.comments.map(comment => {
                 return <Grid.Row>
                     <Grid.Column>

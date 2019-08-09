@@ -66,7 +66,6 @@ class Search extends Component {
                     })}
                 </Button.Group>
             </>
-            <></>
             <GoogleMap lat={this.state.selectedLocation.lat} lng={this.state.selectedLocation.lng} trails={this.state.trails} />
             {this.state.trails && this.state.trails.length > 0 ?
                 <div className='table-holder'>

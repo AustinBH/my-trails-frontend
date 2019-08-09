@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchAuthentication } from '../actions/userActions';
 import { buttonSwitcher } from '../services/buttonSwitcher';
-import SearchData from '../components/SearchData';
+import SearchData from './SearchData';
 
 
 class SearchResults extends Component {
