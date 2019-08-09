@@ -32,8 +32,14 @@ h1 {
 }
 
 .home-image {
+  margin: auto;
   border-radius: 5%;
   width: 80%;
+  height: 50%;
+}
+
+.comment-button {
+  float: right;
 }
 
 .form {

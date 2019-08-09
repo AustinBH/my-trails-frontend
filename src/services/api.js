@@ -45,6 +45,20 @@ const getLocations = () => {
     }).then(res => res.json())
 }
 
+const getCommentsByTrail = (trailId) => {
+    return fetch(`${API_ROOT}/comments?trail_id=${trailId}`, {
+        headers: headers()
+    }).then(res => res.json())
+}
+
+const addComment = (data) => {
+    return fetch (`${API_ROOT}/comments`, {
+        method: 'POST',
+        headers: headers(),
+        boyd: JSON.stringify(data)
+    }).then(res => res.json)
+}
+
 const getTrailsByLocation = (lat, long) => {
     return fetch(`${API_ROOT}/trails-by-location?lat=${lat}&lon=${long}`)
     .then(res => res.json())
@@ -97,7 +111,8 @@ export const api = {
         edit
     },
     comments: {
-
+        getCommentsByTrail,
+        addComment
     },
     favorites: {
         addFavorite,

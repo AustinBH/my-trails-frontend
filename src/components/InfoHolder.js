@@ -5,6 +5,9 @@ const InfoHolder = props => {
     return (
         <Grid columns={3} divided>
             <Grid.Row>
+                <img className='home-image' src={props.trail.imgMedium} alt={props.trail.name}/>
+            </Grid.Row>
+            <Grid.Row>
                 <Grid.Column>
                     <label><strong>Name: </strong></label>
                     <p>{props.trail.name}</p>
