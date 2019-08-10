@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Segment, Dimmer, Loader } from 'semantic-ui-react';
 import SearchResults from '../containers/SearchResults';
 import GoogleMap from '../components/GoogleMap';
@@ -20,8 +20,13 @@ const WelcomePage = props => {
     const logPostition = (position) => {
         setLat(position.coords.latitude)
         setLong(position.coords.longitude)
-        api.trails.getTrailsByLocation(lat, long).then(json => setTrails(json)).then(setLoading(false))
     }
+
+    useEffect(() => {
+        if (lat && long) {
+            api.trails.getTrailsByLocation(lat, long).then(json => setTrails(json)).then(setLoading(false))
+        }
+    }, [lat, long])
 
     return (
         <>

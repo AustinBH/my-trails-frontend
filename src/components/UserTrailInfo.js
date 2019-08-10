@@ -29,6 +29,8 @@ class UserTrailInfo extends Component {
         if (this.props.user.likes && this.props.user.likes.length > 0) {
             let trails = this.props.user.likes.map(like => like.trail_id)
             api.trails.getTrailsById(trails).then(json => this.setState({ trails: json, isLoading: false }))
+        } else {
+            this.setState({isLoading: false})
         }
     }
 
@@ -36,6 +38,8 @@ class UserTrailInfo extends Component {
         if (this.props.user.completed_hikes && this.props.user.completed_hikes.length > 0) {
             let trails = this.props.user.completed_hikes.map(completed_hike => completed_hike.trail_id)
             api.trails.getTrailsById(trails).then(json => this.setState({ trails: json, isLoading: false }))
+        } else {
+            this.setState({isLoading: false})
         }
     }
 
@@ -70,15 +74,19 @@ class UserTrailInfo extends Component {
                         </Segment>
                     </div> 
             :
+
+            this.state.trails.length > 0 ?
                 <div className='user-search-holder'>
-                        <SearchData
-                            trails={this.state.trails}
-                            user={this.props.user}
-                            handleClick={this.handleClick}
-                            info={this.state.info}
-                            comments={this.state.comments}
-                        />
+                    <SearchData
+                        trails={this.state.trails}
+                        user={this.props.user}
+                        handleClick={this.handleClick}
+                        info={this.state.info}
+                        comments={this.state.comments}
+                    />
                 </div>
+            :
+                <p>You don't have any {this.props.hikes} hikes!!</p>
         }
         </>
     }
