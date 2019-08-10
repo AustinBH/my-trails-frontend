@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Dimmer, Loader, Image, Segment } from 'semantic-ui-react';
+import { Dimmer, Loader, Segment } from 'semantic-ui-react';
 import SearchData from '../containers/SearchData';
 import { api } from '../services/api';
 import { buttonSwitcher } from '../services/buttonSwitcher';
@@ -62,19 +62,23 @@ class UserTrailInfo extends Component {
         return <>
         {
             this.state.isLoading ?
-                    <Segment className='info-loader'>
-                        <Dimmer active>
-                            <Loader />
-                        </Dimmer>
-                    </Segment>
+                    <div className='info-holder'>
+                        <Segment className='info-loader'>
+                            <Dimmer active>
+                                <Loader>Getting Hikes...</Loader>
+                            </Dimmer>
+                        </Segment>
+                    </div> 
             :
-                <SearchData
-                    trails={this.state.trails}
-                    user={this.props.user}
-                    handleClick={this.handleClick}
-                    info={this.state.info}
-                    comments={this.state.comments}
-                />
+                <div className='user-search-holder'>
+                        <SearchData
+                            trails={this.state.trails}
+                            user={this.props.user}
+                            handleClick={this.handleClick}
+                            info={this.state.info}
+                            comments={this.state.comments}
+                        />
+                </div>
         }
         </>
     }

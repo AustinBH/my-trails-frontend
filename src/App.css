@@ -18,8 +18,9 @@ h1 {
 
 .table-holder {
   padding-top: 780px;
+  width: 80%;
+  margin: auto;
 }
-
 .standard-form {
   margin: auto;
   width: 80%;
@@ -44,8 +45,21 @@ h1 {
   float: right;
 }
 
+.user-search-holder {
+  margin: auto;
+  width: 80%;
+  height: 80%;
+  padding-bottom: 10px;
+}
+
 .comment-row {
   max-width: 400px;
+}
+
+.info-holder {
+  margin: auto;
+  width: 80%;
+  padding-bottom: 10px;
 }
 
 .info-loader {
