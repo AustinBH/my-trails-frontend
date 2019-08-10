@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Segment, Dimmer, Loader } from 'semantic-ui-react';
 import SearchResults from '../containers/SearchResults';
+import GoogleMap from '../components/GoogleMap';
 import { api } from '../services/api';
 
 
@@ -8,6 +9,8 @@ const WelcomePage = props => {
 
     const [trails, setTrails] = useState([])
     const [loading, setLoading] = useState(false)
+    const [lat, setLat] = useState('')
+    const [long, setLong] = useState('')
 
     const getLocation = () => {
         setLoading(true)
@@ -15,8 +18,8 @@ const WelcomePage = props => {
     }
 
     const logPostition = (position) => {
-        let lat = position.coords.latitude
-        let long = position.coords.longitude
+        setLat(position.coords.latitude)
+        setLong(position.coords.longitude)
         api.trails.getTrailsByLocation(lat, long).then(json => setTrails(json)).then(setLoading(false))
     }
 
@@ -34,9 +37,16 @@ const WelcomePage = props => {
                     </Segment>
                 </div> 
             :
-                <div className='user-search-holder'>
+                <>
+                {trails.length > 0 ?
+                    <GoogleMap lat={lat} lng={long} trails={trails} />
+                :
+                    null
+                }
+                <div className='table-holder'>
                     <SearchResults trails={trails} /> 
                 </div>
+                </>
             }
         </>
     )
