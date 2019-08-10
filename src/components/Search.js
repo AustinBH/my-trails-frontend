@@ -27,7 +27,9 @@ class Search extends Component {
             if (this.state.trails.length === 0) {
                 let lat = location.latitude
                 let lon = location.longitude
-                api.trails.getTrailsByLocation(lat, lon).then(json => this.setState({
+                let distance = this.props.user.distance
+                let results = this.props.user.results
+                api.trails.getTrailsByLocation(lat, lon, distance, results).then(json => this.setState({
                     trails: json,
                     selectedLocation: {
                         lat: lat,

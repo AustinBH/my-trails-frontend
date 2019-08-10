@@ -4,13 +4,12 @@ import { Button, Form, Placeholder, Input, Label, Icon } from 'semantic-ui-react
 import { fetchEdit } from '../actions/userActions';
 
 class EditAccount extends Component {
-    constructor(props){
-        super(props)
-            this.state = {
-                username: '',
-                password: '',
-                newPassword: ''
-            }
+    state = {
+        username: '',
+        password: '',
+        newPassword: '',
+        distance: 0,
+        range: 0
     }
 
     handleChange = ev => {
@@ -65,6 +64,26 @@ class EditAccount extends Component {
                             New Password
                         </Label>
                         <Input type='password' value={this.state.newPassword} onChange={this.handleChange} name='newPassword' autoComplete='current-password' />
+                    </Form.Field>
+                    <Form.Field>
+                        <Input list='distances' placeholder='Choose your search range...' />
+                        <datalist id='distances'>
+                            <option value='10' />
+                            <option value='20' />
+                            <option value='30' />
+                            <option value='40' />
+                            <option value='50' />
+                        </datalist>
+                    </Form.Field>
+                    <Form.Field>
+                        <Input list='results' placeholder='Choose the number of trails you see...' />
+                        <datalist id='results'>
+                            <option value='10' />
+                            <option value='20' />
+                            <option value='30' />
+                            <option value='40' />
+                            <option value='50' />
+                        </datalist>
                     </Form.Field>
                     <Button color='blue' type='submit' content='Edit' />
                 </Form>

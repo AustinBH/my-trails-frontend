@@ -33,7 +33,9 @@ const WelcomePage = props => {
 
     useEffect(() => {
         if (lat && long) {
-            api.trails.getTrailsByLocation(lat, long).then(json => setTrails(json)).then(setLoading(false))
+            let distance = props.user.distance
+            let results = props.user.results
+            api.trails.getTrailsByLocation(lat, long, distance, results).then(json => setTrails(json)).then(setLoading(false))
         }
     }, [lat, long])
 

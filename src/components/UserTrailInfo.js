@@ -26,7 +26,7 @@ class UserTrailInfo extends Component {
     }
 
     fetchLikedTrails = () => {
-        if (this.props.user.likes && this.props.user.likes.length > 0) {
+        if (this.props.user && this.props.user.likes.length > 0) {
             let trails = this.props.user.likes.map(like => like.trail_id)
             api.trails.getTrailsById(trails).then(json => this.setState({ trails: json, isLoading: false }))
         } else {
@@ -35,7 +35,7 @@ class UserTrailInfo extends Component {
     }
 
     fetchCompletedTrails = () => {
-        if (this.props.user.completed_hikes && this.props.user.completed_hikes.length > 0) {
+        if (this.props.user && this.props.user.completed_hikes.length > 0) {
             let trails = this.props.user.completed_hikes.map(completed_hike => completed_hike.trail_id)
             api.trails.getTrailsById(trails).then(json => this.setState({ trails: json, isLoading: false }))
         } else {

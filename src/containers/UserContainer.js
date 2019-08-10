@@ -15,7 +15,9 @@ class UserContainer extends Component {
         },
         signup: {
             username: '',
-            password: ''
+            password: '',
+            distance: 20,
+            results: 20
         }
         
     }
