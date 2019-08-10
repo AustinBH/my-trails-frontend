@@ -69,7 +69,7 @@ class Search extends Component {
             <GoogleMap lat={this.state.selectedLocation.lat} lng={this.state.selectedLocation.lng} trails={this.state.trails} />
             {this.state.trails && this.state.trails.length > 0 ?
                 <div className='table-holder'>
-                    <SearchResults trails={this.state.trails} />
+                    <SearchResults trails={this.state.trails} user={this.props.user} />
                 </div>
             :
                 null

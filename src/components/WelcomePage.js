@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Segment, Dimmer, Loader } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { fetchAuthentication } from '../actions/userActions';
 import SearchResults from '../containers/SearchResults';
 import GoogleMap from '../components/GoogleMap';
 import { api } from '../services/api';
@@ -13,8 +15,15 @@ const WelcomePage = props => {
     const [long, setLong] = useState('')
 
     const getLocation = () => {
-        setLoading(true)
-        navigator.geolocation ? navigator.geolocation.getCurrentPosition(logPostition) : alert('Geolocation not supported')
+        props.fetchAuthentication()
+        if (lat && long) {
+            setTrails([])
+            setLat('')
+            setLong('')
+        } else {
+            setLoading(true)
+            navigator.geolocation ? navigator.geolocation.getCurrentPosition(logPostition) : alert('Geolocation not supported')
+        }
     }
 
     const logPostition = (position) => {
@@ -41,20 +50,27 @@ const WelcomePage = props => {
                         </Dimmer>
                     </Segment>
                 </div> 
-            :
+            :   
+            trails.length > 0 ?
                 <>
-                {trails.length > 0 ?
-                    <GoogleMap lat={lat} lng={long} trails={trails} />
-                :
-                    null
-                }
+                <GoogleMap lat={lat} lng={long} trails={trails} />
                 <div className='table-holder'>
-                    <SearchResults trails={trails} /> 
+                    <SearchResults trails={trails} user={props.user} />
                 </div>
                 </>
+            :
+                null
             }
         </>
     )
 }
 
-export default WelcomePage;
+const mapStateToProps = state => {
+    return {user: state.user}
+}
+
+const mapDispatchToProps = dispatch => ({
+    fetchAuthentication: () => dispatch(fetchAuthentication())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(WelcomePage);

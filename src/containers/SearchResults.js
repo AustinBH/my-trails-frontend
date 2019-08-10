@@ -1,6 +1,4 @@
 import React, { Component} from 'react';
-import { connect } from 'react-redux';
-import { fetchAuthentication } from '../actions/userActions';
 import { buttonSwitcher } from '../services/buttonSwitcher';
 import SearchData from './SearchData';
 
@@ -16,10 +14,6 @@ class SearchResults extends Component {
             id: '',
             hidden: true
         }
-    }
-
-    componentDidMount() {
-        this.props.fetchAuthentication()
     }
 
     handleClick = (ev, data) => {
@@ -44,12 +38,4 @@ class SearchResults extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {user: state.user}
-}
-
-const mapDispatchToProps = dispatch => ({
-    fetchAuthentication: () => dispatch(fetchAuthentication())
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);
+export default SearchResults;
