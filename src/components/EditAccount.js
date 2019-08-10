@@ -9,7 +9,7 @@ class EditAccount extends Component {
         password: '',
         newPassword: '',
         distance: 0,
-        range: 0
+        results: 0
     }
 
     handleChange = ev => {
@@ -22,10 +22,10 @@ class EditAccount extends Component {
         ev.preventDefault()
         let user = {}
         if (!this.state.newPassword) {
-            user = { username: this.state.username, password: this.state.password }
+            user = { username: this.state.username, password: this.state.password, distance: this.state.distance, results: this.state.results}
             this.props.fetchEdit({...user})
         } else {
-            user = { username: this.state.username, password: this.state.password, new_password: this.state.newPassword}
+            user = { username: this.state.username, password: this.state.password, new_password: this.state.newPassword, distance: this.state.distance, results: this.state.results}
             this.props.fetchEdit({...user})
         }
         this.props.history.push('/')
@@ -49,23 +49,27 @@ class EditAccount extends Component {
                             <Icon name='user'/>
                             Username
                         </Label>
-                        <Input type='text' value={this.state.username} onChange={this.handleChange} name='username' autoComplete='username' required />
+                        <Input type='text' value={this.state.username} onChange={this.handleChange} name='username' autoComplete='username' placeholder='Enter a new username' />
                     </Form.Field>
                     <Form.Field>
                         <Label color='brown' as='a'>
                             <Icon name='lock'/>
                             Old Password
                         </Label>
-                        <Input type='password' value={this.state.password} onChange={this.handleChange} name='password' autoComplete='current-password' required />
+                        <Input type='password' value={this.state.password} onChange={this.handleChange} name='password' autoComplete='current-password' placeholder='Enter your current password' required />
                     </Form.Field>
                     <Form.Field>
                         <Label color='brown' as='a'>
                             <Icon name='lock' />
                             New Password
                         </Label>
-                        <Input type='password' value={this.state.newPassword} onChange={this.handleChange} name='newPassword' autoComplete='current-password' />
+                        <Input type='password' value={this.state.newPassword} onChange={this.handleChange} name='newPassword' autoComplete='current-password' placeholder='Enter a new password' />
                     </Form.Field>
                     <Form.Field>
+                        <Label color='brown' as='a'>
+                            <Icon name='truck' />
+                            Distance in miles
+                        </Label>
                         <Input list='distances' placeholder='Choose your search range...' />
                         <datalist id='distances'>
                             <option value='10' />
@@ -76,6 +80,10 @@ class EditAccount extends Component {
                         </datalist>
                     </Form.Field>
                     <Form.Field>
+                        <Label color='brown' as='a'>
+                            <Icon name='map pin' />
+                            Results
+                        </Label>
                         <Input list='results' placeholder='Choose the number of trails you see...' />
                         <datalist id='results'>
                             <option value='10' />
