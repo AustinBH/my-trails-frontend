@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Button, Modal, Form, Icon, TextArea, Label, Placeholder } from 'semantic-ui-react';
+import { Button, Modal, Form, Icon, TextArea, Label, Placeholder, Comment, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { api } from '../services/api';
 import { fetchAuthentication } from '../actions/userActions'
@@ -38,7 +38,7 @@ class CommentHolder extends Component {
         let comment = {content: this.state.content, user_id: this.props.user.id, trail_id: this.props.trail.id}
         api.comments.addComment({comment: comment}).then(json => {
             if (!json.error) {
-                this.setState({ comments: [...this.state.comments, json] })
+                this.setState({ comments: [...this.state.comments, json], content: '' })
             }
         })
         this.close()
@@ -46,9 +46,9 @@ class CommentHolder extends Component {
 
     render() {
         return <>
-            <Grid columns={1} divided>
+            <Comment.Group>
+                <Header as='h3' dividing >Comments</Header>
                 {this.state.isLoading ?
-                    <Grid.Row>
                         <Placeholder>
                             <Placeholder.Header>
                                 <Placeholder.Line />
@@ -61,22 +61,21 @@ class CommentHolder extends Component {
                                 <Placeholder.Line />
                             </Placeholder.Paragraph>
                         </Placeholder>
-                    </Grid.Row>
                 :
-                    this.state.comments[0] && this.state.comments[0].content && this.state.comments.map((comment, idx) => {
-                        return <Grid.Row key={idx} className='comment-row'>
-                            <Grid.Column>
-                                <Label color='brown'>User:</Label>
-                                <p>{comment.username}</p>
-                                <Label color='brown'>Content:</Label>
-                                <p>{comment.content}</p>
-                            </Grid.Column>
-                        </Grid.Row>
+                    this.state.comments.length > 0 ? this.state.comments.map((comment, idx) => {
+                            return <Comment key={idx}>
+                                <Comment.Author as='a'>{comment.username}</Comment.Author>
+                                <Comment.Text>{comment.content}</Comment.Text>
+                            </Comment>
                     })
+                    :
+                    <Comment>
+                        <Comment.Text>No comments yet, leave the first one!</Comment.Text>
+                    </Comment>
                 }
                 
-            </Grid>
-            <Modal onOpen={this.open} onClose={this.close} open={this.state.open}trigger={<Button className='comment-button'>New Comment</Button>} closeIcon>
+            </Comment.Group>
+            <Modal onOpen={this.open} onClose={this.close} open={this.state.open} trigger={<Button content='New Comment'/>} closeIcon>
                 <Modal.Header>New Comment</Modal.Header>
                 <Modal.Content>
                     <Modal.Description>
