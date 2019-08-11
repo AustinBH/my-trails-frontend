@@ -65,7 +65,15 @@ const editComment = (data) => {
         headers: headers(),
         body: JSON.stringify(data)
     }).then(res => res.json())
-} 
+}
+
+const deleteComment = (data) => {
+    return fetch (`${API_ROOT}/comments`, {
+        method: 'DELETE',
+        headers: headers(),
+        body: JSON.stringify(data)
+    }).then(res => res.json())
+}
 
 const getTrailsByLocation = (lat, long, distance, results) => {
     return fetch(`${API_ROOT}/trails-by-location?lat=${lat}&lon=${long}&distance=${distance}&results=${results}`)
@@ -121,7 +129,8 @@ export const api = {
     comments: {
         getCommentsByTrail,
         addComment,
-        editComment
+        editComment,
+        deleteComment
     },
     favorites: {
         addFavorite,

@@ -35,7 +35,8 @@ class CommentHolder extends Component {
 
     open = () => this.setState({open: true})
     close = () => this.setState({open: false})
-    toggleedit = comment => this.setState({editOpen: !this.state.editOpen, editingContent: comment.content, editingId: comment.id })
+    toggleEdit = comment => this.setState({editOpen: !this.state.editOpen, editingContent: comment.content, editingId: comment.id })
+    deleteComment = comment => api.comments.deleteComment(comment).then(this.setState({comments: this.state.comments.filter(element => element.id !== comment.id)}))
 
     handleSubmit = ev => {
         ev.preventDefault()
@@ -56,9 +57,8 @@ class CommentHolder extends Component {
                     this.setState({ comments: currentComments })
                 }
             })
-            this.toggleedit('')
+            this.toggleEdit('')
         }
-        
     }
 
     render() {
@@ -86,7 +86,13 @@ class CommentHolder extends Component {
                                     {comment.created_at}
                                 </Comment.Metadata>
                                 <Comment.Text>{comment.content}</Comment.Text>
-                                {comment.user_id === this.props.user.id ? <Button size='small' onClick={() => this.toggleedit(comment)} content='Edit'/> : null}
+                                {comment.user_id === this.props.user.id ?
+                                <>
+                                <Button size='small' color='yellow' onClick={() => this.toggleEdit(comment)} content='Edit'/>
+                                <Button size='small' color='red' onClick={() => this.deleteComment(comment)} content='Delete'/>
+                                </>
+                                    :
+                                 null}
                             </Comment>
                     })
                     :
@@ -96,7 +102,7 @@ class CommentHolder extends Component {
                 }
                 
             </Comment.Group>
-            <Modal onClose={() => this.toggleedit('')} open={this.state.editOpen} closeIcon>
+            <Modal onClose={() => this.toggleEdit('')} open={this.state.editOpen} closeIcon>
                 <Modal.Header>Edit Comment</Modal.Header>
                 <Modal.Content>
                     <Modal.Description>
@@ -113,7 +119,7 @@ class CommentHolder extends Component {
                     </Modal.Description>
                 </Modal.Content>
             </Modal>
-            <Modal onOpen={this.open} onClose={this.close} open={this.state.open} trigger={<Button content='New Comment'/>} closeIcon>
+            <Modal onOpen={this.open} onClose={this.close} open={this.state.open} trigger={<Button color='purple' content='New Comment'/>} closeIcon>
                 <Modal.Header>New Comment</Modal.Header>
                 <Modal.Content>
                     <Modal.Description>
