@@ -9,8 +9,11 @@ class CommentHolder extends Component {
 
     state = {
         open: false,
+        editOpen: false,
         comments: [],
         content: '',
+        editingContent: '',
+        editingId: '',
         isLoading: 'false'
     }
 
@@ -32,16 +35,30 @@ class CommentHolder extends Component {
 
     open = () => this.setState({open: true})
     close = () => this.setState({open: false})
+    toggleedit = comment => this.setState({editOpen: !this.state.editOpen, editingContent: comment.content, editingId: comment.id })
 
     handleSubmit = ev => {
         ev.preventDefault()
-        let comment = {content: this.state.content, user_id: this.props.user.id, trail_id: this.props.trail.id}
-        api.comments.addComment({comment: comment}).then(json => {
-            if (!json.error) {
-                this.setState({ comments: [...this.state.comments, json], content: '' })
-            }
-        })
-        this.close()
+        if (ev.target.name === 'create') {
+            let comment = { content: this.state.content, user_id: this.props.user.id, trail_id: this.props.trail.id }
+            api.comments.addComment({ comment: comment }).then(json => {
+                if (!json.error) {
+                    this.setState({ comments: [...this.state.comments, json], content: '' })
+                }
+            })
+            this.close()
+        } else {
+            let comment = { content: this.state.editingContent, id: this.state.editingId }
+            api.comments.editComment({ comment: comment }).then(json => {
+                if (!json.error) {
+                    let updatedComment = json
+                    let currentComments = [...this.state.comments.filter(comment => comment.id !== json.id), updatedComment]
+                    this.setState({ comments: currentComments })
+                }
+            })
+            this.toggleedit('')
+        }
+        
     }
 
     render() {
@@ -65,7 +82,11 @@ class CommentHolder extends Component {
                     this.state.comments.length > 0 ? this.state.comments.map((comment, idx) => {
                             return <Comment key={idx}>
                                 <Comment.Author as='a'>{comment.username}</Comment.Author>
+                                <Comment.Metadata>
+                                    {comment.created_at}
+                                </Comment.Metadata>
                                 <Comment.Text>{comment.content}</Comment.Text>
+                                {comment.user_id === this.props.user.id ? <Button size='small' onClick={() => this.toggleedit(comment)} content='Edit'/> : null}
                             </Comment>
                     })
                     :
@@ -75,11 +96,28 @@ class CommentHolder extends Component {
                 }
                 
             </Comment.Group>
+            <Modal onClose={() => this.toggleedit('')} open={this.state.editOpen} closeIcon>
+                <Modal.Header>Edit Comment</Modal.Header>
+                <Modal.Content>
+                    <Modal.Description>
+                        <Form onSubmit={this.handleSubmit} className='standard-form' name='edit'>
+                            <Form.Field>
+                                <Label color='brown' as='a'>
+                                    <Icon name='content' />
+                                    Content
+                                </Label>
+                                <TextArea value={this.state.editingContent} onChange={this.handleChange} name='editingContent' required />
+                            </Form.Field>
+                            <Button color='blue' type='submit' content='Edit Comment' />
+                        </Form>
+                    </Modal.Description>
+                </Modal.Content>
+            </Modal>
             <Modal onOpen={this.open} onClose={this.close} open={this.state.open} trigger={<Button content='New Comment'/>} closeIcon>
                 <Modal.Header>New Comment</Modal.Header>
                 <Modal.Content>
                     <Modal.Description>
-                        <Form onSubmit={this.handleSubmit} className='standard-form' name='login'>
+                        <Form onSubmit={this.handleSubmit} className='standard-form' name='create'>
                             <Form.Field>
                                 <Label color='brown' as='a'>
                                     <Icon name='content' />

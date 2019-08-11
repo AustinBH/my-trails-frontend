@@ -10,8 +10,8 @@ class EditAccount extends Component {
             username: '',
             password: '',
             newPassword: '',
-            distance: 10,
-            results: 10,
+            distance: 20,
+            results: 20,
         }
     }
 

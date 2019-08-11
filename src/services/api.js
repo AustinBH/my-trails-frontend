@@ -59,6 +59,14 @@ const addComment = (data) => {
     }).then(res => res.json())
 }
 
+const editComment = (data) => {
+    return fetch (`${API_ROOT}/comments`, {
+        method: 'PATCH',
+        headers: headers(),
+        body: JSON.stringify(data)
+    }).then(res => res.json())
+} 
+
 const getTrailsByLocation = (lat, long, distance, results) => {
     return fetch(`${API_ROOT}/trails-by-location?lat=${lat}&lon=${long}&distance=${distance}&results=${results}`)
     .then(res => res.json())
@@ -112,7 +120,8 @@ export const api = {
     },
     comments: {
         getCommentsByTrail,
-        addComment
+        addComment,
+        editComment
     },
     favorites: {
         addFavorite,
