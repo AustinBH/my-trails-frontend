@@ -37,7 +37,7 @@ const WelcomePage = props => {
             let results = props.user.results
             api.trails.getTrailsByLocation(lat, long, distance, results).then(json => setTrails(json)).then(setLoading(false))
         }
-    }, [lat, long])
+    }, [lat, long, props])
 
     return (
         <>

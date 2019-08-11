@@ -56,6 +56,11 @@ h1 {
   max-width: 400px;
 }
 
+select {
+  appearance: none;
+  padding: 9.5px 14px;
+}
+
 .info-holder {
   margin: auto;
   width: 80%;

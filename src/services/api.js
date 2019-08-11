@@ -59,8 +59,8 @@ const addComment = (data) => {
     }).then(res => res.json())
 }
 
-const getTrailsByLocation = (lat, long) => {
-    return fetch(`${API_ROOT}/trails-by-location?lat=${lat}&lon=${long}`)
+const getTrailsByLocation = (lat, long, distance, results) => {
+    return fetch(`${API_ROOT}/trails-by-location?lat=${lat}&lon=${long}&distance=${distance}&results=${results}`)
     .then(res => res.json())
 }
 

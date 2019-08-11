@@ -6,8 +6,12 @@ import EditAccount from './EditAccount';
 
 class Account extends Component {
 
+    state = {
+        isLoading: true
+    }
+
     componentDidMount() {
-        this.props.fetchAuthentication()
+        this.props.fetchAuthentication().then(this.setState({isLoading: false}))
     }
 
     render() {
@@ -17,7 +21,11 @@ class Account extends Component {
                 <Image src='https://cdn.compliancesigns.com/media/parking-control/150/Trail-Sign-PKE-17206_150.gif' avatar/>
                 <p>Welcome back {this.props.user && this.props.user.username}!!</p>
             </>
-            <EditAccount user={this.props.user} history={this.props.history} />
+            {this.state.isLoading ? 
+                null
+            :
+                <EditAccount user={this.props.user} history={this.props.history} />
+            }
             <Button color='teal' icon='backward' onClick={() => this.props.history.push('/')} content='Go Back' />
             <Button color='red' icon='power off' onClick={() => this.props.logout()} content='Logout' />
         </div>
