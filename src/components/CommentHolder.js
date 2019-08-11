@@ -36,7 +36,11 @@ class CommentHolder extends Component {
     open = () => this.setState({open: true})
     close = () => this.setState({open: false})
     toggleEdit = comment => this.setState({editOpen: !this.state.editOpen, editingContent: comment.content, editingId: comment.id })
-    deleteComment = comment => api.comments.deleteComment(comment).then(this.setState({comments: this.state.comments.filter(element => element.id !== comment.id)}))
+    deleteComment = comment => {
+        if (window.confirm('Are you sure?') === true) {
+            api.comments.deleteComment(comment).then(this.setState({ comments: this.state.comments.filter(element => element.id !== comment.id) }))
+        }
+    }
 
     handleSubmit = ev => {
         ev.preventDefault()
@@ -88,8 +92,8 @@ class CommentHolder extends Component {
                                 <Comment.Text>{comment.content}</Comment.Text>
                                 {comment.user_id === this.props.user.id ?
                                 <>
-                                <Button size='small' color='yellow' onClick={() => this.toggleEdit(comment)} content='Edit'/>
-                                <Button size='small' color='red' onClick={() => this.deleteComment(comment)} content='Delete'/>
+                                <Button size='mini' color='yellow' onClick={() => this.toggleEdit(comment)} content='Edit'/>
+                                <Button size='mini' negative onClick={() => this.deleteComment(comment)} content='Delete'/>
                                 </>
                                     :
                                  null}
