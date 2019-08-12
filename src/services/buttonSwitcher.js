@@ -1,20 +1,28 @@
 import { api } from './api';
 
 export const buttonSwitcher = (ev, data, props) => {
-    let button = ev.target
-
+    let button = ''
+    if (ev.target.name) {
+        button = ev.target
+    } else {
+        button = ev.target.parentNode
+    }
     switch (button.name) {
         case 'fav':
             let favorite = { trail_id: data.id, user_id: props.user.id }
             if (!button.className.includes('orange')) {
                 api.favorites.addFavorite({ like: favorite }).then(json => {
-                    button.className = 'ui orange button'
-                    button.children[0].className='star icon'
+                    if (json) {
+                        button.className = 'ui orange button'
+                        button.children[0].className='star icon'
+                    }
                 })
             } else {
                 api.favorites.deleteFavorite({ like: favorite }).then(json => {
-                    button.className = 'ui button'
-                    button.children[0].className='star outline icon'
+                    if (json) {
+                        button.className = 'ui button'
+                        button.children[0].className = 'star outline icon'
+                    }
                 })
             }
             return null
@@ -22,13 +30,17 @@ export const buttonSwitcher = (ev, data, props) => {
             let complete = { trail_id: data.id, user_id: props.user.id }
             if (!button.className.includes('green')) {
                 api.completedHikes.addCompletedHike({ completed_hike: complete }).then(json => {
-                    button.className = 'ui green button'
-                    button.children[0].className='check circle icon'
+                    if (!json.error) {
+                        button.className = 'ui green button'
+                        button.children[0].className = 'check circle icon'
+                    }
                 })
             } else {
                 api.completedHikes.deleteCompletedHike({ completed_hike: complete }).then(json => {
-                    button.className = 'ui button'
-                    button.children[0].className='check circle outline icon'
+                    if (!json.error) {
+                        button.className = 'ui button'
+                        button.children[0].className = 'check circle outline icon'
+                    }
                 })
             }
             return null

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dimmer, Loader, Segment } from 'semantic-ui-react';
-import SearchData from '../containers/SearchData';
+import SearchResults from '../containers/SearchResults';
 import { api } from '../services/api';
-import { buttonSwitcher } from '../services/buttonSwitcher';
 import { fetchAuthentication } from '../actions/userActions';
 
 class UserTrailInfo extends Component {
@@ -20,11 +19,13 @@ class UserTrailInfo extends Component {
         }
     }
 
+    // Here we need to check which type of trails we are fetching and then fetch the appropriate type
     componentDidMount() {
         this.setState({ isLoading: true })
         this.props.fetchAuthentication().then(this.props.hikes === 'completed' ? this.fetchCompletedTrails : this.fetchLikedTrails)
     }
 
+    // We are using an and statement to prevent checking for user information before the props have loaded correctly
     fetchLikedTrails = () => {
         if (this.props.user && this.props.user.likes.length > 0) {
             let trails = this.props.user.likes.map(like => like.trail_id)
@@ -34,6 +35,7 @@ class UserTrailInfo extends Component {
         }
     }
 
+    // We map over the user's trail data and then get trails based on the id's of those trails
     fetchCompletedTrails = () => {
         if (this.props.user && this.props.user.completed_hikes.length > 0) {
             let trails = this.props.user.completed_hikes.map(completed_hike => completed_hike.trail_id)
@@ -43,29 +45,10 @@ class UserTrailInfo extends Component {
         }
     }
 
-    handleClick = (ev, data) => {
-        if (buttonSwitcher(ev, data, this.props) && buttonSwitcher(ev, data, this.props)[0] === 'info') {
-            this.setState({
-                info: {
-                    id: buttonSwitcher(ev, data, this.props)[1],
-                    hidden: !this.state.info.hidden
-                }
-            })
-        } else if (buttonSwitcher(ev, data, this.props) && buttonSwitcher(ev, data, this.props)[0] === 'comment') {
-            this.setState({
-                comments: {
-                    id: buttonSwitcher(ev, data, this.props)[1],
-                    hidden: !this.state.comments.hidden
-                }
-            })
-        }
-        buttonSwitcher(ev, data, this.props)
-    }
-
     render() {
         return <>
-        {
-            this.state.isLoading ?
+        { //This ternary is used to add a placeholder while we are waiting for hike data to be fetched
+        this.state.isLoading ?
                     <div className='info-holder'>
                         <Segment className='info-loader'>
                             <Dimmer active>
@@ -77,12 +60,9 @@ class UserTrailInfo extends Component {
 
             this.state.trails.length > 0 ?
                 <div className='user-search-holder'>
-                    <SearchData
+                    <SearchResults
                         trails={this.state.trails}
                         user={this.props.user}
-                        handleClick={this.handleClick}
-                        info={this.state.info}
-                        comments={this.state.comments}
                     />
                 </div>
             :

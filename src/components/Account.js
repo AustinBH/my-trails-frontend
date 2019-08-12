@@ -10,6 +10,7 @@ class Account extends Component {
         isLoading: true
     }
 
+    // We just want to make sure that we get the user's account info
     componentDidMount() {
         this.props.fetchAuthentication().then(this.setState({isLoading: false}))
     }

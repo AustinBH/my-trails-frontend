@@ -20,11 +20,13 @@ class Search extends Component {
         isLoading: true
     }
 
+    // I need to fetch the preset locations from my backend and get the user data from redux
     componentDidMount() {
         api.locations.getLocations().then(json => this.setState({locations: json, isLoading: false}))
         this.props.fetchAuthentication()
     }
 
+    // This function clears out whatever state the user searched for prior and searches anew given a location
     handleClick = (ev, location) => {
         this.setState({
             trails: [], selectedLocation: {
@@ -48,6 +50,7 @@ class Search extends Component {
     render() {
         return <div>
             <h1>Search</h1>
+            {/* Adding a ternary to display a loading indicator when fetching locations */}
             {this.state.isLoading ? 
                 <div className='info-holder'>
                     <Segment className='info-loader'>
@@ -69,8 +72,10 @@ class Search extends Component {
                     })}
                 </Button.Group>
             }
+            
             <TrailSearchForm handleOnSubmit={this.handleClick} />
             <GoogleMap lat={this.state.selectedLocation.lat} lng={this.state.selectedLocation.lng} trails={this.state.trails} />
+            {/* This ternary checks to see if we have updated our trails before rendering either trail results or no trail results depending on search data */}
             {this.state.trails && this.state.trails.length > 0 ?
                 <div className='table-holder'>
                     <SearchResults trails={this.state.trails} user={this.props.user} />

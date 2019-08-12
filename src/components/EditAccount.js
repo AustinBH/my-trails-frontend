@@ -15,12 +15,15 @@ class EditAccount extends Component {
         }
     }
 
+    // This function just controls our form and updates the state accordingly
     handleChange = ev => {
         this.setState({
              [ev.target.name]: ev.target.value
         })
     }
 
+    // This function just manages the form submission and confirms whether a user has provided a new password or username and updates their account accordingly
+    // After a user's account is updated we redirect them back to the home page
     handleSubmit = ev => {
         ev.preventDefault()
         let user = {}

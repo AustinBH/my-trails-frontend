@@ -21,6 +21,7 @@ class UserContainer extends Component {
         
     }
 
+    // This function will set the state based on user input allowing us to control a form found in a child component
     handleChange = ev => {
         this.setState({
             [ev.target.parentNode.parentNode.parentNode.name]: {
@@ -29,6 +30,7 @@ class UserContainer extends Component {
         })
     }
 
+    // This function will check to see which action we should perform and then either login or signup
     startFetch = (str) => {
         str === 'login' ?
         this.props.fetchLogin(this.state.login)

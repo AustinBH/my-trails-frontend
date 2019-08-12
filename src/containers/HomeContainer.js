@@ -20,7 +20,7 @@ class HomeContainer extends Component {
                 <Menu fixed='top' fluid widths={4} pointing color='teal'>
                     <Dropdown item text='Account'>
                         <Dropdown.Menu>
-                            <Dropdown.Item icon='user' as={NavLink} exact to='/account' activeClassName='active' text='Edit'/>
+                            <Dropdown.Item icon='settings' as={NavLink} exact to='/account' activeClassName='active' text='Edit'/>
                             <Dropdown.Item icon='power off' text='Logout' onClick={this.logout}/>
                         </Dropdown.Menu>
                     </Dropdown>

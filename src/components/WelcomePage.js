@@ -9,11 +9,13 @@ import { api } from '../services/api';
 
 const WelcomePage = props => {
 
+    // Here we are using hooks to imitate state because this is a functional component
     const [trails, setTrails] = useState([])
     const [loading, setLoading] = useState(false)
     const [lat, setLat] = useState('')
     const [long, setLong] = useState('')
 
+    // This function will reset our lat/long if they exist and then use the geolocation feature to update the lat/long with a user's geolocation data
     const getLocation = () => {
         props.fetchAuthentication()
         if (lat && long) {
@@ -26,11 +28,14 @@ const WelcomePage = props => {
         }
     }
 
+    // This function sets the state of lat/long with data from the geolocation feature
     const logPostition = (position) => {
         setLat(position.coords.latitude)
         setLong(position.coords.longitude)
     }
 
+    // This function will perform a fetch once the lat/long have been updated or when the props get updated
+    // useEffect is similar to a componentdidmount/update and allows us to perform actions based on the state updating
     useEffect(() => {
         if (lat && long) {
             let distance = props.user.distance

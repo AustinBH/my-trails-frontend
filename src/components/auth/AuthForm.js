@@ -3,12 +3,14 @@ import { Form, Button, Label, Input, Icon } from 'semantic-ui-react';
 
 const AuthForm = props => {
 
+    // Here we have abstracted a login and signup form into 1 entity as a result we start a fetch based on previous props
     const handleSubmit = ev => {
         ev.preventDefault();
         props.startFetch(props.form)
         props.history.push('/')
     }
 
+    // This function allows us to have capitalized submit(login/signup) buttons
     const capitalize = str => {
         let first = str.charAt(0).toUpperCase()
         return first + str.slice(1)

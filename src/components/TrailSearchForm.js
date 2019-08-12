@@ -9,12 +9,16 @@ class TrailSearchForm extends Component {
        
     }
 
+    // We need to keep track of what lat/long the user is entering but want the form to be controlled
     handleChange = ev => {
         this.setState({ 
             [ev.target.name]: ev.target.value
         })
     }
 
+    // Here we prevent default to prevent a page refresh,
+    //submit to our parent component the selected location,
+    // and then update our state to be cleared
     handleSubmit = ev => {
         ev.preventDefault()
         this.props.handleOnSubmit(ev, {...this.state})

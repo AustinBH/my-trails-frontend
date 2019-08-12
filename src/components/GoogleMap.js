@@ -17,6 +17,7 @@ class GoogleMap extends Component {
         selectedPlace: {}
     }
 
+    // This function opens an info window when a user clicks on a map marker
     onMarkerClick = (props, marker, e) =>
         this.setState({
             selectedPlace: props,
@@ -24,6 +25,7 @@ class GoogleMap extends Component {
             showingInfoWindow: true
         });
 
+    // This function allows a user to click on the map and collapse their info window
     onMapClicked = (props) => {
         if (this.state.showingInfoWindow) {
             this.setState({
@@ -33,6 +35,7 @@ class GoogleMap extends Component {
         }
     };
 
+    // This function maps over the trails for this map and returns markers to indicate each trail
     displayTrails = () => {
         return this.props.trails.map((trail, idx) => {
             return <Marker
