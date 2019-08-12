@@ -26,7 +26,7 @@ class Account extends Component {
             :
                 <EditAccount user={this.props.user} history={this.props.history} />
             }
-            <Button color='teal' icon='backward' onClick={() => this.props.history.push('/')} content='Go Back' />
+            <Button color='brown' icon='backward' onClick={() => this.props.history.push('/')} content='Go Back' />
             <Button color='red' icon='power off' onClick={() => this.props.logout()} content='Logout' />
         </div>
     }

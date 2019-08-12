@@ -43,7 +43,7 @@ const WelcomePage = props => {
         <>
             <h1>Hike Amie</h1>
             <img className='home-image' src='https://images.freeimages.com/images/large-previews/c27/mount-rainier-1337100.jpg' alt='mount-rainier' />
-            <Button onClick={getLocation} color='brown' content='Hikes Near Me!' />
+            <Button className='search-back-button' onClick={getLocation} color='brown' content='Hikes Near Me!' />
             {loading ? 
                 <div className='info-holder'>
                     <Segment className='info-loader'>

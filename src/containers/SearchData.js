@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Button } from 'semantic-ui-react';
-import FavButton from '../components/FavButton';
-import CompleteButton from '../components/CompleteButton';
+import FavButton from '../components/buttons/FavButton';
+import CompleteButton from '../components/buttons/CompleteButton';
 import InfoHolder from '../components/InfoHolder';
 import CommentHolder from '../components/CommentHolder';
 

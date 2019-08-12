@@ -6,7 +6,7 @@ const Favorites = props => {
     return <>
         <h1>Your Favorite Hikes</h1>
         <UserTrailInfo hikes='liked'/>
-        <Button color='teal' icon='backward' onClick={() => props.history.push('/')} content='Go Back' />
+        <Button color='brown' icon='backward' onClick={() => props.history.push('/')} content='Go Back' />
     </>
 }
 

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
-import { GOOGLE_MAPS_API_KEY } from '../services/API_KEY';
 
 const mapStyles = {
     width: '90%',
     height: '90%',
     margin: 'auto'
 }
+
+const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 
 class GoogleMap extends Component {
 

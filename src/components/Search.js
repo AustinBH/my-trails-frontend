@@ -76,7 +76,7 @@ class Search extends Component {
             :
                 null
             }
-            <Button color='teal' icon='backward' onClick={() => this.props.history.push('/')} content='Go Back' />
+            <Button className='search-back-button' color='brown' icon='backward' onClick={() => this.props.history.push('/')} content='Go Back' />
         </div>
     }
 }

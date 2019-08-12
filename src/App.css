@@ -25,9 +25,19 @@ h3.ui.dividing.header {
   width: 80%;
   margin: auto;
 }
-.standard-form {
+
+.auth-holder {
+  padding-top: 20px;
+}
+
+.form.standard-form {
+  padding-bottom: 50px;
   margin: auto;
   width: 80%;
+}
+
+.search-back-button {
+  margin-top: 20px !important;
 }
 
 .App-logo {
@@ -38,7 +48,6 @@ h3.ui.dividing.header {
 
 .home-image {
   display: block;
-  padding-bottom: 10px;
   margin: auto;
   border-radius: 5%;
   width: 80%;
@@ -69,6 +78,13 @@ select {
 
 .info-loader {
   height: 224px;
+}
+
+.info-image {
+  margin: auto;
+  height: 80%;
+  width: 80%;
+  border-radius: 3%;
 }
 
 .form {

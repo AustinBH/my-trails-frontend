@@ -7,7 +7,7 @@ const Hikes = props => {
     return <>
         <h1>Your Completed Hikes</h1>
         <UserTrailInfo hikes='completed'/>
-        <Button color='teal' icon='backward' onClick={() => props.history.push('/')} content='Go Back' />
+        <Button color='brown' icon='backward' onClick={() => props.history.push('/')} content='Go Back' />
     </>
 }
 

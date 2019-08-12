@@ -3,9 +3,9 @@ import { Grid } from 'semantic-ui-react';
 
 const InfoHolder = props => {
     return (
-        <Grid columns={3} divided>
+        <Grid columns={3} celled>
             <Grid.Row>
-                <img className='home-image' src={props.trail.imgMedium} alt={props.trail.name}/>
+                <img className='info-image' src={props.trail.imgMedium} alt={props.trail.name}/>
             </Grid.Row>
             <Grid.Row>
                 <Grid.Column>
