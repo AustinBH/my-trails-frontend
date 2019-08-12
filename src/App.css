@@ -36,6 +36,12 @@ h3.ui.dividing.header {
   width: 80%;
 }
 
+.form.search-form {
+  padding-top: 20px;
+  margin: auto;
+  width: 80%;
+}
+
 .search-back-button {
   margin-top: 20px !important;
 }

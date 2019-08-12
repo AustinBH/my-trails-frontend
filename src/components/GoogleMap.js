@@ -37,12 +37,18 @@ class GoogleMap extends Component {
         return this.props.trails.map((trail, idx) => {
             return <Marker
                 key={idx}
+                title={trail.name}
                 name={trail.name}
                 position={{
                     lat: trail.latitude,
                     lng: trail.longitude
                 }}
                 onClick={this.onMarkerClick}
+                icon={{
+                    url: 'https://img.icons8.com/dusk/2x/filled-flag.png',
+                    anchor: new this.props.google.maps.Point(32,32),
+                    scaledSize: new this.props.google.maps.Size(24,24)
+                }}
             />
         })
     }
@@ -58,7 +64,15 @@ class GoogleMap extends Component {
                         style={mapStyles}
                         initialCenter={{ lat: this.props.lat, lng: this.props.lng }}
                     >
-                        <Marker name='Current Location' onClick={this.onMarkerClick} position={{ lat: this.props.lat, lng: this.props.lng}} />
+                    <Marker
+                        name='Selected Location'
+                        onClick={this.onMarkerClick}
+                        position={{ lat: this.props.lat, lng: this.props.lng }}
+                        icon={{
+                        url: 'https://img.icons8.com/color/2x/user-location.png',
+                        anchor: new this.props.google.maps.Point(32, 32),
+                        scaledSize: new this.props.google.maps.Size(32, 32)}}
+                    />
                         {this.displayTrails()}
                         <InfoWindow
                             marker={this.state.activeMarker}
@@ -75,4 +89,4 @@ class GoogleMap extends Component {
     }
 }
 
-export default GoogleApiWrapper({apiKey: GOOGLE_MAPS_API_KEY})(GoogleMap);
+export default GoogleApiWrapper({ apiKey: GOOGLE_MAPS_API_KEY})(GoogleMap);
