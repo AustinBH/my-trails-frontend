@@ -41,7 +41,7 @@ const WelcomePage = props => {
 
     return (
         <>
-            <h1>Hike Amie</h1>
+            <h1>My Trails</h1>
             <img className='home-image' src='https://images.freeimages.com/images/large-previews/c27/mount-rainier-1337100.jpg' alt='mount-rainier' />
             <Button className='search-back-button' onClick={getLocation} color='brown' content='Hikes Near Me!' />
             {loading ? 
