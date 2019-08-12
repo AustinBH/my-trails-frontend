@@ -34,7 +34,10 @@ class SearchResults extends Component {
     }
  
     render() {
-        return <SearchData info={this.state.info} comments={this.state.comments} trails={this.props.trails} handleClick={this.handleClick} user={this.props.user} />
+        return <>
+            <h1>Trail Info</h1>
+            <SearchData info={this.state.info} comments={this.state.comments} trails={this.props.trails} handleClick={this.handleClick} user={this.props.user} />
+        </>
     }
 }
 

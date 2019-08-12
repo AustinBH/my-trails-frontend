@@ -56,6 +56,8 @@ class GoogleMap extends Component {
     render() {
         if (this.props.lat) {
             return (
+                    <>
+                    <h1>Map</h1>
                     <Map
                         className='map-holder'
                         google={this.props.google}
@@ -73,15 +75,16 @@ class GoogleMap extends Component {
                         anchor: new this.props.google.maps.Point(32, 32),
                         scaledSize: new this.props.google.maps.Size(32, 32)}}
                     />
-                        {this.displayTrails()}
-                        <InfoWindow
-                            marker={this.state.activeMarker}
-                            visible={this.state.showingInfoWindow}>
-                            <div>
-                                <p>{this.state.selectedPlace.name}</p>
-                            </div>
-                        </InfoWindow>
+                    {this.displayTrails()}
+                    <InfoWindow
+                        marker={this.state.activeMarker}
+                        visible={this.state.showingInfoWindow}>
+                        <div>
+                            <p>{this.state.selectedPlace.name}</p>
+                        </div>
+                    </InfoWindow>
                     </Map>
+                    </>
             )} else {
             return null
         }
