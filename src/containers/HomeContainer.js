@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { Menu, Dropdown } from 'semantic-ui-react';
-import Account from '../components/Account.js';
+import Account from '../components/Account';
 import Favorites from '../components/Favorites';
 import Trails from '../components/Trails';
 import Search from '../components/Search';
