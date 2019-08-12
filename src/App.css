@@ -31,13 +31,7 @@ h3.ui.dividing.header {
 }
 
 .form.standard-form {
-  padding-bottom: 50px;
-  margin: auto;
-  width: 80%;
-}
-
-.form.search-form {
-  padding-top: 20px;
+  padding-bottom: 20px;
   margin: auto;
   width: 80%;
 }

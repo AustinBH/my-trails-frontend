@@ -86,7 +86,7 @@ class UserTrailInfo extends Component {
                     />
                 </div>
             :
-                <p>You don't have any {this.props.hikes} hikes!!</p>
+                <p>You don't have any {this.props.hikes} trails!!</p>
         }
         </>
     }

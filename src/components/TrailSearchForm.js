@@ -24,7 +24,7 @@ class TrailSearchForm extends Component {
     render() {
         return <>
             <h1>Search by Coordinates</h1>
-            <Form className='search-form' onSubmit={this.handleSubmit}>
+            <Form className='standard-form' onSubmit={this.handleSubmit}>
                 <Form.Field>
                     <Label color='brown' as='a'>
                         <Icon name='map marker' />
