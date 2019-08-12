@@ -27,7 +27,6 @@ class Account extends Component {
                 <EditAccount user={this.props.user} history={this.props.history} />
             }
             <Button color='brown' icon='backward' onClick={() => this.props.history.push('/')} content='Go Back' />
-            <Button color='red' icon='power off' onClick={() => this.props.logout()} content='Logout' />
         </div>
     }
 }
@@ -37,8 +36,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    fetchAuthentication: () => dispatch(fetchAuthentication()),
-    logout: () => dispatch({type: 'LOGOUT'})
+    fetchAuthentication: () => dispatch(fetchAuthentication())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Account);
