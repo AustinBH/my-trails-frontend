@@ -16,6 +16,7 @@ const EditForm = props => {
                 Avatar
             </Label>
             <Form.Group inline name='avatar'>
+                {/* TODO: Add name to avatar model so that the collection can be iterated over */}
                 <Form.Radio
                     label='hiker'
                     value='1'
