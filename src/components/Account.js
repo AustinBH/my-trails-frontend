@@ -21,7 +21,7 @@ class Account extends Component {
         return <div>
             <h1>Account</h1>
             <>
-                {this.props.user && <Image src={this.props.user.avatar} avatar/>}
+                {this.props.user && this.props.user.avatar && <Image src={this.props.user.avatar.img_url} avatar/>}
                 <p>Welcome back {this.props.user && this.props.user.username}!!</p>
             </>
             {this.state.isLoading ? 

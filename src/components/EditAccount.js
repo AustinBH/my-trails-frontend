@@ -34,11 +34,18 @@ class EditAccount extends Component {
     handleSubmit = ev => {
         ev.preventDefault()
         let user = {}
+        let avatar = ''
+        // These if statements allow us to update the user's avatar if they changed it or keep it the same if they did not
+        if (this.state.avatar !== 1 && this.state.avatar !== this.props.user.avatar.id) {
+            avatar = parseInt(this.state.avatar)
+        } else if (this.state.avatar === 1 && this.state.avatar !== this.props.user.avatar.id) {
+            avatar = parseInt(this.props.user.avatar.id)
+        }
         if (!this.state.newPassword) {
-            user = { username: this.state.username || this.props.user.username, password: this.state.password, distance: parseInt(this.state.distance), results: parseInt(this.state.results), avatar_id: parseInt(this.state.avatar)}
+            user = { username: this.state.username || this.props.user.username, password: this.state.password, distance: parseInt(this.state.distance), results: parseInt(this.state.results), avatar_id: avatar}
             this.props.fetchEdit({...user})
         } else {
-            user = { username: this.state.username || this.props.user.username, password: this.state.password, new_password: this.state.newPassword, distance: parseInt(this.state.distance), results: parseInt(this.state.results), avatar_id: parseInt(this.state.avatar)}
+            user = { username: this.state.username || this.props.user.username, password: this.state.password, new_password: this.state.newPassword, distance: parseInt(this.state.distance), results: parseInt(this.state.results), avatar_id: avatar}
             this.props.fetchEdit({...user})
         }
         this.props.history.push('/')
