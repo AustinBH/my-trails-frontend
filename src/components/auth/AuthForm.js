@@ -16,20 +16,38 @@ const AuthForm = props => {
         return first + str.slice(1)
     }
 
+    // Both of the following two functions will allow this form to be flexible depending on
+    // whether a user selects login or signup. It will also allow the form to remain fully controlled
+    const controlUsername = () => {
+        if (props.signup) {
+            return props.signup.username
+        } else {
+            return props.login.username
+        }
+    }
+
+    const controlPassword = () => {
+        if (props.signup) {
+            return props.signup.password
+        } else {
+            return props.login.password
+        }
+    }
+
     return <Form className='standard-form' onSubmit={handleSubmit} name={props.form}>
         <Form.Field>
             <Label color='brown' as='a'>
                 <Icon name='user' />
                 Username
             </Label>
-            <Input type='text' value={(props.signup && props.signup.username) || (props.login && props.login.username)} onChange={props.handleOnChange} name='username' placeholder='Enter your username' autoComplete='username' required />
+            <Input type='text' value={controlUsername()} onChange={props.handleOnChange} name='username' placeholder='Enter your username' autoComplete='username' required />
         </Form.Field>
         <Form.Field>
             <Label color='brown' as='a'>
                 <Icon name='lock' />
                 Password
             </Label>
-            <Input type='password' value={(props.signup && props.signup.password) || (props.login && props.login.password)} onChange={props.handleOnChange} name='password' autoComplete='current-password' required />
+            <Input type='password' value={controlPassword()} onChange={props.handleOnChange} name='password' autoComplete='current-password' required />
         </Form.Field>
         <Button color='blue' type='submit' content={capitalize(props.form)} />
     </Form>
