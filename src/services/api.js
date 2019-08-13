@@ -39,6 +39,12 @@ const edit = data => {
     }).then(res => res.json())
 }
 
+const getAvatars = () => {
+    return fetch(`${API_ROOT}/avatars`, {
+        headers: headers()
+    }).then(res => res.json())
+}
+
 const getLocations = () => {
     return fetch(`${API_ROOT}/locations`, {
         headers: headers()
@@ -126,19 +132,22 @@ export const api = {
         getCurrentUser,
         edit
     },
+    avatars: {
+        getAvatars
+    },
     comments: {
         getCommentsByTrail,
         addComment,
         editComment,
         deleteComment
     },
-    favorites: {
-        addFavorite,
-        deleteFavorite
-    },
     completedHikes: {
         addCompletedHike,
         deleteCompletedHike
+    },
+    favorites: {
+        addFavorite,
+        deleteFavorite
     },
     locations: {
         getLocations

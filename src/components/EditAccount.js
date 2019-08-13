@@ -10,6 +10,7 @@ class EditAccount extends Component {
             username: '',
             password: '',
             newPassword: '',
+            avatar: 1,
             distance: 20,
             results: 20,
         }
@@ -40,7 +41,11 @@ class EditAccount extends Component {
     render() {
         return <>
             <h1>Edit My Account Info</h1>
-            <EditForm user={{...this.state}} handleOnChange={this.handleChange} handleOnSubmit={this.handleSubmit}/>
+            {this.props.avatars ?
+                <EditForm user={{ ...this.state }} handleOnChange={this.handleChange} handleOnSubmit={this.handleSubmit} avatars={this.props.avatars} />
+            :
+                null
+            }
         </>
     }
 }

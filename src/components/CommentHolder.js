@@ -102,6 +102,7 @@ class CommentHolder extends Component {
                     // This nested ternary allows us to either render a standard no comments yet message or the comments for a trail
                     this.state.comments.length > 0 ? this.state.comments.map((comment, idx) => {
                             return <Comment key={idx}>
+                                <Comment.Avatar src={comment.avatar} />
                                 <Comment.Author as='a'>{comment.username}</Comment.Author>
                                 <Comment.Metadata>
                                     {comment.created_at}
@@ -132,7 +133,7 @@ class CommentHolder extends Component {
 }
 
 const mapStateToProps = state => {
-    return {user: state.user}
+    return {user: state.user.user}
 }
 
 const mapDispatchToProps = dispatch => ({

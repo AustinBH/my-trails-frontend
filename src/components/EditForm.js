@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Input, Label, Icon } from 'semantic-ui-react';
+import { Button, Form, Input, Label, Icon, Image } from 'semantic-ui-react';
 
 const EditForm = props => {
     return <Form className='standard-form' onSubmit={props.handleOnSubmit} name='login'>
@@ -7,29 +7,100 @@ const EditForm = props => {
             <Label color='brown' as='a'>
                 <Icon name='user' />
                 Username
-                        </Label>
+            </Label>
             <Input type='text' value={props.user.username} onChange={props.handleOnChange} name='username' autoComplete='username' placeholder='Enter a new username'/>
+        </Form.Field>
+        <Form.Field>
+            <Label color='brown' as='a'>
+                <Icon name='image outline' />
+                Avatar
+            </Label>
+            <Form.Group inline>
+                <Form.Radio
+                    label='hiker'
+                    value='hk'
+                    checked={props.user.avatar === 'hk'}
+                    onChange={props.handleOnChange}
+                />
+                <Image src={props.avatars[0].img_url} avatar />
+                <Form.Radio
+                    label='female 1'
+                    value='f1'
+                    checked={props.user.avatar === 'f1'}
+                    onChange={props.handleOnChange}
+                />
+                <Image src={props.avatars[1].img_url} avatar />
+                <Form.Radio
+                    label='female 2'
+                    value='f2'
+                    checked={props.user.avatar === 'f2'}
+                    onChange={props.handleOnChange}
+                />
+                <Image src={props.avatars[2].img_url} avatar />
+                <Form.Radio
+                    label='female 3'
+                    value='f3'
+                    checked={props.user.avatar === 'f3'}
+                    onChange={props.handleOnChange}
+                />
+                <Image src={props.avatars[3].img_url} avatar />
+                <Form.Radio
+                    label='female 4'
+                    value='f4'
+                    checked={props.user.avatar === 'f4'}
+                    onChange={props.handleOnChange}
+                />
+                <Image src={props.avatars[4].img_url} avatar />
+                <Form.Radio
+                    label='male 1'
+                    value='m1'
+                    checked={props.user.avatar === 'm1'}
+                    onChange={props.handleOnChange}
+                />
+                <Image src={props.avatars[5].img_url} avatar />
+                <Form.Radio
+                    label='male 2'
+                    value='m2'
+                    checked={props.user.avatar === 'm2'}
+                    onChange={props.handleOnChange}
+                />
+                <Image src={props.avatars[6].img_url} avatar />
+                <Form.Radio
+                    label='male 3'
+                    value='m3'
+                    checked={props.user.avatar === 'm3'}
+                    onChange={props.handleOnChange}
+                />
+                <Image src={props.avatars[7].img_url} avatar />
+                <Form.Radio
+                    label='male 4'
+                    value='m4'
+                    checked={props.user.avatar === 'm4'}
+                    onChange={props.handleOnChange}
+                />
+                <Image src={props.avatars[8].img_url} avatar />
+            </Form.Group>
         </Form.Field>
         <Form.Field>
             <Label color='brown' as='a'>
                 <Icon name='lock' />
                 Old Password
-                        </Label>
+            </Label>
             <Input type='password' value={props.user.password} onChange={props.handleOnChange} name='password' autoComplete='current-password' placeholder='Enter your current password' required />
         </Form.Field>
         <Form.Field>
             <Label color='brown' as='a'>
                 <Icon name='lock' />
                 New Password
-                        </Label>
+            </Label>
             <Input type='password' value={props.user.newPassword} onChange={props.handleOnChange} name='newPassword' autoComplete='current-password' placeholder='Enter a new password' />
         </Form.Field>
         <Form.Field>
             <Label color='brown' as='a'>
                 <Icon name='truck' />
                 Distance in miles
-                        </Label>
-            <select value={props.user.distance} onChange={props.handleOnChange} name='distance' placeholder='Select your search distance' required >
+            </Label>
+            <select value={props.user.distance} onChange={props.handleOnChange} name='distance'>
                 <option value='10'>10</option>
                 <option value='20'>20</option>
                 <option value='30'>30</option>
@@ -41,8 +112,8 @@ const EditForm = props => {
             <Label color='brown' as='a'>
                 <Icon name='map pin' />
                 Results
-                        </Label>
-            <select value={props.user.results} onChange={props.handleOnChange} name='results' placeholder='Select the number of trails' required >
+            </Label>
+            <select value={props.user.results} onChange={props.handleOnChange} name='results'>
                 <option value='10'>10</option>
                 <option value='20'>20</option>
                 <option value='30'>30</option>
