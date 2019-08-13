@@ -96,7 +96,7 @@ class Search extends Component {
 }
 
 const mapStateToProps = state => {
-    return {user: state.user}
+    return {user: state.user.user}
 }
 
 const mapDispatchToProps = dispatch => ({

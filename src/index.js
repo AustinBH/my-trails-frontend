@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { applyMiddleware, createStore, compose } from 'redux';
+import { applyMiddleware, createStore, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
 import manageUser from './reducers/manageUser';
+import manageAvatars from './reducers/manageAvatars';
 
-const store = createStore(manageUser, compose(
+const rootReducer = combineReducers({user: manageUser, avatars: manageAvatars})
+
+const store = createStore(rootReducer, compose(
     applyMiddleware(thunk),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 ))
