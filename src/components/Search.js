@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Segment, Dimmer, Loader } from 'semantic-ui-react';
+import { Button, Segment, Dimmer, Loader, Dropdown } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { api } from '../services/api';
 import { fetchAuthentication } from '../actions/userActions';
@@ -60,19 +60,21 @@ class Search extends Component {
                     </Segment>
                 </div> 
             :
-                <Button.Group vertical>
-                    {this.state.locations.map(location => {
-                        return <Button color='brown'
-                            loading={this.state.isLoading}
-                            key={location.id}
-                            id={location.id}
-                            icon='map signs'
-                            onClick={(event) => this.handleClick(event, location)}
-                            content={location.name} />
+                <Dropdown
+                    placeholder='Select a location'
+                    selection
+                    options={this.state.locations.map(location => {
+                        return {
+                            key: location.id,
+                            id: location.id,
+                            value: location.name,
+                            icon: 'map signs',
+                            content: location.name + ', ' + location.state,
+                            onClick: (event) => this.handleClick(event, location)
+                        }
                     })}
-                </Button.Group>
+                />
             }
-            
             <TrailSearchForm handleOnSubmit={this.handleClick} />
             <GoogleMap lat={this.state.selectedLocation.lat} lng={this.state.selectedLocation.lng} trails={this.state.trails} />
             {/* This ternary checks to see if we have updated our trails before rendering either trail results or no trail results depending on search data */}
