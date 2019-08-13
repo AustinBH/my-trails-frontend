@@ -16,7 +16,7 @@ class HomeContainer extends Component {
 
     options = [
         <Dropdown.Item key='1' icon='settings' as={NavLink} exact to='/account' activeClassName='active' text='Edit'/>,
-        <Dropdown.Item key='2' icon='power off' text='Logout' onClick={this.logout}/>
+        <Dropdown.Item key='2' icon='sign out alternate' text='Logout' onClick={this.logout}/>
     ]
 
     render() {

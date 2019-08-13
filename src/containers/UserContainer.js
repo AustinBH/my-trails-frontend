@@ -47,8 +47,8 @@ class UserContainer extends Component {
                     <Router>
                         <Route path='/login' exact render={props => <AuthForm {...props} startFetch={this.startFetch} login={this.state.login} form='login' handleOnChange={this.handleChange} />} />
                         <Route path='/signup' exact render={props => <AuthForm {...props} startFetch={this.startFetch} signup={this.state.signup} form='signup' handleOnChange={this.handleChange} />} />
-                        <Button color='brown' as={NavLink} content='Login' exact to='/login' activeClassName='active' />
-                        <Button color='brown' as={NavLink} content='Signup' exact to='/signup' activeClassName='active' />
+                        <Button icon='sign-in' color='brown' as={NavLink} content='Login' exact to='/login' activeClassName='active' />
+                        <Button icon='user plus' color='brown' as={NavLink} content='Signup' exact to='/signup' activeClassName='active' />
                     </Router>
                 </div>
                 
