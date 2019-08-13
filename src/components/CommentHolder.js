@@ -110,8 +110,8 @@ class CommentHolder extends Component {
                                 <Comment.Text>{comment.content}</Comment.Text>
                                 {comment.user_id === this.props.user.id ?
                                     <>
-                                    <Button size='mini' color='yellow' onClick={() => this.toggleEdit(comment)} content='Edit'/>
-                                    <Button size='mini' negative onClick={() => this.toggleDelete(comment)} content='Delete'/>
+                                        <Button size='mini' icon='edit' color='yellow' onClick={() => this.toggleEdit(comment)} content='Edit'/>
+                                        <Button size='mini' icon='trash alternate' negative onClick={() => this.toggleDelete(comment)} content='Delete'/>
                                     </>
                                 :
                                     null

@@ -2,7 +2,7 @@ import React from 'react'
 import { Modal, Button, Form, Label, Icon, TextArea } from 'semantic-ui-react';
 
 const NewCommentModal = props => {
-    return <Modal onOpen={props.toggle} onClose={props.toggle} open={props.open} trigger={<Button color='purple' content='New Comment' />} closeIcon>
+    return <Modal onOpen={props.toggle} onClose={props.toggle} open={props.open} trigger={<Button icon='write' color='purple' content='New Comment' />} closeIcon>
         <Modal.Header>New Comment</Modal.Header>
         <Modal.Content>
             <Modal.Description>
