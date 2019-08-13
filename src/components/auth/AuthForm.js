@@ -49,7 +49,7 @@ const AuthForm = props => {
             </Label>
             <Input type='password' value={controlPassword()} onChange={props.handleOnChange} name='password' autoComplete='current-password' required />
         </Form.Field>
-        <Button color='blue' type='submit' content={capitalize(props.form)} />
+        <Button icon='check' color='blue' type='submit' content={capitalize(props.form)} />
     </Form>
 
 }
