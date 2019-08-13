@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Button, Form, Input, Label, Icon, Image } from 'semantic-ui-react';
 
 const EditForm = props => {
@@ -16,70 +16,17 @@ const EditForm = props => {
                 Avatar
             </Label>
             <Form.Group inline name='avatar'>
-                {/* TODO: Add name to avatar model so that the collection can be iterated over */}
-                <Form.Radio
-                    label='hiker'
-                    value='1'
-                    checked={props.user.avatar === '1'}
-                    onChange={props.handleOnChange}
-                />
-                <Image src={props.avatars[0].img_url} avatar />
-                <Form.Radio
-                    label='female 1'
-                    value='2'
-                    checked={props.user.avatar === '2'}
-                    onChange={props.handleOnChange}
-                />
-                <Image src={props.avatars[1].img_url} avatar />
-                <Form.Radio
-                    label='male 1'
-                    value='6'
-                    checked={props.user.avatar === '6'}
-                    onChange={props.handleOnChange}
-                />
-                <Image src={props.avatars[5].img_url} avatar />
-                <Form.Radio
-                    label='female 2'
-                    value='3'
-                    checked={props.user.avatar === '3'}
-                    onChange={props.handleOnChange}
-                />
-                <Image src={props.avatars[2].img_url} avatar />
-                <Form.Radio
-                    label='male 2'
-                    value='7'
-                    checked={props.user.avatar === '7'}
-                    onChange={props.handleOnChange}
-                />
-                <Image src={props.avatars[6].img_url} avatar />
-                <Form.Radio
-                    label='female 3'
-                    value='4'
-                    checked={props.user.avatar === '4'}
-                    onChange={props.handleOnChange}
-                />
-                <Image src={props.avatars[3].img_url} avatar />
-                <Form.Radio
-                    label='male 3'
-                    value='8'
-                    checked={props.user.avatar === '8'}
-                    onChange={props.handleOnChange}
-                />
-                <Image src={props.avatars[7].img_url} avatar />
-                <Form.Radio
-                    label='female 4'
-                    value='5'
-                    checked={props.user.avatar === '5'}
-                    onChange={props.handleOnChange}
-                />
-                <Image src={props.avatars[4].img_url} avatar />
-                <Form.Radio
-                    label='male 4'
-                    value='9'
-                    checked={props.user.avatar === '9'}
-                    onChange={props.handleOnChange}
-                />
-                <Image src={props.avatars[8].img_url} avatar />
+                {props.avatars && props.avatars.map(avatar => {
+                    return <Fragment key={avatar.id}>
+                        <Form.Radio
+                            label={avatar.name}
+                            value={avatar.id}
+                            checked={props.user.avatar === avatar.id}
+                            onChange={props.handleOnChange}
+                        />
+                        <Image src={avatar.img_url} avatar />
+                    </Fragment>
+                })}
             </Form.Group>
         </Form.Field>
         <Form.Field>
