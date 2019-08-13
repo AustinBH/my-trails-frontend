@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
-import { Button, Modal, Form, Icon, TextArea, Label, Placeholder, Comment, Header } from 'semantic-ui-react';
+import { Button, Placeholder, Comment, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { api } from '../services/api';
 import { fetchAuthentication } from '../actions/userActions'
+import NewCommentModal from './commentModals/NewCommentModal';
+import EditCommentmodal from './commentModals/EditCommentModal';
+import DeleteCommentModal from './commentModals/DeleteCommentModal';
 
 
 class CommentHolder extends Component {
@@ -10,10 +13,12 @@ class CommentHolder extends Component {
     state = {
         open: false,
         editOpen: false,
+        deleteOpen: false,
         comments: [],
         content: '',
         editingContent: '',
         editingId: '',
+        deletingId: '',
         isLoading: 'false'
     }
 
@@ -36,18 +41,19 @@ class CommentHolder extends Component {
         })
     }
 
-    // Our forms are contained within modals so we manage both the form and the modal with state
-    open = () => this.setState({open: true})
-    close = () => this.setState({open: false})
+    // This function toggles our new comment modal
+    toggleNew = () => this.setState({ open: !this.state.open })
 
-    // This function is not an open and close like the new comment modal but rather a toggle to add a specific comment's information to the modal for editing.
-    toggleEdit = comment => this.setState({editOpen: !this.state.editOpen, editingContent: comment.content, editingId: comment.id })
+    // This function toggles the edit modal and adds a specific comment's information to the modal for editing.
+    toggleEdit = comment => this.setState({ editOpen: !this.state.editOpen, editingContent: comment.content, editingId: comment.id })
 
-    // This function confirms that the user wants to delete a comment before deleting it
-    deleteComment = comment => {
-        if (window.confirm('Are you sure you want to delete this comment?') === true) {
-            api.comments.deleteComment(comment).then(this.setState({ comments: this.state.comments.filter(element => element.id !== comment.id) }))
-        }
+    // This function toggles our delete comment modal
+    toggleDelete = comment => this.setState({ deleteOpen: !this.state.deleteOpen, deletingId: comment.id })
+
+    // This function deletes a user's comment and closes the delete modal
+    deleteComment = id => {
+        api.comments.deleteComment({id: id}).then(this.setState({ comments: this.state.comments.filter(element => element.id !== id), deletingId: '' }))
+        this.toggleDelete({id: ''})
     }
 
     // This function manages our edit and create forms and sends an appropriate fetch depending on what the user selected.
@@ -60,7 +66,7 @@ class CommentHolder extends Component {
                     this.setState({ comments: [...this.state.comments, json], content: '' })
                 }
             })
-            this.close()
+            this.toggleNew()
         } else {
             let comment = { content: this.state.editingContent, id: this.state.editingId }
             api.comments.editComment({ comment: comment }).then(json => {
@@ -102,12 +108,13 @@ class CommentHolder extends Component {
                                 </Comment.Metadata>
                                 <Comment.Text>{comment.content}</Comment.Text>
                                 {comment.user_id === this.props.user.id ?
-                                <>
-                                <Button size='mini' color='yellow' onClick={() => this.toggleEdit(comment)} content='Edit'/>
-                                <Button size='mini' negative onClick={() => this.deleteComment(comment)} content='Delete'/>
-                                </>
-                                    :
-                                 null}
+                                    <>
+                                    <Button size='mini' color='yellow' onClick={() => this.toggleEdit(comment)} content='Edit'/>
+                                    <Button size='mini' negative onClick={() => this.toggleDelete(comment)} content='Delete'/>
+                                    </>
+                                :
+                                    null
+                                }
                             </Comment>
                     })
                     :
@@ -117,42 +124,9 @@ class CommentHolder extends Component {
                 }
                 
             </Comment.Group>
-            {/* Going to abstract these modals into their own components and possibly consolidate into 1 component based on what a user clicks */}
-            <Modal onClose={() => this.toggleEdit('')} open={this.state.editOpen} closeIcon>
-                <Modal.Header>Edit Comment</Modal.Header>
-                <Modal.Content>
-                    <Modal.Description>
-                        <Form onSubmit={this.handleSubmit} className='standard-form' name='edit'>
-                            <Form.Field>
-                                <Label color='brown' as='a'>
-                                    <Icon name='content' />
-                                    Content
-                                </Label>
-                                <TextArea value={this.state.editingContent} onChange={this.handleChange} name='editingContent' required />
-                            </Form.Field>
-                            <Button color='blue' type='submit' content='Edit Comment' />
-                        </Form>
-                    </Modal.Description>
-                </Modal.Content>
-            </Modal>
-            <Modal onOpen={this.open} onClose={this.close} open={this.state.open} trigger={<Button color='purple' content='New Comment'/>} closeIcon>
-                <Modal.Header>New Comment</Modal.Header>
-                <Modal.Content>
-                    <Modal.Description>
-                        <Form onSubmit={this.handleSubmit} className='standard-form' name='create'>
-                            <Form.Field>
-                                <Label color='brown' as='a'>
-                                    <Icon name='content' />
-                                    Content
-                                </Label>
-                                <TextArea value={this.state.content} onChange={this.handleChange} name='content' placeholder='Add a new comment' required />
-                            </Form.Field>
-                            <Button color='blue' type='submit' content='Add Comment' />
-                        </Form>
-                    </Modal.Description>
-                </Modal.Content>
-            </Modal>
-
+            <DeleteCommentModal open={this.state.deleteOpen} toggle={this.toggleDelete} id={this.state.deletingId} deleteComment={this.deleteComment}/>
+            <EditCommentmodal open={this.state.editOpen} toggle={this.toggleEdit} handleOnSubmit={this.handleSubmit} value={this.state.editingContent} handleOnChange={this.handleChange} />
+            <NewCommentModal toggle={this.toggleNew} open={this.state.open} handleOnSubmit={this.handleSubmit} value={this.state.content} handleOnChange={this.handleChange} />
         </>
     }
 }
