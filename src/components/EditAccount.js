@@ -17,10 +17,16 @@ class EditAccount extends Component {
     }
 
     // This function just controls our form and updates the state accordingly
-    handleChange = ev => {
-        this.setState({
-             [ev.target.name]: ev.target.value
-        })
+    handleChange = (ev, value ) => {
+        if (ev.target.name) {
+            this.setState({
+                [ev.target.name]: ev.target.value
+            })
+        } else {
+            this.setState({
+                avatar: value.value
+            })
+        }
     }
 
     // This function just manages the form submission and confirms whether a user has provided a new password or username and updates their account accordingly
@@ -29,10 +35,10 @@ class EditAccount extends Component {
         ev.preventDefault()
         let user = {}
         if (!this.state.newPassword) {
-            user = { username: this.state.username || this.props.user.username, password: this.state.password, distance: parseInt(this.state.distance), results: parseInt(this.state.results)}
+            user = { username: this.state.username || this.props.user.username, password: this.state.password, distance: parseInt(this.state.distance), results: parseInt(this.state.results), avatar_id: parseInt(this.state.avatar)}
             this.props.fetchEdit({...user})
         } else {
-            user = { username: this.state.username || this.props.user.username, password: this.state.password, new_password: this.state.newPassword, distance: parseInt(this.state.distance), results: parseInt(this.state.results)}
+            user = { username: this.state.username || this.props.user.username, password: this.state.password, new_password: this.state.newPassword, distance: parseInt(this.state.distance), results: parseInt(this.state.results), avatar_id: parseInt(this.state.avatar)}
             this.props.fetchEdit({...user})
         }
         this.props.history.push('/')

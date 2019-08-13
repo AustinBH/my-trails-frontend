@@ -15,67 +15,67 @@ const EditForm = props => {
                 <Icon name='image outline' />
                 Avatar
             </Label>
-            <Form.Group inline>
+            <Form.Group inline name='avatar'>
                 <Form.Radio
                     label='hiker'
-                    value='hk'
-                    checked={props.user.avatar === 'hk'}
+                    value='1'
+                    checked={props.user.avatar === '1'}
                     onChange={props.handleOnChange}
                 />
                 <Image src={props.avatars[0].img_url} avatar />
                 <Form.Radio
                     label='female 1'
-                    value='f1'
-                    checked={props.user.avatar === 'f1'}
+                    value='2'
+                    checked={props.user.avatar === '2'}
                     onChange={props.handleOnChange}
                 />
                 <Image src={props.avatars[1].img_url} avatar />
                 <Form.Radio
-                    label='female 2'
-                    value='f2'
-                    checked={props.user.avatar === 'f2'}
-                    onChange={props.handleOnChange}
-                />
-                <Image src={props.avatars[2].img_url} avatar />
-                <Form.Radio
-                    label='female 3'
-                    value='f3'
-                    checked={props.user.avatar === 'f3'}
-                    onChange={props.handleOnChange}
-                />
-                <Image src={props.avatars[3].img_url} avatar />
-                <Form.Radio
-                    label='female 4'
-                    value='f4'
-                    checked={props.user.avatar === 'f4'}
-                    onChange={props.handleOnChange}
-                />
-                <Image src={props.avatars[4].img_url} avatar />
-                <Form.Radio
                     label='male 1'
-                    value='m1'
-                    checked={props.user.avatar === 'm1'}
+                    value='6'
+                    checked={props.user.avatar === '6'}
                     onChange={props.handleOnChange}
                 />
                 <Image src={props.avatars[5].img_url} avatar />
                 <Form.Radio
+                    label='female 2'
+                    value='3'
+                    checked={props.user.avatar === '3'}
+                    onChange={props.handleOnChange}
+                />
+                <Image src={props.avatars[2].img_url} avatar />
+                <Form.Radio
                     label='male 2'
-                    value='m2'
-                    checked={props.user.avatar === 'm2'}
+                    value='7'
+                    checked={props.user.avatar === '7'}
                     onChange={props.handleOnChange}
                 />
                 <Image src={props.avatars[6].img_url} avatar />
                 <Form.Radio
+                    label='female 3'
+                    value='4'
+                    checked={props.user.avatar === '4'}
+                    onChange={props.handleOnChange}
+                />
+                <Image src={props.avatars[3].img_url} avatar />
+                <Form.Radio
                     label='male 3'
-                    value='m3'
-                    checked={props.user.avatar === 'm3'}
+                    value='8'
+                    checked={props.user.avatar === '8'}
                     onChange={props.handleOnChange}
                 />
                 <Image src={props.avatars[7].img_url} avatar />
                 <Form.Radio
+                    label='female 4'
+                    value='5'
+                    checked={props.user.avatar === '5'}
+                    onChange={props.handleOnChange}
+                />
+                <Image src={props.avatars[4].img_url} avatar />
+                <Form.Radio
                     label='male 4'
-                    value='m4'
-                    checked={props.user.avatar === 'm4'}
+                    value='9'
+                    checked={props.user.avatar === '9'}
                     onChange={props.handleOnChange}
                 />
                 <Image src={props.avatars[8].img_url} avatar />
