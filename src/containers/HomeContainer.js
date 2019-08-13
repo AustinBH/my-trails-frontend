@@ -14,16 +14,16 @@ class HomeContainer extends Component {
         this.props.logout()
     }
 
+    options = [
+        <Dropdown.Item key='1' icon='settings' as={NavLink} exact to='/account' activeClassName='active' text='Edit'/>,
+        <Dropdown.Item key='2' icon='power off' text='Logout' onClick={this.logout}/>
+    ]
+
     render() {
         return <>
             <Router>
                 <Menu fixed='top' fluid widths={4} pointing color='teal'>
-                    <Dropdown item text='Account'>
-                        <Dropdown.Menu>
-                            <Dropdown.Item icon='settings' as={NavLink} exact to='/account' activeClassName='active' text='Edit'/>
-                            <Dropdown.Item icon='power off' text='Logout' onClick={this.logout}/>
-                        </Dropdown.Menu>
-                    </Dropdown>
+                    <Dropdown text='Account' item direction='left' options={this.options} />
                     <Menu.Item icon='like' as={NavLink} exact to='/favorites' activeClassName='active' name='Favs'/>
                     <Menu.Item icon='map' as={NavLink} exact to='/hikes' activeClassName='active' name='Trails'/>
                     <Menu.Item icon='search' as={NavLink} exact to='/search' activeClassName='active' name='Search'/>
