@@ -38,10 +38,17 @@ export const fetchLogin = (userInfo) => {
 }
 
 export const signupUser = info => {
-    localStorage.setItem('token', info.jwt)
-    return {
-        type: 'SIGNUP',
-        payload: info.user
+    if (info.jwt) {
+        localStorage.setItem('token', info.jwt)
+        return {
+            type: 'SIGNUP',
+            payload: info.user
+        }
+    } else {
+        return { 
+            type: 'ERROR',
+            payload: info.error
+        }
     }
 }
 
