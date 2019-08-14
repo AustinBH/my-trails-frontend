@@ -30,25 +30,16 @@ class GoogleMap extends Component {
     };
 
     // This function maps over the trails for this map and returns markers to indicate each trail
-    // displayTrails = () => {
-    //     return this.props.trails.map((trail, idx) => {
-    //         return <Marker
-    //             key={idx}
-    //             title={trail.name}
-    //             name={trail.name}
-    //             position={{
-    //                 lat: trail.latitude,
-    //                 lng: trail.longitude
-    //             }}
-    //             onClick={this.onMarkerClick}
-    //             icon={{
-    //                 url: 'https://img.icons8.com/dusk/2x/filled-flag.png',
-    //                 anchor: new this.props.google.maps.Point(32,32),
-    //                 scaledSize: new this.props.google.maps.Size(24,24)
-    //             }}
-    //         />
-    //     })
-    // }
+    displayTrails = () => {
+        return this.props.trails.map((trail, idx) => {
+            return <MapMarker
+                key={idx}
+                trail={trail}
+                lat={trail.latitude}
+                lng={trail.longitude}
+            />
+        })
+    }
 
     render() {
         if (this.props.lat) {
@@ -58,25 +49,19 @@ class GoogleMap extends Component {
                     <div style={{
                         margin: 'auto',
                         height: '90vh',
-                        width: '90%'}}>
+                        width: '90%',
+                        zIndex: '1'
+                    }}>
                         <GoogleMapReact
                             className='map-holder'
                             bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
                             zoom={9}
                             defaultCenter={{ lat: this.props.lat, lng: this.props.lng }}
                         >
-                            <MapMarker lat={this.props.lat} lng={this.props.lng} text={'A'} />
+                            <MapMarker lat={this.props.lat} lng={this.props.lng} trail={{name: 'Selected Location'}} show={false} current />
+                            {this.displayTrails()}
                         </GoogleMapReact>
                     </div>
-                    {/* <Marker
-                        name='Selected Location'
-                        onClick={this.onMarkerClick}
-                        position={{ lat: this.props.lat, lng: this.props.lng }}
-                        icon={{
-                        url: 'https://img.icons8.com/color/2x/user-location.png',
-                        anchor: new this.props.google.maps.Point(32, 32),
-                        scaledSize: new this.props.google.maps.Size(32, 32)}}
-                    /> */}
                     </>
             )} else {
             return null
