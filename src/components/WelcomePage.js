@@ -56,9 +56,9 @@ const WelcomePage = props => {
             trails.length > 0 ?
                 <>
                 <GoogleMap lat={lat} lng={long} trails={trails} />
-                <div className='table-holder'>
+                <>
                     <SearchResults trails={trails} user={props.user} />
-                </div>
+                </>
                 </>
             :
                 null
