@@ -18,7 +18,6 @@ class UserContainer extends Component {
             distance: 20,
             results: 20
         }
-        
     }
 
     // This function will set the state based on user input allowing us to control a form found in a child component

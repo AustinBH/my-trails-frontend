@@ -10,7 +10,7 @@ class EditAccount extends Component {
             username: '',
             password: '',
             newPassword: '',
-            avatar: 1,
+            avatar: '',
             distance: 20,
             results: 20,
         }
@@ -36,9 +36,9 @@ class EditAccount extends Component {
         let user = {}
         let avatar = ''
         // These if statements allow us to update the user's avatar if they changed it or keep it the same if they did not
-        if (this.state.avatar !== 1 && this.state.avatar !== this.props.user.avatar.id) {
+        if (this.state.avatar !== '' && this.state.avatar !== this.props.user.avatar.id) {
             avatar = parseInt(this.state.avatar)
-        } else if (this.state.avatar === 1 && this.state.avatar !== this.props.user.avatar.id) {
+        } else {
             avatar = parseInt(this.props.user.avatar.id)
         }
         if (!this.state.newPassword) {
