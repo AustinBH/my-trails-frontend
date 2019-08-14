@@ -38,7 +38,7 @@ const WelcomePage = props => {
     // This function will perform a fetch once the lat/long have been updated or when the props get updated
     // useEffect is similar to a componentdidmount/update and allows us to perform actions based on the state updating
     useEffect(() => {
-        if (lat && long) {
+        if (lat && long && props.user) {
             let distance = props.user.distance
             let results = props.user.results
             api.trails.getTrailsByLocation(lat, long, distance, results).then(json => setTrails(json)).then(setLoading(false))

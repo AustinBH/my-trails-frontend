@@ -82,9 +82,9 @@ class GoogleMap extends Component {
                     <InfoWindow
                         marker={this.state.activeMarker}
                         visible={this.state.showingInfoWindow}>
-                        <div>
+                        <>
                             <p>{this.state.selectedPlace.name}</p>
-                        </div>
+                        </>
                     </InfoWindow>
                     </Map>
                     </>

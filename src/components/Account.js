@@ -4,6 +4,7 @@ import { Button, Image } from 'semantic-ui-react';
 import { fetchAuthentication } from '../actions/userActions';
 import { fetchAvatars } from '../actions/avatarActions';
 import EditAccount from './EditAccount';
+import BasicLoader from './BasicLoader';
 
 class Account extends Component {
 
@@ -25,7 +26,7 @@ class Account extends Component {
                 <p>Welcome back {this.props.user && this.props.user.username}!!</p>
             </>
             {this.state.isLoading ? 
-                null
+                <BasicLoader info='your info' />
             :
                 <EditAccount user={this.props.user} history={this.props.history} avatars={this.props.avatars} />
             }
