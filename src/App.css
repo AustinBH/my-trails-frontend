@@ -49,8 +49,8 @@ h3.ui.dividing.header {
   display: block;
   margin: auto;
   border-radius: 5%;
-  width: 80%;
-  height: 80%;
+  max-height: 80%;
+  max-width: 80%;
 }
 
 .user-search-holder {
@@ -81,8 +81,8 @@ select {
 
 .info-image {
   margin: auto;
-  height: 80%;
-  width: 80%;
+  max-height: 80%;
+  max-width: 80%;
   border-radius: 3%;
 }
 
@@ -99,5 +99,8 @@ select {
 @media only screen and (min-width: 1300px) {
   .table-holder {
     padding-top: 950px;
+  }
+  .home-image {
+    width: 60%;
   }
 }

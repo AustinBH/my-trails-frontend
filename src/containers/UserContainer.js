@@ -60,7 +60,6 @@ class UserContainer extends Component {
                         <Button icon='user plus' color='brown' as={NavLink} content='Signup' exact to='/signup' activeClassName='active' />
                     </Router>
                 </div>
-                
             </>
         )
     }

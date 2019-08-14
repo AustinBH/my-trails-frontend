@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Dimmer, Loader, Segment } from 'semantic-ui-react';
 import SearchResults from '../containers/SearchResults';
 import { api } from '../services/api';
 import { fetchAuthentication } from '../actions/userActions';
+import BasicLoader from './BasicLoader';
 
 class UserTrailInfo extends Component {
     state = {
@@ -49,15 +49,8 @@ class UserTrailInfo extends Component {
         return <>
         { //This ternary is used to add a placeholder while we are waiting for hike data to be fetched
         this.state.isLoading ?
-                    <div className='info-holder'>
-                        <Segment className='info-loader'>
-                            <Dimmer active>
-                                <Loader>Getting Hikes...</Loader>
-                            </Dimmer>
-                        </Segment>
-                    </div> 
+            <BasicLoader info='Trails' />
             :
-
             this.state.trails.length > 0 ?
                 <div className='user-search-holder'>
                     <SearchResults

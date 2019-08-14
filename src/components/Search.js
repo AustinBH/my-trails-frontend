@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Button, Segment, Dimmer, Loader, Dropdown } from 'semantic-ui-react';
+import { Button, Dropdown } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { api } from '../services/api';
 import { fetchAuthentication } from '../actions/userActions';
 import GoogleMap from './GoogleMap'
 import SearchResults from '../containers/SearchResults';
 import TrailSearchForm from './TrailSearchForm';
+import BasicLoader from './BasicLoader';
 
 
 class Search extends Component {
@@ -17,7 +18,8 @@ class Search extends Component {
             lat: '',
             lng: ''
         },
-        isLoading: true
+        isLoading: true,
+        mapLoading: false
     }
 
     // I need to fetch the preset locations from my backend and get the user data from redux
@@ -32,7 +34,7 @@ class Search extends Component {
             trails: [], selectedLocation: {
                 lat: '',
                 lng: ''
-            }
+            }, mapLoading: true
         })
         let lat = location.latitude
         let lon = location.longitude
@@ -43,7 +45,8 @@ class Search extends Component {
             selectedLocation: {
                 lat: lat,
                 lng: lon
-            }
+            },
+            mapLoading: false
         }))
     }
 
@@ -52,13 +55,7 @@ class Search extends Component {
             <h1>Search</h1>
             {/* Adding a ternary to display a loading indicator when fetching locations */}
             {this.state.isLoading ? 
-                <div className='info-holder'>
-                    <Segment className='info-loader'>
-                        <Dimmer active>
-                            <Loader>Getting Locations...</Loader>
-                        </Dimmer>
-                    </Segment>
-                </div> 
+                <BasicLoader info='Locations' />
             :
                 <Dropdown
                     placeholder='Select a location'
@@ -76,7 +73,11 @@ class Search extends Component {
                 />
             }
             <TrailSearchForm handleOnSubmit={this.handleClick} />
-            <GoogleMap lat={this.state.selectedLocation.lat} lng={this.state.selectedLocation.lng} trails={this.state.trails} />
+            {this.state.mapLoading ? 
+                <BasicLoader info='Trails' />
+            :
+                <GoogleMap lat={this.state.selectedLocation.lat} lng={this.state.selectedLocation.lng} trails={this.state.trails} />
+            }
             {/* This ternary checks to see if we have updated our trails before rendering either trail results or no trail results depending on search data */}
             {this.state.trails && this.state.trails.length > 0 ?
                 <div className='table-holder'>

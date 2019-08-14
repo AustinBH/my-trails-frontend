@@ -3,7 +3,7 @@ import { Table, Button } from 'semantic-ui-react';
 import FavButton from '../components/buttons/FavButton';
 import CompleteButton from '../components/buttons/CompleteButton';
 import InfoHolder from '../components/InfoHolder';
-import CommentHolder from '../components/CommentHolder';
+import CommentHolder from './CommentHolder';
 
 
 const SearchData = props => {

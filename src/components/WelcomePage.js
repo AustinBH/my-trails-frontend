@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Segment, Dimmer, Loader } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { fetchAuthentication } from '../actions/userActions';
 import SearchResults from '../containers/SearchResults';
 import GoogleMap from '../components/GoogleMap';
 import { api } from '../services/api';
+import BasicLoader from './BasicLoader';
 
 
 const WelcomePage = props => {
@@ -50,13 +51,7 @@ const WelcomePage = props => {
             <img className='home-image' src='https://images.freeimages.com/images/large-previews/c27/mount-rainier-1337100.jpg' alt='mount-rainier' />
             <Button className='search-back-button' onClick={getLocation} icon='location arrow' color='brown' content='Hikes Near Me!' />
             {loading ? 
-                <div className='info-holder'>
-                    <Segment className='info-loader'>
-                        <Dimmer active>
-                            <Loader>Getting Hikes...</Loader>
-                        </Dimmer>
-                    </Segment>
-                </div> 
+                <BasicLoader info='Trails' /> 
             :   
             trails.length > 0 ?
                 <>

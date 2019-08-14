@@ -3,9 +3,9 @@ import { Button, Placeholder, Comment, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { api } from '../services/api';
 import { fetchAuthentication } from '../actions/userActions'
-import NewCommentModal from './commentModals/NewCommentModal';
-import EditCommentmodal from './commentModals/EditCommentModal';
-import DeleteCommentModal from './commentModals/DeleteCommentModal';
+import NewCommentModal from '../components/commentModals/NewCommentModal';
+import EditCommentmodal from '../components/commentModals/EditCommentModal';
+import DeleteCommentModal from '../components/commentModals/DeleteCommentModal';
 
 
 class CommentHolder extends Component {
