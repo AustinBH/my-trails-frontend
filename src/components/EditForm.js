@@ -17,7 +17,7 @@ const EditForm = props => {
             </Label>
         </Form.Field>
         <Form.Group>
-                {props.avatars && props.avatars.map(avatar => {
+                {props.avatars && props.avatars.length > 0 && props.avatars.map(avatar => {
                     return <Form.Field key={avatar.id}>
                         <Image src={avatar.img_url} avatar />
                         <Form.Radio
@@ -28,7 +28,6 @@ const EditForm = props => {
                         />
                     </Form.Field>
                 })}
-            
         </Form.Group>
         <Form.Field>
             <Label color='brown' as='a'>
