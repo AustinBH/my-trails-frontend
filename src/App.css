@@ -69,6 +69,10 @@ select {
   padding: 9.5px 14px;
 }
 
+.difficulty {
+  margin-bottom: 1px;
+}
+
 .info-holder {
   margin: auto;
   width: 80%;
