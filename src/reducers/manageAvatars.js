@@ -4,7 +4,7 @@ const manageAvatars = (state = initialState, action) => {
     let avatars = action.payload
     switch (action.type) {
         case 'AVATARS':
-            return { ...state, avatars }
+            return avatars
         default:
             return state
     }

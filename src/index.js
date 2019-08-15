@@ -7,8 +7,10 @@ import './index.css';
 import App from './App';
 import manageUser from './reducers/manageUser';
 import manageAvatars from './reducers/manageAvatars';
+import manageFavorites from './reducers/manageFavorites';
+import manageCompletedHikes from './reducers/manageCompletedHikes';
 
-const rootReducer = combineReducers({user: manageUser, avatars: manageAvatars})
+const rootReducer = combineReducers({user: manageUser, avatars: manageAvatars, favorites: manageFavorites, completedHikes: manageCompletedHikes})
 
 const store = createStore(rootReducer, compose(
     applyMiddleware(thunk),

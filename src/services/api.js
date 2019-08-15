@@ -27,6 +27,7 @@ const login = data => {
 
 const getCurrentUser = () => {
     return fetch(`${API_ROOT}/account`, {
+        method: 'GET',
         headers: headers()
     }).then(res => res.json())
 }
@@ -41,12 +42,14 @@ const edit = data => {
 
 const getAvatars = () => {
     return fetch(`${API_ROOT}/avatars`, {
+        method: 'GET',
         headers: headers()
     }).then(res => res.json())
 }
 
 const getLocations = () => {
     return fetch(`${API_ROOT}/locations`, {
+        method: 'GET',
         headers: headers()
     }).then(res => res.json())
 }
@@ -82,13 +85,24 @@ const deleteComment = (data) => {
 }
 
 const getTrailsByLocation = (lat, long, distance, results) => {
-    return fetch(`${API_ROOT}/trails-by-location?lat=${lat}&lon=${long}&distance=${distance}&results=${results}`)
+    return fetch(`${API_ROOT}/trails-by-location?lat=${lat}&lon=${long}&distance=${distance}&results=${results}`, {
+        method: 'GET',
+        headers: headers()
+    })
     .then(res => res.json())
 }
 
 const getTrailsById = (data) => {
     let path = `${API_ROOT}/trails-by-ids?ids=${data.join(',')}`
     return fetch(path, {
+        method: 'GET',
+        headers: headers()
+    }).then(res => res.json())
+}
+
+const getFavoritesByTrail = (data) => {
+    return fetch(`${API_ROOT}/likes?trail_id=${data}`, {
+        method: 'GET',
         headers: headers()
     }).then(res => res.json())
 }
@@ -106,6 +120,13 @@ const deleteFavorite = (data) => {
         method: 'DELETE',
         headers: headers(),
         body: JSON.stringify(data)
+    }).then(res => res.json())
+}
+
+const getCompletedHikesByTrail = (data) => {
+    return fetch(`${API_ROOT}/completed-hikes?trail_id=${data}`, {
+        method: 'GET',
+        headers: headers()
     }).then(res => res.json())
 }
 
@@ -142,10 +163,12 @@ export const api = {
         deleteComment
     },
     completedHikes: {
+        getCompletedHikesByTrail,
         addCompletedHike,
         deleteCompletedHike
     },
     favorites: {
+        getFavoritesByTrail,
         addFavorite,
         deleteFavorite
     },
