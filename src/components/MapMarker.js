@@ -51,7 +51,11 @@ const MapMarker = props => {
                         </Card.Header>
                     </Card.Content>
                     <Card.Description >
-                        {props.trail.summary || 'No summary available'}
+                        {props.trail.summary === 'Needs Summary' || !props.trail.summary ?
+                            'No summary available'
+                        :
+                            props.trail.summary
+                        }
                     </Card.Description>
                     <Card.Content>
                         <Card.Meta>
