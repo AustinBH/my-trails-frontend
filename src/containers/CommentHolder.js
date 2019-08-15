@@ -63,7 +63,13 @@ class CommentHolder extends Component {
             let comment = { content: this.state.content, user_id: this.props.user.id, trail_id: this.props.trail.id }
             api.comments.addComment({ comment: comment }).then(json => {
                 if (!json.error) {
-                    this.setState({ comments: [...this.state.comments, json], content: '' })
+                    let comments = []
+                    if (this.state.comments.length > 0) {
+                        comments = [...this.state.comments, json]
+                    } else {
+                        comments = [json]
+                    }
+                    this.setState({ comments, content: '' })
                 }
             })
             this.toggleNew()
