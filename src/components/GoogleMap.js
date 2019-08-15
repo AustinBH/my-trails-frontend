@@ -5,6 +5,10 @@ import MapMarker from './MapMarker';
 const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 
 class GoogleMap extends Component {
+    static defaultProps = {
+        lat: 47.6062,
+        lng: -122.3321
+    }
     state = {
         showingInfoWindow: false,
         activeMarker: {},
@@ -55,8 +59,8 @@ class GoogleMap extends Component {
                         <GoogleMapReact
                             className='map-holder'
                             bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
-                            zoom={9}
-                            defaultCenter={{ lat: this.props.lat, lng: this.props.lng }}
+                            defaultZoom={9}
+                            defaultCenter={{ lat: parseFloat(this.props.lat), lng: parseFloat(this.props.lng) }}
                         >
                             <MapMarker lat={this.props.lat} lng={this.props.lng} trail={{name: 'Selected Location'}} show={false} current />
                             {this.displayTrails()}
