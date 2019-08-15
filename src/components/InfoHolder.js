@@ -7,7 +7,7 @@ import { fetchFavorites } from '../actions/favoriteActions';
 class InfoHolder extends Component {
 
     // Adding some placeholder images for when there is no image for the trail
-     placeholders = [
+    placeholders = [
         <img className='info-image' src='https://placekitten.com/640/360' alt='trail placeholder' />,
         <img className='info-image' src='https://placekitten.com/580/360' alt='trail placeholder' />,
         <img className='info-image' src='https://placekitten.com/520/360' alt='trail placeholder' />,
@@ -15,7 +15,7 @@ class InfoHolder extends Component {
         <img className='info-image' src='https://placekitten.com/360/360' alt='trail placeholder' />
     ]
 
-     capitalize = str => {
+    capitalize = str => {
         return str.charAt(0).toUpperCase() + str.slice(1)
     }
 
