@@ -80,14 +80,10 @@ class Search extends Component {
             }
             {/* This ternary checks to see if we have updated our trails before rendering either trail results or no trail results depending on search data */}
             {this.state.trails && this.state.trails.length > 0 ?
-                <div className='table-holder'>
-                    <SearchResults trails={this.state.trails} user={this.props.user} />
-                </div>
+                <SearchResults trails={this.state.trails} user={this.props.user} />
             :
                 this.state.selectedLocation.lat ?
-                    <div className='table-holder' >
-                        <p>There are no trails near {this.state.selectedLocation.lat + ' latitude'} {this.state.selectedLocation.lng + ' longitude'}</p>
-                    </div>
+                    <p>There are no trails near {this.state.selectedLocation.lat + ' latitude'} {this.state.selectedLocation.lng + ' longitude'}</p>
                 :
                     null
             }
