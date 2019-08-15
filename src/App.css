@@ -113,8 +113,9 @@ select {
 }
 
 .marker-info {
-  background-color: #4E6FC3;
+  overflow: auto;
   width: 150px;
+  height: 200px;
   left: -6.5px;
   margin-left: 0px;
   cursor: auto;

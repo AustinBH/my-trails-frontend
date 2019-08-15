@@ -22,7 +22,7 @@ class MapMarker extends Component {
             </div>
             {this.state.show ?
                 <div className='marker-info'>
-                    <Card>
+                    <Card style={{zIndex: 3}}>
                         {this.props.trail.imgMedium ?
                             <Image style={{height: 150}}src={this.props.trail.imgMedium} alt={this.props.trail.name} />
                             :
