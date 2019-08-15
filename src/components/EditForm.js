@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
-import { Button, Form, Input, Label, Icon, Image } from 'semantic-ui-react';
+import React from 'react'
+import { Button, Form, Label, Icon, Image } from 'semantic-ui-react';
 
 const EditForm = props => {
     return <Form className='standard-form' onSubmit={props.handleOnSubmit} name='login'>
@@ -8,40 +8,41 @@ const EditForm = props => {
                 <Icon name='user' />
                 Username
             </Label>
-            <Input type='text' value={props.user.username} onChange={props.handleOnChange} name='username' autoComplete='username' placeholder='Enter a new username'/>
+            <Form.Input type='text' value={props.user.username} onChange={props.handleOnChange} name='username' autoComplete='username' placeholder='Enter a new username'/>
         </Form.Field>
         <Form.Field>
             <Label color='brown' as='a'>
                 <Icon name='image outline' />
                 Avatar
             </Label>
-            <Form.Group inline name='avatar'>
+        </Form.Field>
+        <Form.Group>
                 {props.avatars && props.avatars.map(avatar => {
-                    return <Fragment key={avatar.id}>
+                    return <Form.Field key={avatar.id}>
+                        <Image src={avatar.img_url} avatar />
                         <Form.Radio
                             label={avatar.name}
                             value={avatar.id}
                             checked={props.user.avatar === avatar.id}
                             onChange={props.handleOnChange}
                         />
-                        <Image src={avatar.img_url} avatar />
-                    </Fragment>
+                    </Form.Field>
                 })}
-            </Form.Group>
-        </Form.Field>
+            
+        </Form.Group>
         <Form.Field>
             <Label color='brown' as='a'>
                 <Icon name='lock' />
                 Old Password
             </Label>
-            <Input type='password' value={props.user.password} onChange={props.handleOnChange} name='password' autoComplete='current-password' placeholder='Enter your current password' required />
+            <Form.Input type='password' value={props.user.password} onChange={props.handleOnChange} name='password' autoComplete='current-password' placeholder='Enter your current password' required />
         </Form.Field>
         <Form.Field>
             <Label color='brown' as='a'>
                 <Icon name='lock' />
                 New Password
             </Label>
-            <Input type='password' value={props.user.newPassword} onChange={props.handleOnChange} name='newPassword' autoComplete='current-password' placeholder='Enter a new password' />
+            <Form.Input type='password' value={props.user.newPassword} onChange={props.handleOnChange} name='newPassword' autoComplete='current-password' placeholder='Enter a new password' />
         </Form.Field>
         <Form.Field>
             <Label color='brown' as='a'>

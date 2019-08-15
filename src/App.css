@@ -2,7 +2,7 @@
   padding-top: 41px;
   text-align: center;
   margin: auto;
-  font-family: 'Courgette', cursive;
+  font-family: 'Nunito', cursive;
 }
 
 h1 {
@@ -10,7 +10,7 @@ h1 {
 }
 
 h3.ui.dividing.header {
-  font-family: 'Courgette', cursive;
+  font-family: 'Nunito', cursive;
 }
 
 .map-holder {
