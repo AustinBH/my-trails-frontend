@@ -28,7 +28,6 @@ const EditForm = props => {
                         />
                     </Form.Field>
                 })}
-            
         </Form.Group>
         <Form.Field>
             <Label color='brown' as='a'>

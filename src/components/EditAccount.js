@@ -13,7 +13,6 @@ class EditAccount extends Component {
         results: 20
         }
 
-
     // This function just controls our form and updates the state accordingly
     handleChange = (ev, value ) => {
         if (ev.target.name) {
@@ -39,6 +38,7 @@ class EditAccount extends Component {
         } else {
             avatar = parseInt(this.props.user.avatar.id)
         }
+        // We only want to move the user to the homepage if they successfully updated their info
         if (!this.state.newPassword) {
             user = { username: this.state.username || this.props.user.username, password: this.state.password, distance: parseInt(this.state.distance), results: parseInt(this.state.results), avatar_id: avatar}
             this.props.fetchEdit({ ...user }).then(action => {
@@ -59,8 +59,6 @@ class EditAccount extends Component {
             })
         }
     }
-
-
 
     render() {
         return <>
