@@ -11,24 +11,23 @@ class GoogleMap extends Component {
     }
     state = {
         showingInfoWindow: false,
-        activeMarker: {},
-        selectedPlace: {}
+        selectedTrailId: null
     }
 
     // This function opens an info window when a user clicks on a map marker
-    onMarkerClick = (props, marker, e) =>
+    onMarkerClick = (trailId, e) => {
         this.setState({
-            selectedPlace: props,
-            activeMarker: marker,
+            selectedTrailId: trailId,
             showingInfoWindow: true
         });
+    }
 
     // This function allows a user to click on the map and collapse their info window
     onMapClicked = (props) => {
         if (this.state.showingInfoWindow) {
             this.setState({
                 showingInfoWindow: false,
-                activeMarker: null
+                selectedTrailId: null
             })
         }
     };
@@ -41,6 +40,9 @@ class GoogleMap extends Component {
                 trail={trail}
                 lat={trail.latitude}
                 lng={trail.longitude}
+                handleOnClick={this.onMarkerClick}
+                show={this.state.showingInfoWindow}
+                selectedTrail={this.state.selectedTrailId}
             />
         })
     }
@@ -61,8 +63,17 @@ class GoogleMap extends Component {
                             bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
                             defaultZoom={9}
                             defaultCenter={{ lat: parseFloat(this.props.lat), lng: parseFloat(this.props.lng) }}
+                            onClick={this.onMapClicked}
                         >
-                            <MapMarker lat={this.props.lat} lng={this.props.lng} trail={{name: 'Selected Location'}} show={false} current />
+                            <MapMarker
+                                lat={this.props.lat}
+                                lng={this.props.lng}
+                                trail={{ name: 'Selected Location', id: 1 }}
+                                show={this.state.showingInfoWindow}
+                                selectedTrail={this.state.selectedTrailId}
+                                current
+                                handleOnClick={this.onMarkerClick}
+                            />
                             {this.displayTrails()}
                         </GoogleMapReact>
                     </div>
