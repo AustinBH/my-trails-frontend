@@ -4,17 +4,15 @@ import { fetchEdit } from '../actions/userActions';
 import EditForm from './EditForm';
 
 class EditAccount extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            username: '',
-            password: '',
-            newPassword: '',
-            avatar: '',
-            distance: 20,
-            results: 20,
+    state = {
+        username: '',
+        password: '',
+        newPassword: '',
+        avatar: '',
+        distance: 20,
+        results: 20
         }
-    }
+
 
     // This function just controls our form and updates the state accordingly
     handleChange = (ev, value ) => {
@@ -43,13 +41,26 @@ class EditAccount extends Component {
         }
         if (!this.state.newPassword) {
             user = { username: this.state.username || this.props.user.username, password: this.state.password, distance: parseInt(this.state.distance), results: parseInt(this.state.results), avatar_id: avatar}
-            this.props.fetchEdit({...user})
+            this.props.fetchEdit({ ...user }).then(action => {
+                if (!action.payload.error) {
+                    this.props.history.push('/')
+                } else {
+                    this.props.displayError(action.payload.error)
+                }
+            })
         } else {
             user = { username: this.state.username || this.props.user.username, password: this.state.password, new_password: this.state.newPassword, distance: parseInt(this.state.distance), results: parseInt(this.state.results), avatar_id: avatar}
-            this.props.fetchEdit({...user})
+            this.props.fetchEdit({...user}).then(action => {
+                if (!action.payload.error) {
+                    this.props.history.push('/')
+                } else {
+                    this.props.displayError(action.payload.error)
+                }
+            })
         }
-        this.props.history.push('/')
     }
+
+
 
     render() {
         return <>
