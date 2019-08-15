@@ -36,7 +36,7 @@ class Account extends Component {
 }
 
 const mapStateToProps = state => {
-    return { user: state.user.user, avatars: state.avatars.avatars }
+    return { user: state.user.user, avatars: state.avatars }
 }
 
 const mapDispatchToProps = dispatch => ({
