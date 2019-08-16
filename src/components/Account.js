@@ -6,13 +6,17 @@ import { fetchAvatars } from '../actions/avatarActions';
 import EditAccount from './EditAccount';
 import BasicLoader from './BasicLoader';
 import ErrorModal from './auth/ErrorModal';
+import DeleteAccountModal from './auth/DeleteAccountModal';
+import { api } from '../services/api';
 
 class Account extends Component {
 
     state = {
         isLoading: true,
         error: '',
-        open: false
+        open: false,
+        deleteOpen: false,
+        password: ''
     }
 
     // We just want to make sure that we get the user's account info and all available avatars (placeholder stage)
@@ -31,12 +35,35 @@ class Account extends Component {
         this.props.fetchAuthentication()
     }
 
+    toggleAccountModal = () => {
+        this.setState({ deleteOpen: !this.state.deleteOpen })
+    }
+
+    handleChange = ev => {
+        this.setState({
+            [ev.target.name]: ev.target.value
+        })
+    }
+
+    handleSubmit = ev => {
+        ev.preventDefault()
+        api.auth.deleteAccount({user: {password: this.state.password} }).then(json => {
+            this.toggleAccountModal()
+            if (json.error) {
+                this.displayError(json.error)
+            } else {
+                this.props.logout()
+            }
+        })
+    }
+
     render() {
         return <div>
             <h1>Account</h1>
             <>
                 {this.props.user && this.props.user.avatar && <Image src={this.props.user.avatar.img_url} avatar/>}
                 <p>Welcome back {this.props.user && this.props.user.username}!!</p>
+                <DeleteAccountModal open={this.state.deleteOpen} toggle={this.toggleAccountModal} handleOnChange={this.handleChange} handleOnSubmit={this.handleSubmit} />
             </>
             {this.state.isLoading ? 
                 <BasicLoader info='your info' />
@@ -57,7 +84,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     fetchAuthentication: () => dispatch(fetchAuthentication()),
-    fetchAvatars: () => dispatch(fetchAvatars())
+    fetchAvatars: () => dispatch(fetchAvatars()),
+    logout: () => dispatch({ type: 'LOGOUT' })
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Account);

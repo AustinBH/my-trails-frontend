@@ -52,6 +52,12 @@ h3.ui.dividing.header {
   margin-top: 10px !important;
 }
 
+.account-button {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 .home-image {
   display: block;
   margin: auto;
