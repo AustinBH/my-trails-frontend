@@ -42,6 +42,7 @@ class Search extends Component {
         })
         let lat = location.latitude
         let lon = location.longitude
+        // This allows the search settings to override a user's settings
         let distance = this.state.distance || this.props.user.distance
         let results = this.state.results || this.props.user.results
         api.trails.getTrailsByLocation(lat, lon, distance, results).then(json => this.setState({
@@ -54,6 +55,7 @@ class Search extends Component {
         }))
     }
 
+    // All of these three functions are used to manage the search settings modal
     toggle = () => {
         this.setState({open: !this.state.open})
     }
@@ -72,7 +74,6 @@ class Search extends Component {
     render() {
         return <div>
             <h1>Search</h1>
-            <SearchSettingsModal open={this.state.open} toggle={this.toggle} range={this.state.distance} results={this.state.results} handleOnChange={this.handleChange} handleOnSubmit={this.handleSubmit} />
             {/* Adding a ternary to display a loading indicator when fetching locations */}
             {this.state.isLoading ? 
                 <BasicLoader info='Locations' />
@@ -92,6 +93,7 @@ class Search extends Component {
                     })}
                 />
             }
+            <SearchSettingsModal open={this.state.open} toggle={this.toggle} range={this.state.distance} results={this.state.results} handleOnChange={this.handleChange} handleOnSubmit={this.handleSubmit} />
             <TrailSearchForm handleOnSubmit={this.handleClick} />
             {this.state.mapLoading ? 
                 <BasicLoader info='Trails' />
