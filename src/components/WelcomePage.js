@@ -39,6 +39,7 @@ const WelcomePage = props => {
         setLong(position.coords.longitude)
     }
 
+    // These three functions all manage the search settings modal and update the hooks appropriately
     const handleChange = (ev, value )  => {
         if (value.name === 'distance') {
             setDistance(value.value)
