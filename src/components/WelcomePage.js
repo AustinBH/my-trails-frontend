@@ -39,15 +39,11 @@ const WelcomePage = props => {
         setLong(position.coords.longitude)
     }
 
-    const displaySettings = ev => {
-        setOpen(true)
-    }
-
-    const handleChange = (ev, { value })  => {
-        if (ev.target.parentNode.parentNode.id === 'distance') {
-            setDistance(value)
-        } else if (ev.target.parentNode.parentNode.id === 'results') {
-            setResults(value)
+    const handleChange = (ev, value )  => {
+        if (value.name === 'distance') {
+            setDistance(value.value)
+        } else if (value.name === 'results') {
+            setResults(value.value)
         }
     }
 
@@ -74,7 +70,6 @@ const WelcomePage = props => {
         <>
             <h1>My Trails</h1>
             <img className='home-image' src='https://images.freeimages.com/images/large-previews/c27/mount-rainier-1337100.jpg' alt='mount-rainier' />
-            <Button className='home-button' onClick={displaySettings} icon='settings' color='green' content='Search settings' />
             <Button className='home-button' onClick={getLocation} icon='location arrow' color='brown' content='Hikes Near Me!' />
             <SearchSettingsModal open={open} toggle={toggle} range={distance} results={results} handleOnChange={handleChange} handleOnSubmit={handleSubmit} />
             {loading ? 

@@ -7,6 +7,7 @@ import GoogleMap from './GoogleMap'
 import SearchResults from '../containers/SearchResults';
 import TrailSearchForm from './TrailSearchForm';
 import BasicLoader from './BasicLoader';
+import SearchSettingsModal from './searchModals/SearchSettingsModal';
 
 
 class Search extends Component {
@@ -19,7 +20,10 @@ class Search extends Component {
             lng: ''
         },
         isLoading: true,
-        mapLoading: false
+        mapLoading: false,
+        open: false,
+        distance: '',
+        results: ''
     }
 
     // I need to fetch the preset locations from my backend and get the user data from redux
@@ -38,8 +42,8 @@ class Search extends Component {
         })
         let lat = location.latitude
         let lon = location.longitude
-        let distance = this.props.user.distance
-        let results = this.props.user.results
+        let distance = this.state.distance || this.props.user.distance
+        let results = this.state.results || this.props.user.results
         api.trails.getTrailsByLocation(lat, lon, distance, results).then(json => this.setState({
             trails: json,
             selectedLocation: {
@@ -50,9 +54,25 @@ class Search extends Component {
         }))
     }
 
+    toggle = () => {
+        this.setState({open: !this.state.open})
+    }
+
+    handleChange = (ev, value) => {
+        this.setState({
+            [value.name]: value.value
+        })
+    }
+
+    handleSubmit = ev => {
+        ev.preventDefault()
+        this.toggle()
+    }
+
     render() {
         return <div>
             <h1>Search</h1>
+            <SearchSettingsModal open={this.state.open} toggle={this.toggle} range={this.state.distance} results={this.state.results} handleOnChange={this.handleChange} handleOnSubmit={this.handleSubmit} />
             {/* Adding a ternary to display a loading indicator when fetching locations */}
             {this.state.isLoading ? 
                 <BasicLoader info='Locations' />

@@ -10,7 +10,7 @@ const options = [
 ]
 
 const NewCommentModal = props => {
-    return <Modal onOpen={props.toggle} onClose={props.toggle} open={props.open} closeIcon>
+    return <Modal onOpen={props.toggle} onClose={props.toggle} open={props.open} trigger={<Button className='home-button' icon='settings' color='green' content='Settings' />} closeIcon>
         <Modal.Header>Search Settings</Modal.Header>
         <Modal.Content>
             <Modal.Description>
@@ -20,14 +20,14 @@ const NewCommentModal = props => {
                             <Icon name='bicycle' />
                             Range (miles)
                         </Label>
-                        <Dropdown value={props.range} onChange={props.handleOnChange} options={options} id='distance' placeholder='Select a range' selection required />
+                        <Dropdown value={props.range} onChange={props.handleOnChange} options={options} name='distance' placeholder='Select a range' selection required />
                     </Form.Field>
                     <Form.Field>
                         <Label color='brown' as='a'>
                             <Icon name='flag' />
                             Results (trails)
                         </Label>
-                        <Dropdown value={props.results} onChange={props.handleOnChange} options={options} id='results' placeholder='Select the number of trails' selection required />
+                        <Dropdown value={props.results} onChange={props.handleOnChange} options={options} name='results' placeholder='Select the number of trails' selection required />
                     </Form.Field>
                     <Button color='blue' type='submit' content='Save' />
                 </Form>
