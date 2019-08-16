@@ -36,7 +36,7 @@ const MapMarker = props => {
             :
             null
         }
-        {props.show && props.selectedTrail === props.trail.id ?
+        { props.show && props.selectedTrail === props.trail.id ?
             <div className='marker-info'>
                 <Card style={{ zIndex: 3 }}>
                     {props.trail.imgMedium ?
@@ -50,21 +50,27 @@ const MapMarker = props => {
                             <Icon name='cancel' style={{ cursor: 'pointer', float: 'right' }} onClick={handleClose} />
                         </Card.Header>
                     </Card.Content>
-                    <Card.Description >
-                        {props.trail.summary === 'Needs Summary' || !props.trail.summary ?
-                            'No summary available'
-                        :
-                            props.trail.summary
-                        }
-                    </Card.Description>
-                    <Card.Content>
-                        <Card.Meta>
-                            Condition: {props.trail.conditionStatus || 'No condition available'}
-                        </Card.Meta>
-                        <Card.Meta>
-                            As of: {props.trail.conditionDate || 'No condition date available'}
-                        </Card.Meta>
-                    </Card.Content>
+                    {!props.current ?
+                        <>
+                        <Card.Description >
+                            {props.trail.summary === 'Needs Summary' || !props.trail.summary ?
+                                'No summary available'
+                            :
+                                props.trail.summary
+                            }
+                        </Card.Description>
+                        <Card.Content>
+                            <Card.Meta>
+                                Condition: {props.trail.conditionStatus || 'No condition available'}
+                            </Card.Meta>
+                            <Card.Meta>
+                                As of: {props.trail.conditionDate || 'No condition date available'}
+                            </Card.Meta>
+                        </Card.Content>
+                        </>
+                    :
+                        null
+                    }
                 </Card>
             </div>
             :

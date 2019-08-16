@@ -1,5 +1,13 @@
 import React from 'react'
-import { Button, Form, Label, Icon, Image } from 'semantic-ui-react';
+import { Button, Form, Label, Icon, Image, Dropdown } from 'semantic-ui-react';
+
+const options = [
+    { key: 10, text: 'Ten', value: 10 },
+    { key: 20, text: 'Twenty', value: 20 },
+    { key: 30, text: 'Thirty', value: 30 },
+    { key: 40, text: 'Fourty', value: 40 },
+    { key: 50, text: 'Fifty', value: 50 },
+]
 
 const EditForm = props => {
     return <Form className='standard-form' onSubmit={props.handleOnSubmit} name='login'>
@@ -21,6 +29,7 @@ const EditForm = props => {
                     return <Form.Field key={avatar.id}>
                         <Image src={avatar.img_url} avatar />
                         <Form.Radio
+                            name='avatar'
                             label={avatar.name}
                             value={avatar.id}
                             checked={props.user.avatar === avatar.id}
@@ -48,26 +57,14 @@ const EditForm = props => {
                 <Icon name='truck' />
                 Distance in miles
             </Label>
-            <select value={props.user.distance} onChange={props.handleOnChange} name='distance'>
-                <option value='10'>10</option>
-                <option value='20'>20</option>
-                <option value='30'>30</option>
-                <option value='40'>40</option>
-                <option value='50'>50</option>
-            </select>
+            <Dropdown value={props.user.distance} onChange={props.handleOnChange} options={options} name='distance' placeholder='Select a range' selection />
         </Form.Field>
         <Form.Field>
             <Label color='brown' as='a'>
                 <Icon name='map pin' />
                 Results
             </Label>
-            <select value={props.user.results} onChange={props.handleOnChange} name='results'>
-                <option value='10'>10</option>
-                <option value='20'>20</option>
-                <option value='30'>30</option>
-                <option value='40'>40</option>
-                <option value='50'>50</option>
-            </select>
+            <Dropdown value={props.user.results} onChange={props.handleOnChange} options={options} name='results' placeholder='Select the number of trails' selection />
         </Form.Field>
         <Button color='blue' type='submit' content='Edit' />
     </Form>
