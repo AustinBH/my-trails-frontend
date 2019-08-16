@@ -40,6 +40,14 @@ const edit = data => {
     }).then(res => res.json())
 }
 
+const deleteAccount = data => {
+    return fetch(`${API_ROOT}/account`, {
+        method: 'DELETE',
+        headers: headers(),
+        body: JSON.stringify(data)
+    }).then(res => res.json())
+}
+
 const getAvatars = () => {
     return fetch(`${API_ROOT}/avatars`, {
         method: 'GET',
@@ -151,7 +159,8 @@ export const api = {
         login,
         signup,
         getCurrentUser,
-        edit
+        edit,
+        deleteAccount
     },
     avatars: {
         getAvatars

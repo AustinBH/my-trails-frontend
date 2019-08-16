@@ -35,9 +35,9 @@ class InfoHolder extends Component {
         let favs = this.props.favorites
         if (favs) {
             if (favs.length === 1) {
-                return `${favs.length} user has liked this trail!`
+                return `${favs.length} user has favorited this trail!`
             } else {
-                return `${favs.length} users have liked this trail!`
+                return `${favs.length} users have favorited this trail!`
             }
         }
     }
@@ -84,7 +84,7 @@ class InfoHolder extends Component {
                         <p>{this.displayCompletions()} </p>
                     </Grid.Column>
                     <Grid.Column width={8}>
-                        <label><strong>Likes:</strong></label>
+                        <label><strong>Favs:</strong></label>
                         <p>{this.displayFavorites()} </p>
                     </Grid.Column>
                 </Grid.Row>

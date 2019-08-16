@@ -9,28 +9,23 @@ class EditAccount extends Component {
         password: '',
         newPassword: '',
         avatar: '',
-        distance: 20,
-        results: 20
+        distance: '',
+        results: ''
         }
 
     // This function just controls our form and updates the state accordingly
-    handleChange = (ev, value ) => {
-        if (ev.target.name) {
-            this.setState({
-                [ev.target.name]: ev.target.value
-            })
-        } else {
-            this.setState({
-                avatar: value.value
-            })
-        }
+    // value is used with semantic ui to update the correct state as the event contains different information
+    handleChange = (ev, value) => {
+        this.setState({
+            [value.name]: value.value
+        })
     }
 
     // This function just manages the form submission and confirms whether a user has provided a new password or username and updates their account accordingly
     // After a user's account is updated we redirect them back to the home page
     handleSubmit = ev => {
         ev.preventDefault()
-        let user = {}
+        let user = { username: this.state.username || this.props.user.username, password: this.state.password, distance: parseInt(this.state.distance) || this.props.user.distance, results: parseInt(this.state.results) || this.props.user.results}
         let avatar = ''
         // These if statements allow us to update the user's avatar if they changed it or keep it the same if they did not
         if (this.state.avatar !== '' && this.state.avatar !== this.props.user.avatar.id) {
@@ -40,7 +35,7 @@ class EditAccount extends Component {
         }
         // We only want to move the user to the homepage if they successfully updated their info
         if (!this.state.newPassword) {
-            user = { username: this.state.username || this.props.user.username, password: this.state.password, distance: parseInt(this.state.distance), results: parseInt(this.state.results), avatar_id: avatar}
+            user = {...user, avatar_id: avatar}
             this.props.fetchEdit({ ...user }).then(action => {
                 if (!action.payload.error) {
                     this.props.history.push('/')
@@ -49,7 +44,7 @@ class EditAccount extends Component {
                 }
             })
         } else {
-            user = { username: this.state.username || this.props.user.username, password: this.state.password, new_password: this.state.newPassword, distance: parseInt(this.state.distance), results: parseInt(this.state.results), avatar_id: avatar}
+            user = {...user, new_password: this.state.newPassword, avatar_id: avatar}
             this.props.fetchEdit({...user}).then(action => {
                 if (!action.payload.error) {
                     this.props.history.push('/')

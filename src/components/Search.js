@@ -7,6 +7,7 @@ import GoogleMap from './GoogleMap'
 import SearchResults from '../containers/SearchResults';
 import TrailSearchForm from './TrailSearchForm';
 import BasicLoader from './BasicLoader';
+import SearchSettingsModal from './searchModals/SearchSettingsModal';
 
 
 class Search extends Component {
@@ -19,7 +20,10 @@ class Search extends Component {
             lng: ''
         },
         isLoading: true,
-        mapLoading: false
+        mapLoading: false,
+        open: false,
+        distance: '',
+        results: ''
     }
 
     // I need to fetch the preset locations from my backend and get the user data from redux
@@ -38,8 +42,9 @@ class Search extends Component {
         })
         let lat = location.latitude
         let lon = location.longitude
-        let distance = this.props.user.distance
-        let results = this.props.user.results
+        // This allows the search settings to override a user's settings
+        let distance = this.state.distance || this.props.user.distance
+        let results = this.state.results || this.props.user.results
         api.trails.getTrailsByLocation(lat, lon, distance, results).then(json => this.setState({
             trails: json,
             selectedLocation: {
@@ -48,6 +53,22 @@ class Search extends Component {
             },
             mapLoading: false
         }))
+    }
+
+    // All of these three functions are used to manage the search settings modal
+    toggle = () => {
+        this.setState({open: !this.state.open})
+    }
+
+    handleChange = (ev, value) => {
+        this.setState({
+            [value.name]: value.value
+        })
+    }
+
+    handleSubmit = ev => {
+        ev.preventDefault()
+        this.toggle()
     }
 
     render() {
@@ -72,6 +93,7 @@ class Search extends Component {
                     })}
                 />
             }
+            <SearchSettingsModal open={this.state.open} toggle={this.toggle} range={this.state.distance} results={this.state.results} handleOnChange={this.handleChange} handleOnSubmit={this.handleSubmit} />
             <TrailSearchForm handleOnSubmit={this.handleClick} />
             {this.state.mapLoading ? 
                 <BasicLoader info='Trails' />
