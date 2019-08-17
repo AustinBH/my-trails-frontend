@@ -64,12 +64,7 @@ class CommentHolder extends Component {
             let comment = { content: this.state.content, user_id: this.props.user.id, trail_id: this.props.trail.id }
             api.comments.addComment({ comment: comment }).then(json => {
                 if (!json.error) {
-                    let comments = []
-                    if (this.state.comments.length > 0) {
-                        comments = [...this.state.comments, json]
-                    } else {
-                        comments = [json]
-                    }
+                    let comments = [...this.state.comments, json]
                     this.setState({ comments, content: '' })
                 }
             })
@@ -90,7 +85,7 @@ class CommentHolder extends Component {
     render() {
         return <>
             <Comment.Group>
-                <Header as='h3' dividing >Comments</Header>
+                <Header as='h3' dividing content='Comments'/>
                 { // Here we are using a ternary to add a placeholder while we fetch the comments
                     this.state.isLoading ?
                         <BasicLoader info='comments' />
@@ -99,11 +94,9 @@ class CommentHolder extends Component {
                     this.state.comments.length > 0 ? this.state.comments.map((comment, idx) => {
                             return <Comment key={idx}>
                                 <Comment.Avatar src={comment.avatar} />
-                                <Comment.Author as='a'>{comment.username}</Comment.Author>
-                                <Comment.Metadata>
-                                    {comment.created_at}
-                                </Comment.Metadata>
-                                <Comment.Text>{comment.content}</Comment.Text>
+                                <Comment.Author as='a' content={comment.username}/>
+                                <Comment.Metadata content={comment.created_at}/>
+                                <Comment.Text content={comment.content}/>
                                 {comment.user_id === this.props.user.id ?
                                     <>
                                         <Button size='mini' icon='edit' color='yellow' onClick={() => this.toggleEdit(comment)} content='Edit'/>
@@ -118,8 +111,7 @@ class CommentHolder extends Component {
                     <Comment>
                         <Comment.Text>No comments yet, leave the first one!</Comment.Text>
                     </Comment>
-                }
-                
+                } 
             </Comment.Group>
             <DeleteCommentModal open={this.state.deleteOpen} toggle={this.toggleDelete} id={this.state.deletingId} deleteComment={this.deleteComment}/>
             <EditCommentmodal open={this.state.editOpen} toggle={this.toggleEdit} handleOnSubmit={this.handleSubmit} value={this.state.editingContent} handleOnChange={this.handleChange} />

@@ -13,6 +13,10 @@ h3.ui.dividing.header {
   font-family: 'Nunito', cursive;
 }
 
+h3 {
+  font-family: 'Nunito', cursive;
+}
+
 .map-holder {
   height: 50%;
   width: 80%;

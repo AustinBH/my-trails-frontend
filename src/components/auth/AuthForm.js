@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button, Label, Input } from 'semantic-ui-react';
+import { Form, Grid, Button, Header, Segment } from 'semantic-ui-react';
 
 const AuthForm = props => {
     // Here we have abstracted a login and signup form into 1 entity as a result we start a fetch based on previous props
@@ -33,17 +33,22 @@ const AuthForm = props => {
         }
     }
 
-    return <Form className='standard-form' onSubmit={handleSubmit} name={props.form}>
-        <Form.Field>
-            <Label color='brown' as='a' icon='user' content='Username'/>
-            <Input type='text' value={controlUsername()} onChange={props.handleOnChange} name='username' placeholder='Enter your username' autoComplete='username' required />
-        </Form.Field>
-        <Form.Field>
-            <Label color='brown' as='a' icon='lock' content='Password'/>
-            <Input type='password' value={controlPassword()} onChange={props.handleOnChange} name='password' autoComplete='current-password' required />
-        </Form.Field>
-        <Button icon='check' color='blue' type='submit' content={capitalize(props.form)} />
-    </Form>
+    return <Grid columns={1}>
+        <Grid.Column>
+            <Header as='h3'>{props.signup ? 'Signup' : 'Login'}</Header>
+            <Form size='large' className='standard-form' onSubmit={handleSubmit} name={props.form}>
+                <Segment stacked>
+                    <Form.Field>
+                        <Form.Input icon='user' iconPosition='left' type='text' value={controlUsername()} onChange={props.handleOnChange} name='username' placeholder='Enter your username' autoComplete='username' required />
+                    </Form.Field>
+                    <Form.Field>
+                        <Form.Input icon='lock' iconPosition='left' type='password' value={controlPassword()} onChange={props.handleOnChange} name='password' placeholder='Enter your password' autoComplete='current-password' required />
+                    </Form.Field>
+                <Button fluid icon='check' color='blue' type='submit' content={capitalize(props.form)} />
+                </Segment>
+            </Form>
+        </Grid.Column>
+    </Grid>
 
 }
 

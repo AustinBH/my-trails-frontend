@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Label, Input, Icon } from 'semantic-ui-react';
+import { Form, Button, Label, Input } from 'semantic-ui-react';
 
 class TrailSearchForm extends Component {
 
@@ -29,17 +29,11 @@ class TrailSearchForm extends Component {
             <h1>Search by Coordinates</h1>
             <Form className='standard-form' onSubmit={this.handleSubmit}>
                 <Form.Field>
-                    <Label color='brown' as='a'>
-                        <Icon name='map marker' />
-                        Latitude
-                </Label>
+                    <Label color='brown' as='a' icon='map marker' content='Latitude'/>
                     <Input type='number' value={this.state.latitude} onChange={this.handleChange} name='latitude' placeholder='Enter a latitude' required />
                 </Form.Field>
                 <Form.Field>
-                    <Label color='brown' as='a'>
-                        <Icon name='map marker alternate' />
-                        Longitude
-                </Label>
+                    <Label color='brown' as='a' icon='map marker alternate' content='Longitude'/>
                     <Input type='number' value={this.state.longitude} onChange={this.handleChange} name='longitude' placeholder='Enter a longitude' required />
                 </Form.Field>
                 <Button color='blue' type='submit' content='Search' />

@@ -67,25 +67,23 @@ const WelcomePage = props => {
         }
     }, [lat, long, props, distance, results])
 
-    return (
-        <>
-            <h1>My Trails</h1>
-            <img className='home-image' src='https://images.freeimages.com/images/large-previews/c27/mount-rainier-1337100.jpg' alt='mount-rainier' />
-            <SearchSettingsModal open={open} toggle={toggle} range={distance} results={results} handleOnChange={handleChange} handleOnSubmit={handleSubmit} />
-            <Button className='home-button' onClick={getLocation} icon='location arrow' color='brown' content='Hikes Near Me!' />
-            {loading ? 
-                <BasicLoader info='Trails' /> 
-            :   
-            trails.length > 0 ?
-                <>
-                    <GoogleMap lat={lat} lng={long} trails={trails} />
-                    <SearchResults trails={trails} user={props.user} />
-                </>
-            :
-                null
-            }
-        </>
-    )
+    return <>
+        <h1>My Trails</h1>
+        <img className='home-image' src='https://images.freeimages.com/images/large-previews/c27/mount-rainier-1337100.jpg' alt='mount-rainier' />
+        <SearchSettingsModal open={open} toggle={toggle} range={distance} results={results} handleOnChange={handleChange} handleOnSubmit={handleSubmit} />
+        <Button className='home-button' onClick={getLocation} icon='location arrow' color='brown' content='Hikes Near Me!' />
+        {loading ? 
+            <BasicLoader info='Trails' /> 
+        :   
+        trails.length > 0 ?
+            <>
+                <GoogleMap lat={lat} lng={long} trails={trails} />
+                <SearchResults trails={trails} user={props.user} />
+            </>
+        :
+            null
+        }
+    </>
 }
 
 const mapStateToProps = state => {
