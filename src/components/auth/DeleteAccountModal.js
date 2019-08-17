@@ -29,7 +29,7 @@ const DeleteAccountModal = props => {
                             <Label color='brown' as='a' icon='user' content='Username' />
                             <Form.Input type='text' value={props.username} onChange={props.handleOnChange} placeholder='Enter your username' autoComplete='current-username' name='username' />
                         </Form.Field>
-                        <Form.Field style={{textAlign: 'center'}}>
+                        <Form.Field className='modal-form'>
                             <h3>Enter your password</h3>
                             <Label color='brown' as='a' icon='lock' content='Password' />
                             <Form.Input type='password' value={props.password} onChange={props.handleOnChange} autoComplete='current-password' name='password' required />

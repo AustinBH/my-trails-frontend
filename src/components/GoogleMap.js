@@ -48,40 +48,39 @@ class GoogleMap extends Component {
     }
 
     render() {
-        if (this.props.lat) {
-            return (
-                    <>
-                    <h1>Map</h1>
-                    <div style={{
-                        margin: 'auto',
-                        height: '90vh',
-                        width: '90%',
-                        zIndex: '1'
-                    }}>
-                        <GoogleMapReact
-                            className='map-holder'
-                            bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
-                            defaultZoom={9}
-                            defaultCenter={{ lat: parseFloat(this.props.lat), lng: parseFloat(this.props.lng) }}
-                            onClick={this.onMapClicked}
-                        >
-                            <MapMarker
-                                lat={this.props.lat}
-                                lng={this.props.lng}
-                                trail={{ name: 'Selected Location', id: 1 }}
-                                show={this.state.showingInfoWindow}
-                                selectedTrail={this.state.selectedTrailId}
-                                current
-                                handleOnClick={this.onMarkerClick}
-                            />
-                            {this.displayTrails()}
-                        </GoogleMapReact>
-                    </div>
-                    </>
-            )} else {
-            return null
-        }
-        
+        return (
+            this.props.lat ?
+                <>
+                <h1>Map</h1>
+                <div style={{
+                    margin: 'auto',
+                    height: '90vh',
+                    width: '90%',
+                    zIndex: '1'
+                }}>
+                    <GoogleMapReact
+                        className='map-holder'
+                        bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
+                        defaultZoom={9}
+                        defaultCenter={{ lat: parseFloat(this.props.lat), lng: parseFloat(this.props.lng) }}
+                        onClick={this.onMapClicked}
+                    >
+                        <MapMarker
+                            lat={this.props.lat}
+                            lng={this.props.lng}
+                            trail={{ name: 'Selected Location', id: 1 }}
+                            show={this.state.showingInfoWindow}
+                            selectedTrail={this.state.selectedTrailId}
+                            current
+                            handleOnClick={this.onMarkerClick}
+                        />
+                        {this.displayTrails()}
+                    </GoogleMapReact>
+                </div>
+                </>
+                :
+                null
+        )
     }
 }
 

@@ -9,7 +9,6 @@ import TrailSearchForm from './TrailSearchForm';
 import BasicLoader from './BasicLoader';
 import SearchSettingsModal from './searchModals/SearchSettingsModal';
 
-
 class Search extends Component {
 
     state = {
@@ -72,9 +71,8 @@ class Search extends Component {
     }
 
     render() {
-        return <div>
+        return <>
             <h1>Search</h1>
-            {/* Adding a ternary to display a loading indicator when fetching locations */}
             {this.state.isLoading ? 
                 <BasicLoader info='Locations' />
             :
@@ -110,7 +108,7 @@ class Search extends Component {
                     null
             }
             <Button className='search-back-button' color='brown' icon='backward' onClick={() => this.props.history.push('/')} content='Go Back' />
-        </div>
+        </>
     }
 }
 

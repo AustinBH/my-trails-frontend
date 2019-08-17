@@ -10,9 +10,9 @@ class App extends Component {
     return (
       <div className="App">
         {localStorage.getItem('token') ?
-          <Home />
+            <Home/>
           :
-          <User />
+            <User/>
         }
       </div>
     );

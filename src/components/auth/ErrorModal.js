@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Button, Icon } from 'semantic-ui-react';
+import { Modal, Button } from 'semantic-ui-react';
 
 const ErrorModal = props => {
 
@@ -11,9 +11,7 @@ const ErrorModal = props => {
             </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
-            <Button color='green' onClick={props.toggle}>
-                <Icon name='check' /> Ok
-            </Button>
+            <Button color='green' onClick={props.toggle} icon='check' content='Ok' />
         </Modal.Actions>
     </Modal>
 }

@@ -46,9 +46,7 @@ class UserTrailInfo extends Component {
     }
 
     render() {
-        return <>
-        { //This ternary is used to add a placeholder while we are waiting for hike data to be fetched
-        this.state.isLoading ?
+        return this.state.isLoading ?
             <BasicLoader info='Trails' />
             :
             this.state.trails.length > 0 ?
@@ -60,11 +58,8 @@ class UserTrailInfo extends Component {
                 </div>
             :
                 <p>You don't have any {this.props.hikes} trails!!</p>
-        }
-        </>
     }
 }
-
 
 const mapStateToProps = state => {
     return { user: state.user.user }

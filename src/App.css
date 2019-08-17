@@ -13,6 +13,10 @@ h3.ui.dividing.header {
   font-family: 'Nunito', cursive;
 }
 
+h3 {
+  font-family: 'Nunito', cursive;
+}
+
 .map-holder {
   height: 50%;
   width: 80%;
@@ -64,6 +68,10 @@ h3.ui.dividing.header {
   border-radius: 5%;
   max-height: 80%;
   max-width: 80%;
+}
+
+.modal-form {
+  text-align: center;
 }
 
 .user-search-holder {
