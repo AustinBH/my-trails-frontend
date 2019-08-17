@@ -78,10 +78,8 @@ const WelcomePage = props => {
             :   
             trails.length > 0 ?
                 <>
-                <GoogleMap lat={lat} lng={long} trails={trails} />
-                <>
+                    <GoogleMap lat={lat} lng={long} trails={trails} />
                     <SearchResults trails={trails} user={props.user} />
-                </>
                 </>
             :
                 null

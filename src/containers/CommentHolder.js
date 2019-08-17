@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { Button, Placeholder, Comment, Header } from 'semantic-ui-react';
+import { Button, Comment, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { api } from '../services/api';
 import { fetchAuthentication } from '../actions/userActions'
 import NewCommentModal from '../components/commentModals/NewCommentModal';
 import EditCommentmodal from '../components/commentModals/EditCommentModal';
 import DeleteCommentModal from '../components/commentModals/DeleteCommentModal';
+import BasicLoader from '../components/BasicLoader';
 
 
 class CommentHolder extends Component {
@@ -92,18 +93,7 @@ class CommentHolder extends Component {
                 <Header as='h3' dividing >Comments</Header>
                 { // Here we are using a ternary to add a placeholder while we fetch the comments
                     this.state.isLoading ?
-                        <Placeholder>
-                            <Placeholder.Header>
-                                <Placeholder.Line />
-                                <Placeholder.Line />
-                            </Placeholder.Header>
-                            <Placeholder.Paragraph>
-                                <Placeholder.Line />
-                                <Placeholder.Line />
-                                <Placeholder.Line />
-                                <Placeholder.Line />
-                            </Placeholder.Paragraph>
-                        </Placeholder>
+                        <BasicLoader info='comments' />
                 :
                     // This nested ternary allows us to either render a standard no comments yet message or the comments for a trail
                     this.state.comments.length > 0 ? this.state.comments.map((comment, idx) => {

@@ -66,6 +66,10 @@ h3.ui.dividing.header {
   max-width: 80%;
 }
 
+.modal-form {
+  text-align: center;
+}
+
 .user-search-holder {
   margin: auto;
   width: 80%;

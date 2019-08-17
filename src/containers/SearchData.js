@@ -11,23 +11,23 @@ const SearchData = props => {
     return  <Table striped className='search-table'>
         <Table.Header>
             <Table.Row>
-                <Table.HeaderCell>Name</Table.HeaderCell>
-                <Table.HeaderCell>length</Table.HeaderCell>
-                <Table.HeaderCell>Condition</Table.HeaderCell>
-                <Table.HeaderCell></Table.HeaderCell>
-                <Table.HeaderCell></Table.HeaderCell>
-                <Table.HeaderCell></Table.HeaderCell>
-                {!props.comments.hidden ? <Table.HeaderCell></Table.HeaderCell> : null}
-                <Table.HeaderCell></Table.HeaderCell>
-                {!props.info.hidden ? <Table.HeaderCell></Table.HeaderCell> : null}
+                <Table.HeaderCell content='Name'/>
+                <Table.HeaderCell content='Length'/>
+                <Table.HeaderCell content='Condition'/>
+                <Table.HeaderCell/>
+                <Table.HeaderCell/>
+                <Table.HeaderCell/>
+                {!props.comments.hidden ? <Table.HeaderCell/> : null}
+                <Table.HeaderCell/>
+                {!props.info.hidden ? <Table.HeaderCell/> : null}
             </Table.Row>
         </Table.Header>
         <Table.Body>
             {props.trails.map(trail => {
                 return <Table.Row key={trail.id}>
-                    <Table.Cell>{trail.name}</Table.Cell>
-                    <Table.Cell>{trail.length} miles</Table.Cell>
-                    <Table.Cell>{trail.conditionStatus}</Table.Cell>
+                    <Table.Cell content={trail.name}/>
+                    <Table.Cell content={trail.length + 'miles'}/>
+                    <Table.Cell content={trail.conditionStatus}/>
                     <Table.Cell><FavButton user={props.user} trail={trail} handleOnClick={props.handleClick} /></Table.Cell>
                     <Table.Cell><CompleteButton user={props.user} trail={trail} handleOnClick={props.handleClick} /></Table.Cell>
                     <Table.Cell><Button color='blue' name='comments' icon='comment alternate' content='Comments' onClick={(event) => props.handleClick(event, trail)} /></Table.Cell>

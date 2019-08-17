@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Button, Form, Label, Icon, Dropdown } from 'semantic-ui-react';
+import { Modal, Button, Form, Label, Dropdown } from 'semantic-ui-react';
 
 const options = [
     { key: 10, text: 'Ten', value: 10},
@@ -9,31 +9,25 @@ const options = [
     { key: 50, text: 'Fifty', value: 50},
 ]
 
-const NewCommentModal = props => {
+const SearchSettingsModal = props => {
     return <Modal onOpen={props.toggle} onClose={props.toggle} open={props.open} trigger={<Button className='home-button' icon='settings' color='green' content='Settings' />} closeIcon>
-        <Modal.Header>Search Settings</Modal.Header>
+        <Modal.Header content='Search Settings' />
         <Modal.Content>
             <Modal.Description>
                 <Form onSubmit={props.handleOnSubmit} className='standard-form' name='settings'>
-                    <Form.Field>
-                        <Label color='brown' as='a'>
-                            <Icon name='bicycle' />
-                            Range (miles)
-                        </Label>
+                    <Form.Field className='modal-form'>
+                        <Label color='brown' as='a' icon='bicycle' content='Range (miles)' />
                         <Dropdown value={props.range} onChange={props.handleOnChange} options={options} name='distance' placeholder='Select a range' selection required />
                     </Form.Field>
-                    <Form.Field>
-                        <Label color='brown' as='a'>
-                            <Icon name='flag' />
-                            Results (trails)
-                        </Label>
+                    <Form.Field className='modal-form'>
+                        <Label color='brown' as='a' icon='flag' content='Results (trails)' />
                         <Dropdown value={props.results} onChange={props.handleOnChange} options={options} name='results' placeholder='Select the number of trails' selection required />
                     </Form.Field>
-                    <Button color='blue' type='submit' content='Save' />
+                    <Button className='home-button' color='blue' type='submit' content='Save' />
                 </Form>
             </Modal.Description>
         </Modal.Content>
     </Modal>
 }
 
-export default NewCommentModal;
+export default SearchSettingsModal;
