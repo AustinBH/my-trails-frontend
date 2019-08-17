@@ -13,7 +13,7 @@ const EditForm = props => {
     return <Grid columns={1}>
         <Grid.Column>
             <Form className='standard-form' onSubmit={props.handleOnSubmit}>
-                <Segment raised>
+                <Segment stacked>
                     <Form.Field>
                         <Label color='brown' as='a' icon='user' content='Username' />
                         <Form.Input type='text' value={props.user.username} onChange={props.handleOnChange} name='username' autoComplete='username' placeholder='Enter a new username' />
@@ -34,11 +34,9 @@ const EditForm = props => {
                         <Label color='brown' as='a' icon='map pin' content='Results' />
                         <Dropdown value={props.user.results} onChange={props.handleOnChange} options={options} name='results' placeholder='Select the trails to be returned' selection />
                     </Form.Field>
-                </Segment>
-                <Segment raised>
                     <Label color='brown' as='a' icon='image outline' content='Avatar' />
                     <Form.Group>
-                        {props.avatars && props.avatars.length > 0 && props.avatars.map(avatar => {
+                        {props.avatars && props.avatars.map(avatar => {
                             return <Form.Field key={avatar.id}>
                                 <Image src={avatar.img_url} avatar />
                                 <Form.Radio

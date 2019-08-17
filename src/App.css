@@ -150,4 +150,8 @@ h3 {
   .home-image {
     width: 60%;
   }
+  .ui.stacked.segment {
+    margin: auto;
+    width: 70%;
+  }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Label, Input } from 'semantic-ui-react';
+import { Form, Button, Label, Input, Segment, Grid } from 'semantic-ui-react';
 
 class TrailSearchForm extends Component {
 
@@ -25,20 +25,24 @@ class TrailSearchForm extends Component {
     }
 
     render() {
-        return <>
-            <h1>Search by Coordinates</h1>
-            <Form className='standard-form' onSubmit={this.handleSubmit}>
-                <Form.Field>
-                    <Label color='brown' as='a' icon='map marker' content='Latitude'/>
-                    <Input type='number' value={this.state.latitude} onChange={this.handleChange} name='latitude' placeholder='Enter a latitude' required />
-                </Form.Field>
-                <Form.Field>
-                    <Label color='brown' as='a' icon='map marker alternate' content='Longitude'/>
-                    <Input type='number' value={this.state.longitude} onChange={this.handleChange} name='longitude' placeholder='Enter a longitude' required />
-                </Form.Field>
-                <Button color='blue' type='submit' content='Search' />
-            </Form>
-        </>
+        return <Grid columns={1}>
+            <Grid.Column>
+                <h1>Search by Coordinates</h1>
+                    <Form className='standard-form' onSubmit={this.handleSubmit}>
+                        <Segment stacked>
+                            <Form.Field>
+                                <Label color='brown' as='a' icon='map marker' content='Latitude' />
+                                <Input type='number' value={this.state.latitude} onChange={this.handleChange} name='latitude' placeholder='Enter a latitude' required />
+                            </Form.Field>
+                            <Form.Field>
+                                <Label color='brown' as='a' icon='map marker alternate' content='Longitude' />
+                                <Input type='number' value={this.state.longitude} onChange={this.handleChange} name='longitude' placeholder='Enter a longitude' required />
+                            </Form.Field>
+                            <Button fluid color='blue' type='submit' content='Search' />
+                        </Segment>
+                    </Form>
+            </Grid.Column>
+        </Grid>
     }
 }
 
