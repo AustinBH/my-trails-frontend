@@ -6,7 +6,6 @@ class TrailSearchForm extends Component {
     state = {
         latitude: '',
         longitude: ''
-       
     }
 
     // We need to keep track of what lat/long the user is entering but want the form to be controlled
@@ -16,9 +15,9 @@ class TrailSearchForm extends Component {
         })
     }
 
-    // Here we prevent default to prevent a page refresh,
-    //submit to our parent component the selected location,
-    // and then update our state to be cleared
+    /*  Here we prevent default to prevent a page refresh,
+        submit to our parent component the selected location,
+        and then update our state to be cleared */
     handleSubmit = ev => {
         ev.preventDefault()
         this.props.handleOnSubmit(ev, {...this.state})

@@ -2,7 +2,6 @@ import React from 'react';
 import { Button } from 'semantic-ui-react';
 import UserTrailInfo from './UserTrailInfo';
 
-
 const Trails = props => {
     return <>
         <h1>Your Completed Trails</h1>

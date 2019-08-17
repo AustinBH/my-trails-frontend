@@ -9,7 +9,6 @@ import TrailSearchForm from './TrailSearchForm';
 import BasicLoader from './BasicLoader';
 import SearchSettingsModal from './searchModals/SearchSettingsModal';
 
-
 class Search extends Component {
 
     state = {

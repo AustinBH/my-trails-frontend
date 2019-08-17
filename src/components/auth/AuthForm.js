@@ -1,8 +1,7 @@
 import React from 'react';
-import { Form, Button, Label, Input, Icon } from 'semantic-ui-react';
+import { Form, Button, Label, Input } from 'semantic-ui-react';
 
 const AuthForm = props => {
-
     // Here we have abstracted a login and signup form into 1 entity as a result we start a fetch based on previous props
     const handleSubmit = ev => {
         ev.preventDefault();
@@ -36,17 +35,11 @@ const AuthForm = props => {
 
     return <Form className='standard-form' onSubmit={handleSubmit} name={props.form}>
         <Form.Field>
-            <Label color='brown' as='a'>
-                <Icon name='user' />
-                Username
-            </Label>
+            <Label color='brown' as='a' icon='user' content='Username'/>
             <Input type='text' value={controlUsername()} onChange={props.handleOnChange} name='username' placeholder='Enter your username' autoComplete='username' required />
         </Form.Field>
         <Form.Field>
-            <Label color='brown' as='a'>
-                <Icon name='lock' />
-                Password
-            </Label>
+            <Label color='brown' as='a' icon='lock' content='Password'/>
             <Input type='password' value={controlPassword()} onChange={props.handleOnChange} name='password' autoComplete='current-password' required />
         </Form.Field>
         <Button icon='check' color='blue' type='submit' content={capitalize(props.form)} />
