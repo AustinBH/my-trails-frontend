@@ -99,13 +99,13 @@ class InfoHolder extends Component {
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-                <Grid.Column width={8}>
+                <Grid.Column width={6}>
                     <Label color='brown'>Condition</Label>
                     <p>{this.props.trail.conditionStatus}</p>
                 </Grid.Column>
-                <Grid.Column width={8}>
+                <Grid.Column width={10}>
                     <Label color='brown'>Details</Label>
-                    <p>{this.props.trail.conditionDetails}</p>
+                    <p>{this.props.trail.conditionDetails || 'No details available at this time'}</p>
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
