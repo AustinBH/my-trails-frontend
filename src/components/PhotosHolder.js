@@ -15,7 +15,8 @@ class PhotosHolder extends Component {
         open: false,
         deleteOpen: false,
         deletingId: '',
-        photoUrl: ''
+        photoUrl: '',
+        newLoading: false
     }
 
     componentDidMount() {
@@ -40,18 +41,24 @@ class PhotosHolder extends Component {
     }
 
     handleChange = ev => {
-        this.setState({
-            [ev.target.name]: ev.target.value
-        })
+        this.setState({photoFileName: ev.target.files[0].name})
+        const reader = new FileReader()
+        reader.readAsDataURL(ev.target.files[0])
+        reader.onload = () => {
+            this.setState({
+                photoFile: reader.result
+            })
+        }
     }
 
     handleSubmit = ev => {
         ev.preventDefault()
-        const image = {user_id: this.props.user.id, trail_id: this.props.trail.id, img_url: this.state.photoUrl}
-        api.photos.addPhoto(image).then(json => {
+        this.setState({newLoading: true})
+        let image = { user_id: this.props.user.id, trail_id: this.props.trail.id, photo_file: this.state.photoFile, photo_file_name: this.state.photoFileName }
+        api.photos.addPhoto({image: image}).then(json => {
             if (!json.error) {
                 this.toggleOpen()
-                this.setState({photos: [...this.state.photos, json.image]})
+                this.setState({ photos: [...this.state.photos, json.image], newLoading: false })
             }
         })
     }
@@ -86,7 +93,7 @@ class PhotosHolder extends Component {
             }
             </Comment.Group>
             <DeletePhotoModal open={this.state.deleteOpen} toggle={this.toggleDelete} deletePhoto={this.deletePhoto} id={this.state.deletingId}/>
-            <AddPhotoModal open={this.state.open} toggle={this.toggleOpen} handleOnChange={this.handleChange} handleOnSubmit={this.handleSubmit}/>
+            <AddPhotoModal open={this.state.open} toggle={this.toggleOpen} handleOnChange={this.handleChange} handleOnSubmit={this.handleSubmit} loading={this.state.newLoading}/>
         </>
     }
 }
