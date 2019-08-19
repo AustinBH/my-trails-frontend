@@ -13,6 +13,10 @@ class SearchResults extends Component {
         comments: {
             id: '',
             hidden: true
+        },
+        photos: {
+            id: '',
+            hidden: true
         }
     }
 
@@ -34,6 +38,13 @@ class SearchResults extends Component {
                         hidden: !this.state.comments.hidden
                     }
                 })
+            } else if (response && response[0] === 'photo') {
+                this.setState({
+                    photos: {
+                        id: response[1],
+                        hidden: !this.state.photos.hidden
+                    }
+                })
             }
         }
     }
@@ -41,7 +52,7 @@ class SearchResults extends Component {
     render() {
         return <>
             <h1>Trail Info</h1>
-            <SearchData info={this.state.info} comments={this.state.comments} trails={this.props.trails} handleClick={this.handleClick} user={this.props.user} />
+            <SearchData info={this.state.info} comments={this.state.comments} photo={this.state.photos} trails={this.props.trails} handleClick={this.handleClick} user={this.props.user} />
         </>
     }
 }

@@ -2,16 +2,28 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { fetchEdit } from '../actions/userActions';
 import EditForm from './EditForm';
+import { api } from '../services/api';
+
 
 class EditAccount extends Component {
-    state = {
-        username: '',
-        password: '',
-        newPassword: '',
-        avatar: '',
-        distance: '',
-        results: ''
+    //Adding a fetch to pull current user information
+    constructor(){
+        super()
+        api.auth.getCurrentUser().then(json => this.setState({
+            username: json.user.username,
+            avatar: json.user.avatar.id,
+            distance: json.user.distance,
+            results: json.user.results
+        }))
+        this.state = {
+            username: '',
+            password: '',
+            newPassword: '',
+            avatar: '',
+            distance: '',
+            results: ''
         }
+    }
 
     // This function just controls our form and updates the state accordingly
     // value is used with semantic ui to update the correct state as the event contains different information

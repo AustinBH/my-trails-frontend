@@ -154,6 +154,28 @@ const deleteCompletedHike = (data) => {
     }).then(res => res.json())
 }
 
+const getPhotosByTrail = (data) => {
+    return fetch(`${API_ROOT}/images?trail_id=${data}`, {
+        method: 'GET',
+        headers: headers()
+    }).then(res => res.json())
+}
+
+const addPhoto = (data) => {
+    return fetch(`${API_ROOT}/images`, {
+        method: 'POST',
+        headers: headers(),
+        body: JSON.stringify(data)
+    }).then(res => res.json())
+}
+const deletePhoto = (data) => {
+    return fetch(`${API_ROOT}/images`, {
+        method: 'DELETE',
+        headers: headers(),
+        body: JSON.stringify(data)
+    }).then(res => res.json())
+}
+
 export const api = {
     auth: {
         login,
@@ -180,6 +202,11 @@ export const api = {
         getFavoritesByTrail,
         addFavorite,
         deleteFavorite
+    },
+    photos: {
+        getPhotosByTrail,
+        addPhoto,
+        deletePhoto
     },
     locations: {
         getLocations
