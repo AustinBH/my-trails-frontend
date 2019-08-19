@@ -21,6 +21,8 @@ const SearchData = props => {
                     {!props.comments.hidden ? <Table.HeaderCell/> : null}
                     <Table.HeaderCell/>
                     {!props.info.hidden ? <Table.HeaderCell/> : null}
+                    <Table.HeaderCell/>
+                    {!props.photo.hidden ? <Table.HeaderCell /> : null}
                 </Table.Row>
             </Table.Header>
             <Table.Body>

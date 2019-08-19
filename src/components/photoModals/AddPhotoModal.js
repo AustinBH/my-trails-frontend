@@ -8,8 +8,8 @@ const AddPhotoModal = props => {
             <Modal.Description>
                 <Form onSubmit={props.handleOnSubmit} className='standard-form' name='create'>
                     <Form.Field>
-                        <Label color='brown' as='a' icon='content' content='Content' />
-                        <Form.Input type='file' accept='image/*' value={props.value} onChange={props.handleOnChange} name='content' placeholder='Upload a new photo' required />
+                        <Label color='brown' as='a' icon='photo' content='Photo' />
+                        <Form.Input type='text' value={props.value} onChange={props.handleOnChange} name='photoUrl' placeholder='Add a new photo url' required />
                     </Form.Field>
                     <Button className='home-button' color='blue' type='submit' content='Add Photo' />
                 </Form>

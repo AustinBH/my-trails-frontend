@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Grid, Image } from 'semantic-ui-react';
+import { Image, Comment, Header, Button } from 'semantic-ui-react';
 import { fetchAuthentication } from '../actions/userActions';
 import { api } from '../services/api';
 import BasicLoader from '../components/BasicLoader';
@@ -15,7 +15,7 @@ class PhotosHolder extends Component {
         open: false,
         deleteOpen: false,
         deletingId: '',
-        photo: {}
+        photoUrl: ''
     }
 
     componentDidMount() {
@@ -40,43 +40,53 @@ class PhotosHolder extends Component {
     }
 
     handleChange = ev => {
-        console.log(ev.target.files[0])
-        this.setState({photo: ev.target.files[0]})
+        this.setState({
+            [ev.target.name]: ev.target.value
+        })
     }
 
     handleSubmit = ev => {
         ev.preventDefault()
         console.log(this.state.photo)
-        api.photos.addPhoto({image: {file: this.state.photo}}).then(json => console.log(json))
+        const image = {user_id: this.props.user.id, trail_id: this.props.trail.id, img_url: this.state.photoUrl}
+        api.photos.addPhoto(image).then(json => {
+            console.log(json)
+            if (!json.error) {
+                this.toggleOpen()
+                this.setState({photos: [...this.state.photos, json.image]})
+            }
+        })
     }
 
     deletePhoto = id => {
-        api.photos.deletePhoto({ id: id }).then(this.setState({ photos: this.state.photos.filter(element => element.id !== id) }))
+        api.photos.deletePhoto({ image: {id: id} }).then(this.setState({ photos: this.state.photos.filter(element => element.id !== id) }))
         this.toggleDelete({ id: '' })
     }
 
     render() {
         return <>
+            <Comment.Group>
+                <Header as='h3' dividing content='Photos' />
             {this.state.isLoading ?
                 <BasicLoader info='photos' />
             :
                 this.state.photos.length > 0 ?
-                    <Grid divided>
-                        {this.state.photos.map(photo => {
-                            return <Grid.Column>
-                                <Image src={photo.img_url} />
-                            </Grid.Column>
-                        })}
-                    </Grid>
+                            this.state.photos.map((photo, idx) => {
+                                return <Comment key={idx}>
+                                    <Comment.Avatar src={photo.avatar} />
+                                    <Comment.Author as='a' content={photo.username} />
+                                    <Image src={photo.img_url} size='small' />
+                                    {photo.username === this.props.user.username ? 
+                                        <Button className='delete-photo' size='mini' icon='trash alternate' negative onClick={() => this.toggleDelete(photo.id)} content='Delete' />
+                                    :
+                                        null
+                                    }
+                                </Comment>
+                            })
                 :
-                    <Grid>
-                        <Grid.Row>
-                            <Grid.Column>
-                                No photos yet, post the first one!
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
+                    <p>No photos yet, post the first one!</p>
             }
+            </Comment.Group>
             <DeletePhotoModal open={this.state.deleteOpen} toggle={this.toggleDelete} deletePhoto={this.deletePhoto} id={this.state.deletingId}/>
             <AddPhotoModal open={this.state.open} toggle={this.toggleOpen} handleOnChange={this.handleChange} handleOnSubmit={this.handleSubmit}/>
         </>
