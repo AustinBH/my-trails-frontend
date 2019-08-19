@@ -47,10 +47,8 @@ class PhotosHolder extends Component {
 
     handleSubmit = ev => {
         ev.preventDefault()
-        console.log(this.state.photo)
         const image = {user_id: this.props.user.id, trail_id: this.props.trail.id, img_url: this.state.photoUrl}
         api.photos.addPhoto(image).then(json => {
-            console.log(json)
             if (!json.error) {
                 this.toggleOpen()
                 this.setState({photos: [...this.state.photos, json.image]})
