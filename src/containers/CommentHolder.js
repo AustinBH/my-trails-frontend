@@ -20,7 +20,7 @@ class CommentHolder extends Component {
         editingContent: '',
         editingId: '',
         deletingId: '',
-        isLoading: 'false'
+        isLoading: false
     }
 
     // Here we have to fetch the comments for a trail and fetch our user info incase someone has refreshed the page

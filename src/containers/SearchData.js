@@ -4,6 +4,7 @@ import FavButton from '../components/buttons/FavButton';
 import CompleteButton from '../components/buttons/CompleteButton';
 import InfoHolder from '../components/InfoHolder';
 import CommentHolder from './CommentHolder';
+import PhotosHolder from '../components/PhotosHolder';
 
 
 const SearchData = props => {
@@ -34,6 +35,8 @@ const SearchData = props => {
                         {!props.comments.hidden && props.comments.id === trail.id ? <Table.Cell><CommentHolder trail={trail} /></Table.Cell> : null}
                         <Table.Cell><Button color='blue' name='info' icon='info circle' content='More Info' onClick={(event) => props.handleClick(event, trail)} /></Table.Cell>
                         {!props.info.hidden && props.info.id === trail.id ? <Table.Cell><InfoHolder trail={trail} /></Table.Cell> : null}
+                        <Table.Cell><Button color='blue' name='photos' icon='photo' content='Photos' onClick={(event) => props.handleClick(event, trail)} /></Table.Cell>
+                        {!props.photo.hidden && props.photo.id === trail.id ? <Table.Cell><PhotosHolder trail={trail} /></Table.Cell> : null}
                     </Table.Row>
                 })}
             </Table.Body>

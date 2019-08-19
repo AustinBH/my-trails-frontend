@@ -48,6 +48,8 @@ export const buttonSwitcher = (ev, data, props) => {
             return ['comment', data.id]
         case 'info':
             return ['info', data.id]
+        case 'photos':
+            return ['photo', data.id]
         default:
             return null
     }

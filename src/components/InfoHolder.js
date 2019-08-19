@@ -89,17 +89,23 @@ class InfoHolder extends Component {
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-                <Grid.Column>
+                <Grid.Column width={8}>
                     <Label color='brown'>Length</Label>
                     <p>{this.props.trail.length} miles</p>
                 </Grid.Column>
-                <Grid.Column>
+                <Grid.Column width={8}>
                     <Label color='brown'>Ascent</Label>
                     <p>{this.props.trail.ascent} ft</p>
                 </Grid.Column>
-                <Grid.Column>
+            </Grid.Row>
+            <Grid.Row>
+                <Grid.Column width={8}>
                     <Label color='brown'>Condition</Label>
                     <p>{this.props.trail.conditionStatus}</p>
+                </Grid.Column>
+                <Grid.Column width={8}>
+                    <Label color='brown'>Details</Label>
+                    <p>{this.props.trail.conditionDetails}</p>
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
