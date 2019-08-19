@@ -11,7 +11,7 @@ const AddPhotoModal = props => {
         </Modal.Content>
         <Modal.Actions>
             <Button color='red' onClick={props.toggle} icon='remove' content='No' />
-            <Button color='green' onClick={() => props.deletePhoto(props.id)} icon='checkmark' content='Yes' />
+            <Button color='green' onClick={() => props.deletePhoto(props.image)} icon='checkmark' content='Yes' />
         </Modal.Actions>
     </Modal>
 }

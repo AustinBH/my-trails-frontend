@@ -14,7 +14,7 @@ class PhotosHolder extends Component {
         photos: [],
         open: false,
         deleteOpen: false,
-        deletingId: '',
+        deletingImage: {},
         photoUrl: '',
         newLoading: false
     }
@@ -33,10 +33,10 @@ class PhotosHolder extends Component {
         this.setState({open: !this.state.open})
     }
 
-    toggleDelete = id => {
+    toggleDelete = image => {
         this.setState({ 
             deleteOpen: !this.state.deleteOpen,
-            deletingId: id
+            deletingImage: image
         })
     }
 
@@ -63,8 +63,8 @@ class PhotosHolder extends Component {
         })
     }
 
-    deletePhoto = id => {
-        api.photos.deletePhoto({ image: {id: id} }).then(this.setState({ photos: this.state.photos.filter(element => element.id !== id) }))
+    deletePhoto = image => {
+        api.photos.deletePhoto({ image: {id: image.id, img_url: image.img_url} }).then(this.setState({ photos: this.state.photos.filter(element => element.id !== image.id) }))
         this.toggleDelete({ id: '' })
     }
 
@@ -82,7 +82,7 @@ class PhotosHolder extends Component {
                                     <Comment.Author as='a' content={photo.username} />
                                     <Image src={photo.img_url} size='small' />
                                     {photo.username === this.props.user.username ? 
-                                        <Button className='delete-photo' size='mini' icon='trash alternate' negative onClick={() => this.toggleDelete(photo.id)} content='Delete' />
+                                        <Button className='delete-photo' size='mini' icon='trash alternate' negative onClick={() => this.toggleDelete(photo)} content='Delete' />
                                     :
                                         null
                                     }
@@ -92,7 +92,7 @@ class PhotosHolder extends Component {
                     <p>No photos yet, post the first one!</p>
             }
             </Comment.Group>
-            <DeletePhotoModal open={this.state.deleteOpen} toggle={this.toggleDelete} deletePhoto={this.deletePhoto} id={this.state.deletingId}/>
+            <DeletePhotoModal open={this.state.deleteOpen} toggle={this.toggleDelete} deletePhoto={this.deletePhoto} image={this.state.deletingImage}/>
             <AddPhotoModal open={this.state.open} toggle={this.toggleOpen} handleOnChange={this.handleChange} handleOnSubmit={this.handleSubmit} loading={this.state.newLoading}/>
         </>
     }
