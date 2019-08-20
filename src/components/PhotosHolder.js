@@ -19,20 +19,36 @@ class PhotosHolder extends Component {
         newLoading: false
     }
 
+    /* 
+    After the component mounts to the DOM we want to verify the
+    user information so that we can properly associate a user with
+    their photos. We also want to then fetch all of the photos
+    associated with a trail
+    */
     componentDidMount() {
         this.props.fetchAuthentication()
         this.fetchTrailPhotos()
     }
 
+    // We want to update the photos if a user selects a different trail
+    componentDidUpdate(prevProps) {
+        if (this.props.trail.id !== prevProps.trail.id) {
+            this.fetchTrailPhotos()
+        }
+    }
+
+    // This function provides a loading indicator while fetching photos from our backend
     fetchTrailPhotos = () => {
         this.setState({isLoading: true})
         api.photos.getPhotosByTrail(this.props.trail.id).then(json => this.setState({ photos: json, isLoading: false }))
     }
 
+    // This toggles our new photo modal
     toggleOpen = () => {
         this.setState({open: !this.state.open})
     }
 
+    // This toggles our delete photo modal
     toggleDelete = image => {
         this.setState({ 
             deleteOpen: !this.state.deleteOpen,
@@ -40,6 +56,7 @@ class PhotosHolder extends Component {
         })
     }
 
+    // Here we are able to capture the file input from the user so that we can upload the photo to AWS
     handleChange = ev => {
         this.setState({photoFileName: ev.target.files[0].name})
         const reader = new FileReader()
@@ -51,6 +68,7 @@ class PhotosHolder extends Component {
         }
     }
 
+    // Here we submit our photo and await a response. I added a loading indicator while the fetch is proceeding
     handleSubmit = ev => {
         ev.preventDefault()
         this.setState({newLoading: true})
@@ -63,6 +81,7 @@ class PhotosHolder extends Component {
         })
     }
 
+    // Here we are actually deleting a photo uploaded by a user
     deletePhoto = image => {
         api.photos.deletePhoto({ image: {id: image.id, img_url: image.img_url} }).then(this.setState({ photos: this.state.photos.filter(element => element.id !== image.id) }))
         this.toggleDelete({ id: '' })

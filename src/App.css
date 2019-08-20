@@ -160,7 +160,10 @@ h3 {
     margin: auto;
     width: 70%;
   }
-
+  .ui.message {
+    margin: auto;
+    width: 70%;
+  }
   .ui.selection.dropdown {
     width: 56%
   }

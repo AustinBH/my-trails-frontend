@@ -40,7 +40,7 @@ const MapMarker = props => {
             <div className='marker-info'>
                 <Card style={{ zIndex: 3 }}>
                     {props.trail.imgMedium ?
-                        <Image style={{ height: 150 }} src={props.trail.imgMedium} alt={props.trail.name} />
+                        <Image style={{maxHeight: 150}} size='small' src={props.trail.imgMedium} alt={props.trail.name} />
                         :
                         null
                     }

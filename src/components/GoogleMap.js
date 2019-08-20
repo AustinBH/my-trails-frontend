@@ -23,7 +23,7 @@ class GoogleMap extends Component {
     }
 
     // This function allows a user to click on the map and collapse their info window
-    onMapClicked = (props) => {
+    onMapClicked = () => {
         if (this.state.showingInfoWindow) {
             this.setState({
                 showingInfoWindow: false,

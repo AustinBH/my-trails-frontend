@@ -22,30 +22,32 @@ class SearchResults extends Component {
 
     // This function will allow users to use the comments/more info buttons that appear in search data
     handleClick = (ev, data) => {
+        this.setState({ info: { id: this.state.info.id, hidden: true }, comments: { id: this.state.comments.id, hidden: true }, photos: { id: this.state.photos.id, hidden: true }})
         if (data) {
             let response = buttonSwitcher(ev, data, this.props)
             if (response && response[0] === 'info') {
                 this.setState({
                     info: {
                         id: response[1],
-                        hidden: !this.state.info.hidden
+                        hidden: false
                     }
                 })
             } else if (response && response[0] === 'comment') {
                 this.setState({
                     comments: {
                         id: response[1],
-                        hidden: !this.state.comments.hidden
+                        hidden: false
                     }
                 })
             } else if (response && response[0] === 'photo') {
                 this.setState({
                     photos: {
                         id: response[1],
-                        hidden: !this.state.photos.hidden
+                        hidden: false
                     }
                 })
             }
+            window.scrollTo(0, 10000)
         }
     }
  

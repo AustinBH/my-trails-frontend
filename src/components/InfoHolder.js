@@ -56,11 +56,13 @@ class InfoHolder extends Component {
     render() {
         return <Grid columns={3} celled>
             <Grid.Row>
-                {this.props.trail.imgMedium ?
-                    <Image className='info-image' size='medium' src={this.props.trail.imgMedium} alt={this.props.trail.name} />
-                    :
-                    this.placeholders[Math.floor(Math.random() * Math.floor(this.placeholders.length))]
-                }
+                <Grid.Column width={16}>
+                    {this.props.trail.imgMedium ?
+                        <Image className='info-image' size='medium' src={this.props.trail.imgMedium} alt={this.props.trail.name} />
+                        :
+                        this.placeholders[Math.floor(Math.random() * Math.floor(this.placeholders.length))]
+                    }
+                </Grid.Column>
             </Grid.Row>
             <Grid.Row>
                 <Grid.Column width={10}>

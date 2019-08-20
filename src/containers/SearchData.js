@@ -9,59 +9,37 @@ import PhotosHolder from '../components/PhotosHolder';
 
 const SearchData = props => {
 
-    const displayComments = () => {
-        window.scrollTo(0, 10000)
+    const displayMore = () => {
+        let component = null
+        let trail = ''
+        let name = ''
         if (!props.comments.hidden) {
-            const trail = props.trails.find(trail => trail.id === props.comments.id)
-            return <Table>
-                <Table.Header>
-                    <Table.Row>
-                        <Table.HeaderCell content='Comments' />
-                    </Table.Row>
-                </Table.Header>
-                <Table.Body>
-                    <Table.Row>
-                        <Table.Cell><CommentHolder trail={trail} /></Table.Cell>
-                    </Table.Row>
-                </Table.Body>
-            </Table>
+            trail = props.trails.find(trail => trail.id === props.comments.id)
+            component = <CommentHolder trail={trail} />
+            name = 'Comments'
+        } else if (!props.info.hidden) {
+            trail = props.trails.find(trail => trail.id === props.info.id)
+            component = <InfoHolder trail={trail} />
+            name = 'More Info'
+        } else if (!props.photo.hidden) {
+            trail = props.trails.find(trail => trail.id === props.photo.id)
+            component = <PhotosHolder trail={trail} />
+            name = 'Photos'
+        } else {
+            return null
         }
-    }
-    const displayInfo = () => {
-        window.scrollTo(0, 10000)
-        if (!props.info.hidden) {
-            const trail = props.trails.find(trail => trail.id === props.info.id)
-            return <Table>
-                <Table.Header>
-                    <Table.Row>
-                        <Table.HeaderCell content={trail.name} />
-                    </Table.Row>
-                </Table.Header>
-                <Table.Body>
-                    <Table.Row>
-                        <Table.Cell><InfoHolder trail={trail} /></Table.Cell>
-                    </Table.Row>
-                </Table.Body>
-            </Table>
-        }
-    }
-    const displayPhotos = () => {
-        window.scrollTo(0, 10000)
-        if (!props.photo.hidden) {
-            const trail = props.trails.find(trail => trail.id === props.photo.id)
-            return <Table>
-                <Table.Header>
-                    <Table.Row>
-                        <Table.HeaderCell content='Photos' />
-                    </Table.Row>
-                </Table.Header>
-                <Table.Body>
-                    <Table.Row>
-                        <Table.Cell><PhotosHolder trail={trail} /></Table.Cell>
-                    </Table.Row>
-                </Table.Body>
-            </Table>
-        }
+        return <Table>
+            <Table.Header>
+                <Table.Row>
+                    <Table.HeaderCell content={name} />
+                </Table.Row>
+            </Table.Header>
+            <Table.Body>
+                <Table.Row>
+                    <Table.Cell>{component}</Table.Cell>
+                </Table.Row>
+            </Table.Body>
+        </Table>
     }
 
     return props.trails && props.trails.length > 0 ?
@@ -94,9 +72,7 @@ const SearchData = props => {
                 })}
             </Table.Body>
         </Table>
-        {displayComments()}
-        {displayInfo()}
-        {displayPhotos()}
+        {displayMore()}
         </>
         :
         null

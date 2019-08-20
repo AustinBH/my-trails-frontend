@@ -58,13 +58,11 @@ class Account extends Component {
     }
 
     render() {
-        return <div>
+        return <>
             <h1>Account</h1>
-            <>
-                {this.props.user && this.props.user.avatar && <Image src={this.props.user.avatar.img_url} avatar/>}
-                <p>Welcome back {this.props.user && this.props.user.username}!!</p>
-                <DeleteAccountModal open={this.state.deleteOpen} toggle={this.toggleAccountModal} handleOnChange={this.handleChange} handleOnSubmit={this.handleSubmit} />
-            </>
+            {this.props.user && this.props.user.avatar && <Image src={this.props.user.avatar.img_url} avatar/>}
+            <p>Welcome back {this.props.user && this.props.user.username}!!</p>
+            <DeleteAccountModal open={this.state.deleteOpen} toggle={this.toggleAccountModal} handleOnChange={this.handleChange} handleOnSubmit={this.handleSubmit} />
             {this.state.isLoading ? 
                 <BasicLoader info='your info' />
             :
@@ -74,7 +72,7 @@ class Account extends Component {
                 </>
             }
             <Button color='brown' icon='backward' onClick={() => this.props.history.push('/')} content='Go Back' />
-        </div>
+        </>
     }
 }
 

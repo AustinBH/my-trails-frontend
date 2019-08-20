@@ -21,12 +21,19 @@ class CommentHolder extends Component {
         editingId: '',
         deletingId: '',
         isLoading: false
-    }
+        }
 
     // Here we have to fetch the comments for a trail and fetch our user info incase someone has refreshed the page
     componentDidMount() {
         this.fetchTrailComments()
         this.props.fetchAuthentication()
+    }
+
+    // We want to update the comments if a user selects a different trail
+    componentDidUpdate(prevProps) {
+        if (this.props.trail.id !== prevProps.trail.id) {
+            this.fetchTrailComments()
+        }
     }
 
     // This function adds a loading indicator while waiting to get comment information for a specific trail

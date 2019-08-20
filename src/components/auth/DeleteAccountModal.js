@@ -3,6 +3,7 @@ import { Modal, Button, Form, Label } from 'semantic-ui-react';
 
 const DeleteAccountModal = props => {
 
+    // Adding hooks so that we can clear the secondary menu created when a user confirms they want to close their account
     const [show, setShow] = useState(false)
 
     const handleClose = () => {
