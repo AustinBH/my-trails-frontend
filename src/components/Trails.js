@@ -2,12 +2,12 @@ import React from 'react';
 import { Button } from 'semantic-ui-react';
 import UserTrailInfo from './UserTrailInfo';
 
-const Favorites = props => {
+const Trails = props => {
     return <>
-        <h1>Your Favorite Trails</h1>
-        <UserTrailInfo hikes='liked'/>
+        <h1>Your Completed Trails</h1>
+        <UserTrailInfo hikes='completed'/>
         <Button color='brown' icon='backward' onClick={() => props.history.push('/')} content='Go Back' />
     </>
 }
 
-export default Favorites;
+export default Trails;
