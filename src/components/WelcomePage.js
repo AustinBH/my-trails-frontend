@@ -29,7 +29,10 @@ const WelcomePage = props => {
             setLong('')
         } else {
             setLoading(true)
-            navigator.geolocation ? navigator.geolocation.getCurrentPosition(logPostition) : alert('Geolocation not supported')
+            navigator.geolocation ? 
+                navigator.geolocation.getCurrentPosition(logPostition)
+            :
+                setLoading(false)
         }
     }
 

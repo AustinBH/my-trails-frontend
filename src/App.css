@@ -160,4 +160,8 @@ h3 {
     margin: auto;
     width: 70%;
   }
+
+  .ui.selection.dropdown {
+    width: 70%
+  }
 }
