@@ -72,8 +72,8 @@ h3 {
   display: block;
   margin: auto;
   border-radius: 5%;
-  max-height: 80%;
-  max-width: 80%;
+  max-height: 80% !important;
+  max-width: 80% !important;
 }
 
 .modal-form {

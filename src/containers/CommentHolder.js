@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Comment, Header } from 'semantic-ui-react';
+import { Button, Comment } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { api } from '../services/api';
 import { fetchAuthentication } from '../actions/userActions'
@@ -85,7 +85,6 @@ class CommentHolder extends Component {
     render() {
         return <>
             <Comment.Group>
-                <Header as='h3' dividing content='Comments'/>
                 { // Here we are using a ternary to add a placeholder while we fetch the comments
                     this.state.isLoading ?
                         <BasicLoader info='comments' />

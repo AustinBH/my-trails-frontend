@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Label } from 'semantic-ui-react';
+import { Grid, Label, Image } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { fetchCompletedHikes } from '../actions/completedHikeActions';
 import { fetchFavorites } from '../actions/favoriteActions';
@@ -8,11 +8,11 @@ class InfoHolder extends Component {
 
     // Adding some placeholder images for when there is no image for the trail
     placeholders = [
-        <img className='info-image' src='https://placekitten.com/640/360' alt='trail placeholder' />,
-        <img className='info-image' src='https://placekitten.com/580/360' alt='trail placeholder' />,
-        <img className='info-image' src='https://placekitten.com/520/360' alt='trail placeholder' />,
-        <img className='info-image' src='https://placekitten.com/460/360' alt='trail placeholder' />,
-        <img className='info-image' src='https://placekitten.com/360/360' alt='trail placeholder' />
+        <Image className='info-image' size='medium' src='https://placekitten.com/640/360' alt='trail placeholder' />,
+        <Image className='info-image' size='medium' src='https://placekitten.com/580/360' alt='trail placeholder' />,
+        <Image className='info-image' size='medium' src='https://placekitten.com/520/360' alt='trail placeholder' />,
+        <Image className='info-image' size='medium' src='https://placekitten.com/460/360' alt='trail placeholder' />,
+        <Image className='info-image' size='medium' src='https://placekitten.com/360/360' alt='trail placeholder' />
     ]
 
     capitalize = str => {
@@ -57,25 +57,19 @@ class InfoHolder extends Component {
         return <Grid columns={3} celled>
             <Grid.Row>
                 {this.props.trail.imgMedium ?
-                    <img className='info-image' src={this.props.trail.imgMedium} alt={this.props.trail.name} />
+                    <Image className='info-image' size='medium' src={this.props.trail.imgMedium} alt={this.props.trail.name} />
                     :
                     this.placeholders[Math.floor(Math.random() * Math.floor(this.placeholders.length))]
                 }
             </Grid.Row>
             <Grid.Row>
-                <Grid.Column width={8}>
-                    <Label color='brown'>Name</Label>
-                    <p>{this.props.trail.name}</p>
-                </Grid.Column>
-                <Grid.Column width={8}>
-                    <Label color='brown'>Location</Label>
-                    <p>{this.props.trail.location}</p>
-                </Grid.Column>
-            </Grid.Row>
-            <Grid.Row>
-                <Grid.Column width={16}>
+                <Grid.Column width={10}>
                     <Label color='brown'>Summary</Label>
                     <p>{this.props.trail.summary}</p>
+                </Grid.Column>
+                <Grid.Column width={6}>
+                    <Label color='brown'>Location</Label>
+                    <p>{this.props.trail.location}</p>
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>

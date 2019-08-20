@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Image, Comment, Header, Button } from 'semantic-ui-react';
+import { Image, Comment, Button } from 'semantic-ui-react';
 import { fetchAuthentication } from '../actions/userActions';
 import { api } from '../services/api';
 import BasicLoader from '../components/BasicLoader';
@@ -71,7 +71,6 @@ class PhotosHolder extends Component {
     render() {
         return <>
             <Comment.Group>
-                <Header as='h3' dividing content='Photos' />
             {this.state.isLoading ?
                 <BasicLoader info='photos' />
             :
@@ -80,7 +79,7 @@ class PhotosHolder extends Component {
                                 return <Comment key={idx}>
                                     <Comment.Avatar src={photo.avatar} />
                                     <Comment.Author as='a' content={photo.username} />
-                                    <Image src={photo.img_url} size='small' />
+                                    <Image src={photo.img_url} size='small' rounded/>
                                     {photo.username === this.props.user.username ? 
                                         <Button className='delete-photo' size='mini' icon='trash alternate' negative onClick={() => this.toggleDelete(photo)} content='Delete' />
                                     :

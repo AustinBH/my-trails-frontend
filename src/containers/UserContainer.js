@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'semantic-ui-react';
+import { Button, Image } from 'semantic-ui-react';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { fetchSignup } from '../actions/userActions';
 import { fetchLogin } from '../actions/userActions';
@@ -49,7 +49,7 @@ class UserContainer extends Component {
     render() {
         return <>
             <h1>My Trails</h1>
-            <img className='home-image' src='https://images.freeimages.com/images/large-previews/c27/mount-rainier-1337100.jpg' alt='mount-rainier' />
+            <Image size='big' className='home-image' src='https://images.freeimages.com/images/large-previews/c27/mount-rainier-1337100.jpg' alt='mount-rainier' />
             {this.props.error ?
                 <ErrorModal error={this.props.error} open={true} toggle={this.toggleOpen} />
             :
