@@ -25,7 +25,7 @@ export const buttonSwitcher = (ev, data, props) => {
                     }
                 })
             }
-            return ['like', data.id]
+            return null
         case 'complete':
             let complete = { trail_id: data.id, user_id: props.user.id }
             if (!button.className.includes('green')) {
@@ -43,7 +43,7 @@ export const buttonSwitcher = (ev, data, props) => {
                     }
                 })
             }
-            return ['complete', data.id]
+            return null
         case 'comments':
             return ['comment', data.id]
         case 'info':
