@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { applyMiddleware, createStore, compose, combineReducers } from 'redux';
+import { applyMiddleware, createStore, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
@@ -12,10 +12,7 @@ import manageCompletedHikes from './reducers/manageCompletedHikes';
 
 const rootReducer = combineReducers({user: manageUser, avatars: manageAvatars, favorites: manageFavorites, completedHikes: manageCompletedHikes})
 
-const store = createStore(rootReducer, compose(
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-))
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
     <Provider store={store}>

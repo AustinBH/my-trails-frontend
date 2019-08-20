@@ -6,6 +6,7 @@ import { fetchSignup } from '../actions/userActions';
 import { fetchLogin } from '../actions/userActions';
 import AuthForm from '../components/auth/AuthForm';
 import ErrorModal from '../components/auth/ErrorModal';
+import BasicLoader from '../components/BasicLoader';
 
 class UserContainer extends Component {
     state = {
@@ -18,7 +19,8 @@ class UserContainer extends Component {
             password: '',
             distance: 20,
             results: 20
-        }
+        },
+        isLoading: false
     }
 
     // This function will set the state based on user input allowing us to control a form found in a child component
@@ -33,6 +35,7 @@ class UserContainer extends Component {
 
     // This function will check to see which action we should perform and then either login or signup
     startFetch = (str) => {
+        this.setState({isLoading: true})
         str === 'login' ?
         this.props.fetchLogin(this.state.login)
         :
@@ -49,6 +52,11 @@ class UserContainer extends Component {
             <img className='home-image' src='https://images.freeimages.com/images/large-previews/c27/mount-rainier-1337100.jpg' alt='mount-rainier' />
             {this.props.error ?
                 <ErrorModal error={this.props.error} open={true} toggle={this.toggleOpen} />
+            :
+                null
+            }
+            {this.state.isLoading ? 
+                <BasicLoader info='account' />
             :
                 null
             }
