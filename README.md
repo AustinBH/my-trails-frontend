@@ -1,68 +1,55 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# My Trails Frontend
 
-## Available Scripts
+![](https://media.giphy.com/media/JPUeiRRDOayFTv8Ntg/giphy.gif)
 
-In the project directory, you can run:
+This web application was developed with a mobile first design. The application allows users to find trails near them, save trails to their favorites or mark them as completed. Users can also leave comments about trails as well as upload photos of their hikes.
 
-### `npm start`
+## Using the app
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![](https://media.giphy.com/media/dNgK7Ws7y176U/giphy.gif)
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+To get started, you will have to create a user account. All you will need to signup is a username and a password.
 
-### `npm test`
+Once you have created your account, you can search for trails from a list of locations, use specific latitude and longitude coordinates to search for trails, or search for trails near you. The homepage has a `Hikes Near Me!` feature which will use your device's location services to find trails near you.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The Nav Menu at the top of the page allows users to navigate to the edit account, favs, completed trails, search, or logout pages. Users can edit their account information such as their username, password, search preferences, and avatar.
 
-### `npm run build`
+The favs and completed trails pages allow users to see which trails they have favorited or marked as completed.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The search page allows Users to use the location and coordinate search features.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+  * Trail Info
+    - Every trail will have 5 buttons, Fav, Complete, Comments, More Info, and Photos.
+      - Fav
+        - This button will mark a trail as a favorite meaning that the button will update to reflect that the user has favorited it and it will be found under the favs menu.
+      - Complete
+        - This button will do the same as the favorite button but mark a trail as completed rather than favorited.
+      - Comments
+        - This button will display all of the comments for a trail.
+        - It also displays a new comment button allowing users to create a new comment for a trail.
+        - Users have the ability to edit their comments as well as delete them.
+        - Once you create a comment, edit and delet buttons will appear allowing you to modify your comment.
+      - More Info
+        - This button will display more information about a trail.
+        - It currently displays a preview image, the trail name, location, summary, length, ascent, condition, and difficulty, as well as how many other users have completed or favorited the trail.
+      - Photos
+        - This button will display all of the user photos that have been uploaded for a certain trail.
+        - Similarly to the comments, users can create new photos using the new photo button as well as delete their existing photos.
+        
+## Setting up the app
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![](https://media.giphy.com/media/3boPPdHk2ueo8/giphy.gif)
 
-### `npm run eject`
+To setup your own version of this application, you will need to clone down the repo and then add your own env file. In order to use the Google Maps integration, you need to provide a Google Maps API key. Once you have an API key just enter it into the .env.sample file where it says 'your-api-key-here' and remove the .sample from the .env file.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Once you have the API key setup, you can simply open the app and run it. As the hosted backend does not accept requests from testing environments, you will need to update the API_ROOT variable found in the /src/services/api.js file. Simply replace the current root with whatever your backend is hosted on. To experience the full functionality of this application, I would recommend cloning the [Backend](https://github.com/AustinBH/my-trails-backend) as well.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Once you have a backend to query data from and a Google Maps API key to work with, you will be cooking with gas.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Thank You!
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![](https://media.giphy.com/media/26DMTEijJDudzovvO/giphy.gif)
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+  * [Google Map React](https://www.npmjs.com/package/google-map-react)
+    - This npm package allowed me to integrate google maps and create my own custom map markers quickly and easily.
+    - There are a few Google Maps packages out there but I found this one to be the best to work with.
