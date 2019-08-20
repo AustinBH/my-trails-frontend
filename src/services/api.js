@@ -1,4 +1,4 @@
-const API_ROOT = 'http://localhost:3000/api/v1'
+const API_ROOT = 'https://my-trails-backend.herokuapp.com/api/v1'
 
 const headers = () => {return {
     'Content-Type': 'application/json',
