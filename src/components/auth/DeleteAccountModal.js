@@ -19,7 +19,7 @@ const DeleteAccountModal = props => {
             </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
-            <Button color='red' onClick={props.toggle} icon='remove' content='No'/>
+            <Button color='red' onClick={handleClose} icon='remove' content='No'/>
             <Button color='green' onClick={() => setShow(!show)} icon='check' content='Yes'/>
         </Modal.Actions>
         {show ?

@@ -42,19 +42,17 @@ class UserContainer extends Component {
         this.props.fetchSignup(this.state.signup)
     }
 
+    // Adding state reset to clear loading indicator
     toggleOpen = () => {
         this.props.clearError()
+        this.setState({isLoading: false})
     }
 
     render() {
         return <>
             <h1>My Trails</h1>
             <Image size='big' className='home-image' src='https://images.freeimages.com/images/large-previews/c27/mount-rainier-1337100.jpg' alt='mount-rainier' />
-            {this.props.error ?
-                <ErrorModal error={this.props.error} open={true} toggle={this.toggleOpen} />
-            :
-                null
-            }
+            <ErrorModal error={this.props.error} open={!!this.props.error} toggle={this.toggleOpen} />
             {this.state.isLoading ? 
                 <BasicLoader info='account' />
             :
