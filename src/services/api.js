@@ -9,10 +9,7 @@ const headers = () => {return {
 const signup = data => {
     return fetch(`${API_ROOT}/users`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        },
+        headers: headers(),
         body: JSON.stringify(data)
     }).then(res => res.json())
 }
