@@ -38,6 +38,15 @@ The search page allows Users to use the location and coordinate search features.
         - This button will display all of the user photos that have been uploaded for a certain trail.
         - Similarly to the comments, users can create new photos using the new photo button as well as delete their existing photos.
         
+## Technology Used
+
+* React.js
+* Semantic UI React
+* Redux.js
+* Geolocation API
+* Google Maps API
+
+        
 ## Setting up the app
 
 ![](https://media.giphy.com/media/3boPPdHk2ueo8/giphy.gif)
