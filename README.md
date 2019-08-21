@@ -4,7 +4,24 @@
 
 This web application was developed with a mobile first design. The application allows users to find trails near them, save trails to their favorites or mark them as completed. Users can also leave comments about trails as well as upload photos of their hikes.
 
-It is currently hosted both at https://my-trails.herokuapp.com/ and http://www.my-trails.info. It currently is supported on the latest versions of Chrome, Safari, and Firefox. It may be functional on other browsers but I have not been able to test or confirm as such at this time. The site is also fully functional on mobile. 
+It is currently hosted both at https://my-trails.herokuapp.com/ and http://www.my-trails.info. It currently is supported on the latest versions of Chrome, Safari, and Firefox. It may be functional on other browsers but I have not been able to test or confirm as such at this time. The site is also fully functional on mobile.
+
+## Preview
+
+Login
+![image](https://user-images.githubusercontent.com/46305121/63454357-895a8b00-c3ff-11e9-9aeb-8cece01f4724.png)
+
+Map
+![Screen Shot 2019-08-21 at 10 29 43 AM](https://user-images.githubusercontent.com/46305121/63454436-a8591d00-c3ff-11e9-815c-82b63250b2f8.png)
+
+Comments
+![image](https://user-images.githubusercontent.com/46305121/63454492-c45cbe80-c3ff-11e9-9890-6ba775ae679b.png)
+
+More Info
+![image](https://user-images.githubusercontent.com/46305121/63454496-c757af00-c3ff-11e9-8aa7-39c0ccb043fb.png)
+
+Photos
+![image](https://user-images.githubusercontent.com/46305121/63454529-d76f8e80-c3ff-11e9-9dfb-d155bfb3f2b5.png)
 
 ## Using the app
 
@@ -37,6 +54,15 @@ The search page allows Users to use the location and coordinate search features.
       - Photos
         - This button will display all of the user photos that have been uploaded for a certain trail.
         - Similarly to the comments, users can create new photos using the new photo button as well as delete their existing photos.
+        
+## Technology Used
+
+* React.js
+* Semantic UI React
+* Redux.js
+* Geolocation API
+* Google Maps API
+
         
 ## Setting up the app
 
