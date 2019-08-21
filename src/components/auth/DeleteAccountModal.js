@@ -27,12 +27,11 @@ const DeleteAccountModal = props => {
                 <Modal.Description>
                     <Form onSubmit={props.handleOnSubmit} className='standard-form' name='delete'>
                         <Form.Field style={{display: 'none'}}>
-                            <Label color='brown' as='a' icon='user' content='Username' />
+                            <Label pointing='below' color='brown' as='a' icon='user' content='Username' />
                             <Form.Input type='text' value={props.username} onChange={props.handleOnChange} placeholder='Enter your username' autoComplete='current-username' name='username' />
                         </Form.Field>
-                        <Form.Field className='modal-form'>
-                            <h3>Enter your password</h3>
-                            <Label color='brown' as='a' icon='lock' content='Password' />
+                        <Form.Field inline className='modal-form'>
+                            <Label pointing='below' color='brown' as='a' icon='lock' content='Password' />
                             <Form.Input type='password' value={props.password} onChange={props.handleOnChange} autoComplete='current-password' name='password' required />
                         </Form.Field>
                         <Button className='home-button' color='blue' type='submit' content='Delete Account' />

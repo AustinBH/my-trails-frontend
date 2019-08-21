@@ -14,26 +14,30 @@ const EditForm = props => {
         <Grid.Column>
             <Form className='standard-form' onSubmit={props.handleOnSubmit}>
                 <Segment stacked>
-                    <Form.Field>
-                        <Label color='brown' as='a' icon='user' content='Username' />
-                        <Form.Input type='text' value={props.user.username} onChange={props.handleOnChange} name='username' autoComplete='username' placeholder='Enter a new username' />
-                    </Form.Field>
-                    <Form.Field>
-                        <Label color='brown' as='a' icon='lock' content='Current Password' />
-                        <Form.Input type='password' value={props.user.password} onChange={props.handleOnChange} name='password' autoComplete='current-password' placeholder='Enter your current password' required />
-                    </Form.Field>
-                    <Form.Field>
-                        <Label color='brown' as='a' icon='lock' content='New Password' />
-                        <Form.Input type='password' value={props.user.newPassword} onChange={props.handleOnChange} name='newPassword' autoComplete='current-password' placeholder='Enter a new password' />
-                    </Form.Field>
-                    <Form.Field>
-                        <Label color='brown' as='a' icon='truck' content='Distance (miles)' />
-                        <Dropdown value={props.user.distance} onChange={props.handleOnChange} options={options} name='distance' placeholder='Select a range' selection />
-                    </Form.Field>
-                    <Form.Field>
-                        <Label color='brown' as='a' icon='map pin' content='Results' />
-                        <Dropdown value={props.user.results} onChange={props.handleOnChange} options={options} name='results' placeholder='Select the trails to be returned' selection />
-                    </Form.Field>
+                    <Form.Group widths='equal'>
+                        <Form.Field>
+                            <Label color='brown' as='a' icon='user' content='Username' />
+                            <Form.Input type='text' value={props.user.username} onChange={props.handleOnChange} name='username' autoComplete='username' placeholder='Enter a new username' />
+                        </Form.Field>
+                        <Form.Field>
+                            <Label color='brown' as='a' icon='lock' content='Current Password' />
+                            <Form.Input type='password' value={props.user.password} onChange={props.handleOnChange} name='password' autoComplete='current-password' placeholder='Enter your current password' required />
+                        </Form.Field>
+                        <Form.Field>
+                            <Label color='brown' as='a' icon='lock' content='New Password' />
+                            <Form.Input type='password' value={props.user.newPassword} onChange={props.handleOnChange} name='newPassword' autoComplete='current-password' placeholder='Enter a new password' />
+                        </Form.Field>
+                    </Form.Group>
+                    <Form.Group widths='equal'>
+                        <Form.Field>
+                            <Label color='brown' as='a' icon='truck' content='Distance (miles)' />
+                            <Dropdown value={props.user.distance} onChange={props.handleOnChange} options={options} name='distance' placeholder='Select a range' selection />
+                        </Form.Field>
+                        <Form.Field>
+                            <Label color='brown' as='a' icon='map pin' content='Results' />
+                            <Dropdown value={props.user.results} onChange={props.handleOnChange} options={options} name='results' placeholder='Select the trails to be returned' selection />
+                        </Form.Field>
+                    </Form.Group>
                     <Label color='brown' as='a' icon='image outline' content='Avatar' />
                     <Form.Group>
                         {props.avatars && props.avatars.map(avatar => {
