@@ -8,7 +8,7 @@ It is currently hosted both at https://my-trails.herokuapp.com/ and http://www.m
 
 ## Demo
 
-![](https://imgur.com/a/xlfLWVD)
+[![](https://user-images.githubusercontent.com/46305121/63458147-148b4f00-c407-11e9-9fda-7d8ee82862ad.png)](https://youtu.be/LO-hzgt9Gaw)
 
 ## Using the app
 
