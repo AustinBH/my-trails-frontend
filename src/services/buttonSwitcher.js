@@ -13,15 +13,15 @@ export const buttonSwitcher = (ev, data, props) => {
             if (!button.className.includes('orange')) {
                 api.favorites.addFavorite({ like: favorite }).then(json => {
                     if (json) {
-                        button.className = 'ui orange button'
-                        button.children[0].className='star icon'
+                        button.className = 'ui orange fade animated button'
+                        button.children[1].children[0].className='star icon'
                     }
                 })
             } else {
                 api.favorites.deleteFavorite({ like: favorite }).then(json => {
                     if (json) {
-                        button.className = 'ui button'
-                        button.children[0].className = 'star outline icon'
+                        button.className = 'ui fade animated button'
+                        button.children[1].children[0].className = 'star outline icon'
                     }
                 })
             }
@@ -31,15 +31,15 @@ export const buttonSwitcher = (ev, data, props) => {
             if (!button.className.includes('green')) {
                 api.completedHikes.addCompletedHike({ completed_hike: complete }).then(json => {
                     if (!json.error) {
-                        button.className = 'ui green button'
-                        button.children[0].className = 'check circle icon'
+                        button.className = 'ui green fade animated button'
+                        button.children[1].children[0].className = 'check circle icon'
                     }
                 })
             } else {
                 api.completedHikes.deleteCompletedHike({ completed_hike: complete }).then(json => {
                     if (!json.error) {
-                        button.className = 'ui button'
-                        button.children[0].className = 'check circle outline icon'
+                        button.className = 'ui fade animated button'
+                        button.children[1].children[0].className = 'check circle outline icon'
                     }
                 })
             }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Button } from 'semantic-ui-react';
+import { Table, Button, Icon } from 'semantic-ui-react';
 import FavButton from '../components/buttons/FavButton';
 import CompleteButton from '../components/buttons/CompleteButton';
 import InfoHolder from '../components/InfoHolder';
@@ -65,9 +65,32 @@ const SearchData = props => {
                         <Table.Cell content={trail.conditionStatus}/>
                         <Table.Cell><FavButton user={props.user} trail={trail} handleOnClick={props.handleClick} /></Table.Cell>
                         <Table.Cell><CompleteButton user={props.user} trail={trail} handleOnClick={props.handleClick} /></Table.Cell>
-                        <Table.Cell><Button color='blue' name='comments' icon='comment alternate' content='Comments' onClick={(event) => props.handleClick(event, trail)} /></Table.Cell>
-                        <Table.Cell><Button color='blue' name='info' icon='info circle' content='More Info' onClick={(event) => props.handleClick(event, trail)} /></Table.Cell>
-                        <Table.Cell><Button color='blue' name='photos' icon='photo' content='Photos' onClick={(event) => props.handleClick(event, trail)} /></Table.Cell>
+                        <Table.Cell>
+                            <Button animated='fade' color='blue' name='comments' onClick={(event) => props.handleClick(event, trail)} >
+                                <Button.Content visible icon='comment alternate'>
+                                    <Icon name='comment alternate' />
+                                    Comments
+                                </Button.Content>
+                                <Button.Content hidden>Comments</Button.Content>
+                            </Button>
+                            </Table.Cell>
+                        <Table.Cell>
+                            <Button animated='fade' color='blue' name='info' onClick={(event) => props.handleClick(event, trail)} >
+                                <Button.Content visible>
+                                    <Icon name='info circle' />
+                                    Info
+                                </Button.Content>
+                                <Button.Content hidden>More Info</Button.Content>
+                            </Button>
+                        </Table.Cell>
+                        <Table.Cell>
+                            <Button animated='fade' color='blue' name='photos' onClick={(event) => props.handleClick(event, trail)} >
+                                <Button.Content visible>
+                                    <Icon name='photo' />
+                                </Button.Content>
+                                <Button.Content hidden>Photos</Button.Content>
+                            </Button>
+                        </Table.Cell>
                     </Table.Row>
                 })}
             </Table.Body>
