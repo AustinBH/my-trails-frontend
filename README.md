@@ -54,6 +54,7 @@ The search page allows Users to use the location and coordinate search features.
 * React.js
 * Semantic UI React
 * Redux.js
+* Redux Thunk
 * Geolocation API
 * Google Maps API
 
