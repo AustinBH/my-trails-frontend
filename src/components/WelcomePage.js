@@ -7,6 +7,7 @@ import GoogleMap from '../components/GoogleMap';
 import { api } from '../services/api';
 import BasicLoader from './BasicLoader';
 import SearchSettingsModal from './searchModals/SearchSettingsModal';
+import ErrorModal from './auth/ErrorModal';
 
 
 const WelcomePage = props => {
@@ -19,6 +20,8 @@ const WelcomePage = props => {
     const [distance, setDistance] = useState('')
     const [results, setResults] = useState('')
     const [open, setOpen] = useState(false)
+    const [warningOpen, setWarningOpen] = useState(false)
+    const [error, setError] = useState('')
 
     // This function will reset our lat/long if they exist and then use the geolocation feature to update the lat/long with a user's geolocation data
     const getLocation = () => {
@@ -29,10 +32,13 @@ const WelcomePage = props => {
             setLong('')
         } else {
             setLoading(true)
-            navigator.geolocation ? 
-                navigator.geolocation.getCurrentPosition(logPostition)
-            :
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(logPostition, positionError)
+            } else {
+                setError('Geolocation is not supported in your browser')
+                setWarningOpen(true)
                 setLoading(false)
+            }
         }
     }
 
@@ -40,6 +46,13 @@ const WelcomePage = props => {
     const logPostition = (position) => {
         setLat(position.coords.latitude)
         setLong(position.coords.longitude)
+    }
+
+    // This is our callback function to when we get an error from the geolocation API
+    const positionError = () => {
+        setError('Sorry, we were unable to retrieve your location')
+        setWarningOpen(true)
+        setLoading(false)
     }
 
     // These three functions all manage the search settings modal and update the hooks appropriately
@@ -60,6 +73,10 @@ const WelcomePage = props => {
         setOpen(!open)
     }
 
+    const toggleWarning = () => {
+        setWarningOpen(!warningOpen)
+    }
+
     // This function will perform a fetch once the lat/long have been updated or when the props get updated
     // useEffect is similar to a componentdidmount/update and allows us to perform actions based on the state updating
     useEffect(() => {
@@ -74,6 +91,7 @@ const WelcomePage = props => {
         <h1>My Trails</h1>
         <Image size='big' className='home-image' src='https://images.freeimages.com/images/large-previews/c27/mount-rainier-1337100.jpg' alt='mount-rainier' />
         <SearchSettingsModal open={open} toggle={toggle} range={distance} results={results} handleOnChange={handleChange} handleOnSubmit={handleSubmit} />
+        <ErrorModal open={warningOpen} toggle={toggleWarning} error={error} />
         <Button className='home-button' onClick={getLocation} icon='location arrow' color='brown' content='Hikes Near Me!' />
         {loading ? 
             <BasicLoader info='Trails' /> 
