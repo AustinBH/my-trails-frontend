@@ -90,7 +90,7 @@ class CommentHolder extends Component {
     }
 
     convertTime = time  => {
-        const date = new Date(time + ' UTC')
+        const date = new Date(time)
         return date.toLocaleString()
     }
 
