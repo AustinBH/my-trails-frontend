@@ -4,24 +4,9 @@
 
 This web application was developed with a mobile first design. The application allows users to find trails near them, save trails to their favorites or mark them as completed. Users can also leave comments about trails as well as upload photos of their hikes.
 
-It is currently hosted both at https://my-trails.herokuapp.com/ and http://www.my-trails.info. It currently is supported on the latest versions of Chrome, Safari, and Firefox. It may be functional on other browsers but I have not been able to test or confirm as such at this time. The site is also fully functional on mobile.
+It is currently hosted both at https://my-trails.herokuapp.com/ and http://www.my-trails.info. As the Geolocation API requires https, I would recommend using the first link for now. The app is currently supported on the latest versions of Chrome, Safari, and Firefox. It may be functional on other browsers but I have not been able to test or confirm as such at this time. The site is also fully functional on mobile.
 
-## Preview
-
-Login
-![image](https://user-images.githubusercontent.com/46305121/63454357-895a8b00-c3ff-11e9-9aeb-8cece01f4724.png)
-
-Map
-![Screen Shot 2019-08-21 at 10 29 43 AM](https://user-images.githubusercontent.com/46305121/63454436-a8591d00-c3ff-11e9-815c-82b63250b2f8.png)
-
-Comments
-![image](https://user-images.githubusercontent.com/46305121/63454492-c45cbe80-c3ff-11e9-9890-6ba775ae679b.png)
-
-More Info
-![image](https://user-images.githubusercontent.com/46305121/63454496-c757af00-c3ff-11e9-8aa7-39c0ccb043fb.png)
-
-Photos
-![image](https://user-images.githubusercontent.com/46305121/63454529-d76f8e80-c3ff-11e9-9dfb-d155bfb3f2b5.png)
+## Demo
 
 ## Using the app
 
@@ -29,7 +14,11 @@ Photos
 
 To get started, you will have to create a user account. All you will need to signup is a username and a password.
 
+![image](https://user-images.githubusercontent.com/46305121/63454357-895a8b00-c3ff-11e9-9aeb-8cece01f4724.png)
+
 Once you have created your account, you can search for trails from a list of locations, use specific latitude and longitude coordinates to search for trails, or search for trails near you. The homepage has a `Hikes Near Me!` feature which will use your device's location services to find trails near you.
+
+![Screen Shot 2019-08-21 at 10 29 43 AM](https://user-images.githubusercontent.com/46305121/63454436-a8591d00-c3ff-11e9-815c-82b63250b2f8.png)
 
 The Nav Menu at the top of the page allows users to navigate to the edit account, favs, completed trails, search, or logout pages. Users can edit their account information such as their username, password, search preferences, and avatar.
 
@@ -44,14 +33,17 @@ The search page allows Users to use the location and coordinate search features.
       - Complete
         - This button will do the same as the favorite button but mark a trail as completed rather than favorited.
       - Comments
+        ![image](https://user-images.githubusercontent.com/46305121/63454492-c45cbe80-c3ff-11e9-9890-6ba775ae679b.png)
         - This button will display all of the comments for a trail.
         - It also displays a new comment button allowing users to create a new comment for a trail.
         - Users have the ability to edit their comments as well as delete them.
         - Once you create a comment, edit and delet buttons will appear allowing you to modify your comment.
       - More Info
+        ![image](https://user-images.githubusercontent.com/46305121/63454496-c757af00-c3ff-11e9-8aa7-39c0ccb043fb.png)
         - This button will display more information about a trail.
         - It currently displays a preview image, the trail name, location, summary, length, ascent, condition, and difficulty, as well as how many other users have completed or favorited the trail.
       - Photos
+        ![image](https://user-images.githubusercontent.com/46305121/63454529-d76f8e80-c3ff-11e9-9dfb-d155bfb3f2b5.png)
         - This button will display all of the user photos that have been uploaded for a certain trail.
         - Similarly to the comments, users can create new photos using the new photo button as well as delete their existing photos.
         
