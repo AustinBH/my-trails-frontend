@@ -89,6 +89,11 @@ class CommentHolder extends Component {
         }
     }
 
+    convertTime = time  => {
+        const date = new Date(time + ' UTC')
+        return date.toLocaleString()
+    }
+
     render() {
         return <>
             <Comment.Group>
@@ -101,7 +106,7 @@ class CommentHolder extends Component {
                             return <Comment key={idx}>
                                 <Comment.Avatar src={comment.avatar} />
                                 <Comment.Author as='a' content={comment.username}/>
-                                <Comment.Metadata content={comment.created_at}/>
+                                <Comment.Metadata content={this.convertTime(comment.created_at)}/>
                                 <Comment.Text content={comment.content}/>
                                 {comment.user_id === this.props.user.id ?
                                     <>

@@ -26,7 +26,7 @@ const SearchData = props => {
             component = <PhotosHolder trail={trail} />
             name = 'Photos'
         } else {
-            return null
+            return <div className='trail-holder'/>
         }
         return <Table>
             <Table.Header>
