@@ -9,6 +9,7 @@ class GoogleMap extends Component {
         lat: 47.6062,
         lng: -122.3321
     }
+    // This is how we keep track of which hike preview is being displayed
     state = {
         showingInfoWindow: false,
         selectedTrailId: null

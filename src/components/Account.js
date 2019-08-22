@@ -29,6 +29,7 @@ class Account extends Component {
         this.setState({ open: !this.state.open })
     }
 
+    // We need to fetch again so that we can display our welcome message and avatar image
     displayError = error => {
         this.setState({ error: error })
         this.toggleModal()

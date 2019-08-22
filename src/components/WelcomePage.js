@@ -64,11 +64,13 @@ const WelcomePage = props => {
         }
     }
 
+    // When a user submits the search settings form we want to close the modal
     const handleSubmit = ev => {
         ev.preventDefault()
         toggle()
     }
 
+    // These are our modal toggle functions
     const toggle = () => {
         setOpen(!open)
     }

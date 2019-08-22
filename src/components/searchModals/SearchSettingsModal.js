@@ -1,6 +1,7 @@
 import React from 'react'
-import { Modal, Button, Form, Label, Dropdown } from 'semantic-ui-react';
+import { Modal, Button, Form, Label } from 'semantic-ui-react';
 
+// Here are the options for the select menu
 const options = [
     { key: 10, text: 'Ten', value: 10},
     { key: 20, text: 'Twenty', value: 20},
@@ -18,11 +19,11 @@ const SearchSettingsModal = props => {
                     <Form.Group widths='equal'>
                         <Form.Field className='modal-form'>
                             <Label color='brown' as='a' icon='bicycle' content='Range (miles)' />
-                            <Dropdown value={props.range} onChange={props.handleOnChange} options={options} name='distance' placeholder='Select a range' selection required />
+                            <Form.Select value={props.range} onChange={props.handleOnChange} options={options} name='distance' placeholder='Select a range' selection required />
                         </Form.Field>
                         <Form.Field className='modal-form'>
                             <Label color='brown' as='a' icon='flag' content='Results (trails)' />
-                            <Dropdown value={props.results} onChange={props.handleOnChange} options={options} name='results' placeholder='Select the number of trails' selection required />
+                            <Form.Select value={props.results} onChange={props.handleOnChange} options={options} name='results' placeholder='Select the number of trails' selection required />
                         </Form.Field>
                     </Form.Group>
                     <Button className='home-button' color='blue' type='submit' content='Save' />

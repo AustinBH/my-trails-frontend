@@ -88,6 +88,7 @@ class CommentHolder extends Component {
         }
     }
 
+    // This function will parse the date returned by our backend into local time for the user
     convertTime = time  => {
         const date = new Date(time)
         return date.toLocaleString()

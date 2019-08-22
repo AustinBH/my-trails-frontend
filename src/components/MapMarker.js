@@ -3,6 +3,7 @@ import { Image, Icon, Card } from 'semantic-ui-react';
 
 const MapMarker = props => {
 
+    // Here we want to either display a marker or hide one depending on whether we are currently showing this marker
     const handleClick = ev => {
         if (props.selectedTrail === props.trail.id && props.show) {
             props.handleOnClick(null, ev)
@@ -11,6 +12,7 @@ const MapMarker = props => {
         }
     }
 
+    // This function allows our x icon to close the marker
     const handleClose = ev => {
         props.handleOnClick(null, ev)
     }

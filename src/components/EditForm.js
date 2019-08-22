@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button, Form, Label, Image, Dropdown, Segment, Grid } from 'semantic-ui-react';
+import { Button, Form, Label, Image, Segment, Grid } from 'semantic-ui-react';
 
+// Here we are defining the search options
 const options = [
     { key: 10, text: 'Ten', value: 10 },
     { key: 20, text: 'Twenty', value: 20 },
@@ -28,11 +29,11 @@ const EditForm = props => {
                     <Form.Group widths='equal'>
                         <Form.Field>
                             <Label color='brown' as='a' icon='truck' content='Distance (miles)' />
-                            <Dropdown labeled value={props.user.distance} onChange={props.handleOnChange} options={options} name='distance' placeholder='Select a range' selection />
+                            <Form.Select value={props.user.distance} onChange={props.handleOnChange} options={options} name='distance' placeholder='Select a range' selection />
                         </Form.Field>
                         <Form.Field>
                             <Label color='brown' as='a' icon='map pin' content='Results' />
-                            <Dropdown value={props.user.results} onChange={props.handleOnChange} options={options} name='results' placeholder='Select the trails to be returned' selection />
+                            <Form.Select value={props.user.results} onChange={props.handleOnChange} options={options} name='results' placeholder='Select the trails to be returned' selection />
                         </Form.Field>
                     </Form.Group>
                     <Label color='brown' as='a' icon='image outline' content='Avatar' />

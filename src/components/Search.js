@@ -98,8 +98,8 @@ class Search extends Component {
             :
                 <GoogleMap lat={this.state.selectedLocation.lat} lng={this.state.selectedLocation.lng} trails={this.state.trails} />
             }
-            {/* This ternary checks to see if we have updated our trails before rendering either trail results or no trail results depending on search data */}
-            {this.state.trails && this.state.trails.length > 0 ?
+            {// This ternary checks to see if we have updated our trails before rendering either trail results or no trail results depending on search data
+            this.state.trails && this.state.trails.length > 0 ?
                 <SearchResults trails={this.state.trails} user={this.props.user} />
             :
                 this.state.selectedLocation.lat ?

@@ -20,7 +20,7 @@ const SearchData = props => {
         } else if (!props.info.hidden) {
             trail = props.trails.find(trail => trail.id === props.info.id)
             component = <InfoHolder trail={trail} />
-            name = 'More Info'
+            name = trail.name
         } else if (!props.photo.hidden) {
             trail = props.trails.find(trail => trail.id === props.photo.id)
             component = <PhotosHolder trail={trail} />

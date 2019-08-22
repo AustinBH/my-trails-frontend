@@ -31,6 +31,7 @@ class InfoHolder extends Component {
         this.props.removeFavorites()
     }
 
+    // The following two functions are going to display our fav and completion counts
     displayFavorites = () => {
         let favs = this.props.favorites
         if (favs) {
