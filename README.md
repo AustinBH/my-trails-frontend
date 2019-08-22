@@ -65,7 +65,9 @@ The search page allows Users to use the location and coordinate search features.
 
 To setup your own version of this application, you will need to clone down the repo and then add your own env file. In order to use the Google Maps integration, you need to provide a Google Maps API key. Once you have an API key just enter it into the .env.sample file where it says 'your-api-key-here' and remove the .sample from the .env file.
 
-Once you have the API key setup, you can simply open the app and run it. As the hosted backend does not accept requests from testing environments, you will need to update the API_ROOT variable found in the /src/services/api.js file. Simply replace the current root with whatever your backend is hosted on. To experience the full functionality of this application, I would recommend cloning the [Backend](https://github.com/AustinBH/my-trails-backend) as well.
+You can then run `npm install`
+
+At this point, you can start the app using `npm start`. As the hosted backend does not accept requests from testing environments, you will need to update the API_ROOT variable found in the /src/services/api.js file. Simply replace the current root with whatever your backend is hosted on. To experience the full functionality of this application, I would recommend cloning the [Backend](https://github.com/AustinBH/my-trails-backend) as well.
 
 Once you have a backend to query data from and a Google Maps API key to work with, you will be cooking with gas.
 
