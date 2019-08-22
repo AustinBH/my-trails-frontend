@@ -16,22 +16,19 @@ const EditForm = props => {
                 <Segment stacked>
                     <Form.Group widths='equal'>
                         <Form.Field>
-                            <Label color='brown' as='a' icon='user' content='Username' />
-                            <Form.Input type='text' value={props.user.username} onChange={props.handleOnChange} name='username' autoComplete='username' placeholder='Enter a new username' />
+                            <Form.Input icon='user' iconPosition='left' label='Username' type='text' value={props.user.username} onChange={props.handleOnChange} name='username' autoComplete='username' placeholder='Enter a new username' />
                         </Form.Field>
                         <Form.Field>
-                            <Label color='brown' as='a' icon='lock' content='Current Password' />
-                            <Form.Input type='password' value={props.user.password} onChange={props.handleOnChange} name='password' autoComplete='current-password' placeholder='Enter your current password' required />
+                            <Form.Input icon='lock' iconPosition='left' label='Current Password' type='password' value={props.user.password} onChange={props.handleOnChange} name='password' autoComplete='current-password' placeholder='Enter your current password' required />
                         </Form.Field>
                         <Form.Field>
-                            <Label color='brown' as='a' icon='lock' content='New Password' />
-                            <Form.Input type='password' value={props.user.newPassword} onChange={props.handleOnChange} name='newPassword' autoComplete='current-password' placeholder='Enter a new password' />
+                            <Form.Input icon='lock' iconPosition='left' label='New Password' type='password' value={props.user.newPassword} onChange={props.handleOnChange} name='newPassword' autoComplete='current-password' placeholder='Enter a new password' />
                         </Form.Field>
                     </Form.Group>
                     <Form.Group widths='equal'>
                         <Form.Field>
                             <Label color='brown' as='a' icon='truck' content='Distance (miles)' />
-                            <Dropdown value={props.user.distance} onChange={props.handleOnChange} options={options} name='distance' placeholder='Select a range' selection />
+                            <Dropdown labeled value={props.user.distance} onChange={props.handleOnChange} options={options} name='distance' placeholder='Select a range' selection />
                         </Form.Field>
                         <Form.Field>
                             <Label color='brown' as='a' icon='map pin' content='Results' />

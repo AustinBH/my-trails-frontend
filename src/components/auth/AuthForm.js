@@ -43,10 +43,10 @@ const AuthForm = props => {
                 <Message content={'Fill out the information below to ' + props.form} header={capitalize(props.form)} />
                 <Segment stacked>
                     <Form.Field>
-                        <Form.Input icon='user' iconPosition='left' type='text' value={controlUsername()} onChange={props.handleOnChange} name='username' placeholder='Enter your username' autoComplete='username' required />
+                        <Form.Input label='Username' icon='user' iconPosition='left' type='text' value={controlUsername()} onChange={props.handleOnChange} name='username' placeholder='Enter your username' autoComplete='username' required />
                     </Form.Field>
                     <Form.Field>
-                        <Form.Input icon='lock' iconPosition='left' type='password' value={controlPassword()} onChange={props.handleOnChange} name='password' placeholder='Enter your password' autoComplete='current-password' required />
+                        <Form.Input label='Password' icon='lock' iconPosition='left' type='password' value={controlPassword()} onChange={props.handleOnChange} name='password' autoComplete='current-password' required />
                     </Form.Field>
                 <Button fluid icon='check' color='blue' type='submit' content={capitalize(props.form)} />
                 </Segment>

@@ -3,8 +3,7 @@ import { Button, Comment } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { api } from '../services/api';
 import { fetchAuthentication } from '../actions/userActions'
-import NewCommentModal from '../components/commentModals/NewCommentModal';
-import EditCommentmodal from '../components/commentModals/EditCommentModal';
+import WriteCommentModal from '../components/commentModals/WriteCommentModal';
 import DeleteCommentModal from '../components/commentModals/DeleteCommentModal';
 import BasicLoader from '../components/BasicLoader';
 
@@ -67,7 +66,7 @@ class CommentHolder extends Component {
     // This function manages our edit and create forms and sends an appropriate fetch depending on what the user selected.
     handleSubmit = ev => {
         ev.preventDefault()
-        if (ev.target.name === 'create') {
+        if (ev.target.name === 'New') {
             let comment = { content: this.state.content, user_id: this.props.user.id, trail_id: this.props.trail.id }
             api.comments.addComment({ comment: comment }).then(json => {
                 if (!json.error) {
@@ -125,8 +124,8 @@ class CommentHolder extends Component {
                 } 
             </Comment.Group>
             <DeleteCommentModal open={this.state.deleteOpen} toggle={this.toggleDelete} id={this.state.deletingId} deleteComment={this.deleteComment}/>
-            <EditCommentmodal open={this.state.editOpen} toggle={this.toggleEdit} handleOnSubmit={this.handleSubmit} value={this.state.editingContent} handleOnChange={this.handleChange} />
-            <NewCommentModal toggle={this.toggleNew} open={this.state.open} handleOnSubmit={this.handleSubmit} value={this.state.content} handleOnChange={this.handleChange} />
+            <WriteCommentModal open={this.state.editOpen} toggle={this.toggleEdit} handleOnSubmit={this.handleSubmit} value={this.state.editingContent} handleOnChange={this.handleChange} info='Editing' />
+            <WriteCommentModal toggle={this.toggleNew} open={this.state.open} handleOnSubmit={this.handleSubmit} value={this.state.content} handleOnChange={this.handleChange} info='New' />
         </>
     }
 }
