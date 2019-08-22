@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import { Menu, Dropdown } from 'semantic-ui-react';
 import Account from '../components/Account';
+import About from '../components/About';
 import Favorites from '../components/Favorites';
 import Trails from '../components/Trails';
 import Search from '../components/Search';
@@ -18,7 +19,8 @@ const HomeContainer = props => {
     // These options are for the dropdown menu in the navmenu
     const options = [
         <Dropdown.Item key='1' icon='settings' as={NavLink} exact to='/account' activeClassName='active' text='Edit'/>,
-        <Dropdown.Item key='2' icon='sign out alternate' text='Logout' onClick={logout}/>
+        <Dropdown.Item key='2' icon='grav' as={NavLink} exact to='/about' activeClassName='active' text='About'/>,
+        <Dropdown.Item key='3' icon='sign out alternate' text='Logout' onClick={logout}/>
     ]
     
     return <Router>
@@ -30,6 +32,7 @@ const HomeContainer = props => {
         </Menu>
         <Route path='/' exact component={WelcomePage} />
         <Route path='/account' exact render={props => <Account {...props} />} />
+        <Route path='/about' exact render={props => <About {...props} />} />
         <Route path='/favorites' exact render={props => <Favorites {...props} />} />
         <Route path='/hikes' exact render={props => <Trails {...props} />} />
         <Route path='/search' exact render={props => <Search {...props} />} />

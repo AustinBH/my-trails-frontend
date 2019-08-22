@@ -9,11 +9,15 @@ h1 {
   font-family: 'Lobster', cursive;
 }
 
+h1.ui.header {
+  font-family: 'Lobster', cursive;
+}
+
 h3.ui.dividing.header {
   font-family: 'Nunito', cursive;
 }
 
-h3 {
+h3.ui.header {
   font-family: 'Nunito', cursive;
 }
 

@@ -30,14 +30,16 @@ class TrailSearchForm extends Component {
                 <h1>Search by Coordinates</h1>
                     <Form className='standard-form' onSubmit={this.handleSubmit}>
                         <Segment stacked>
-                            <Form.Field>
-                                <Label color='brown' as='a' icon='map marker' content='Latitude' />
-                                <Input type='number' value={this.state.latitude} onChange={this.handleChange} name='latitude' placeholder='Enter a latitude' required />
-                            </Form.Field>
-                            <Form.Field>
-                                <Label color='brown' as='a' icon='map marker alternate' content='Longitude' />
-                                <Input type='number' value={this.state.longitude} onChange={this.handleChange} name='longitude' placeholder='Enter a longitude' required />
-                            </Form.Field>
+                            <Form.Group widths='equal'>
+                                <Form.Field>
+                                    <Label color='brown' as='a' icon='map marker' content='Latitude' />
+                                    <Input type='number' value={this.state.latitude} onChange={this.handleChange} name='latitude' placeholder='Enter a latitude' required />
+                                </Form.Field>
+                                <Form.Field>
+                                    <Label color='brown' as='a' icon='map marker alternate' content='Longitude' />
+                                    <Input type='number' value={this.state.longitude} onChange={this.handleChange} name='longitude' placeholder='Enter a longitude' required />
+                                </Form.Field>
+                            </Form.Group>
                             <Button fluid color='blue' type='submit' content='Search' />
                         </Segment>
                     </Form>
