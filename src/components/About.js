@@ -87,7 +87,19 @@ const About = props => {
             Their API is very robust and easy to work with, it has been an absoloute pleasure to work with for this project.
             The photos that are uploaded here are stored using AWS S3.
         </Segment>
-        <Button color='brown' icon='backward' onClick={() => props.history.push('/')} content='Go Back' />
+        <Header as='h3' content='Contact' />
+        <Segment stacked>
+            <a href='https://github.com/AustinBH' target='_blank' rel='noopener noreferrer'>
+                <Button color='black' content='Github' icon='github' />
+            </a>
+            <a href='https://www.linkedin.com/in/austin-harlow/' target='_blank' rel='noopener noreferrer'>
+                <Button color='linkedin' content='Linkedin' icon='linkedin' />
+            </a>
+            <a href='https://dev.to/austinbh' target='_blank' rel='noopener noreferrer'>
+                <Button color='black' content='Blog' icon='list alternate outline' />
+            </a>
+        </Segment>
+        <Button className='home-button' color='brown' icon='backward' onClick={() => props.history.push('/')} content='Go Back' />
     </Container>
 }
 
