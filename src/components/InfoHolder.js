@@ -54,7 +54,7 @@ class InfoHolder extends Component {
     }
 
     render() {
-        return <Grid columns={3} celled>
+        return <Grid columns={3} celled='internally'>
             <Grid.Row>
                 <Grid.Column width={16}>
                     {this.props.trail.imgMedium ?
