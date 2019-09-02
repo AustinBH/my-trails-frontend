@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { HashRouter as Router, Route, NavLink, Redirect } from 'react-router-dom';
 import { Menu, Dropdown } from 'semantic-ui-react';
 import Account from '../components/Account';
 import About from '../components/About';
@@ -36,6 +36,7 @@ const HomeContainer = props => {
         <Route path='/favorites' exact render={props => <Favorites {...props} />} />
         <Route path='/hikes' exact render={props => <Trails {...props} />} />
         <Route path='/search' exact render={props => <Search {...props} />} />
+        <Redirect from='*' to='/'/>
     </Router>
 }
 
