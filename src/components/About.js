@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Segment, Header, Button, Image, Icon } from 'semantic-ui-react';
+import { Container, Segment, Header, Button, Icon } from 'semantic-ui-react';
 
 const About = props => {
     return <Container textAlign='center'>
@@ -19,11 +19,7 @@ const About = props => {
             This is a mobile/webapp for hikers.
             You can save trails as favorites, mark trails as completed, comment on trails, upload photos of trails, and see specific trail information such as difficulty, length, ascent, a brief summary, and a preview image.
             You can search for trails based on latitude/longitude gps coordinates, several different preset locations, and your device's geolocation feature.
-            <Image fluid src='https://user-images.githubusercontent.com/46305121/63454436-a8591d00-c3ff-11e9-815c-82b63250b2f8.png'/>
-            <p>You can see the application in use in this
-                <a href='https://youtu.be/LO-hzgt9Gaw' target='_blank' rel='noopener noreferrer'> demo video</a>
-                .
-            </p>
+            <iframe className='demo-video' title='My Trails Demo' src="https://www.youtube.com/embed/LO-hzgt9Gaw" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
         </Segment>
         <Header as='h3' content='Features'/>
         <Segment stacked>
