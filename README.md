@@ -4,7 +4,7 @@
 
 This web application was developed with a mobile first design. The application allows users to find trails near them, save trails to their favorites or mark them as completed. Users can also leave comments about trails as well as upload photos of their hikes.
 
-It is currently hosted both at https://my-trails.herokuapp.com/ and http://www.my-trails.info. As the Geolocation API requires https, I would recommend using the first link for now. The app is currently supported on the latest versions of Chrome, Safari, and Firefox. It may be functional on other browsers but I have not been able to test or confirm as such at this time. The site is also fully functional on mobile.
+It is currently hosted both at https://my-trails.herokuapp.com/ and https://www.my-trails.info. The app is currently supported on the latest versions of Chrome, Safari, and Firefox. It may be functional on other browsers but I have not been able to test or confirm as such at this time. The site is also fully functional on mobile.
 
 ## Demo
 
