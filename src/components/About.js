@@ -19,7 +19,7 @@ const About = props => {
             This is a mobile/webapp for hikers.
             You can save trails as favorites, mark trails as completed, comment on trails, upload photos of trails, and see specific trail information such as difficulty, length, ascent, a brief summary, and a preview image.
             You can search for trails based on latitude/longitude gps coordinates, several different preset locations, and your device's geolocation feature.
-            <iframe className='demo-video' title='My Trails Demo' src="https://www.youtube.com/embed/LO-hzgt9Gaw" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
+            <iframe className='demo-video' title='My Trails Demo' src="https://www.youtube.com/embed/P2BzlqXCFZU" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
         </Segment>
         <Header as='h3' content='Features'/>
         <Segment stacked>
