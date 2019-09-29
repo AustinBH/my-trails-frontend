@@ -10,7 +10,7 @@ const AuthForm = props => {
         props.form === 'login' ?
             props.history.push('/')
         :
-            props.history.push('/about')
+            props.history.push('/#/about')
     }
 
     // This function allows us to have capitalized submit(login/signup) buttons
