@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Image } from 'semantic-ui-react';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { HashRouter as Router, Route, NavLink } from 'react-router-dom';
 import { fetchSignup } from '../actions/userActions';
 import { fetchLogin } from '../actions/userActions';
 import AuthForm from '../components/auth/AuthForm';
