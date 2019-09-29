@@ -6,11 +6,6 @@ const AuthForm = props => {
     const handleSubmit = ev => {
         ev.preventDefault();
         props.startFetch(props.form)
-        // Adding a ternary to send users to the about page when they signup for the site explanation
-        props.form === 'login' ?
-            props.history.push('/')
-        :
-            props.history.push('/#/about')
     }
 
     // This function allows us to have capitalized submit(login/signup) buttons
