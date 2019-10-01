@@ -85,8 +85,8 @@ const About = props => {
         </Segment>
         <Header as='h3' content='Contact' />
         <Segment stacked>
-            <Button color='olive' content='Portfolio' icon='laptop' href='https://austinharlow.net' target='_blank' rel='noopener noreferrer' />
             <Button color='black' content='Github' icon='github' href='https://github.com/AustinBH' target='_blank' rel='noopener noreferrer' />
+            <Button color='olive' content='Portfolio' icon='laptop' href='https://austinharlow.net' target='_blank' rel='noopener noreferrer' />
             <Button color='linkedin' content='Linkedin' icon='linkedin' href='https://www.linkedin.com/in/austin-harlow/' target='_blank' rel='noopener noreferrer' />
             <Button color='black' content='Blog' icon='list alternate outline' href='https://dev.to/austinbh' target='_blank' rel='noopener noreferrer' />
         </Segment>
